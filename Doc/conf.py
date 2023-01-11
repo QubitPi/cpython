@@ -21,6 +21,8 @@ from pyspecific import SOURCE_URI
 # General configuration
 # ---------------------
 
+html_baseurl = '/cpython/'
+
 # Our custom Sphinx extensions are found in Doc/Tools/extensions/
 extensions = [
     'audit_events',
