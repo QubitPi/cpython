@@ -13,6 +13,8 @@ sys.path.append(os.path.abspath('includes'))
 # General configuration
 # ---------------------
 
+html_baseurl = '/cpython/'
+
 extensions = [
     'asdl_highlight',
     'c_annotations',
