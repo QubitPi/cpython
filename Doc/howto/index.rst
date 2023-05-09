@@ -33,4 +33,3 @@ Currently, the HOWTOs are:
    perf_profiling.rst
    annotations.rst
    isolating-extensions.rst
-
