@@ -57,4 +57,5 @@ The :ref:`glossary` is also worth going through.
    whatnow.rst
    interactive.rst
    floatingpoint.rst
+   start-guide-for-java-developers.rst
    appendix.rst
