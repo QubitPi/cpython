@@ -4,9 +4,6 @@ on:
   workflow_call:
   workflow_dispatch:
   pull_request:
-    branches:
-    - 'master'
-
 
 permissions:
   contents: read
@@ -22,6 +19,8 @@ jobs:
   build-doc:
     name: 'Docs'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 60
     env:
       branch_base: 'origin/${{ github.event.pull_request.base.ref }}'
@@ -71,6 +70,15 @@ jobs:
         set -Eeuo pipefail
         # Build docs with the nit-picky option; write warnings to file
         make -C Doc/ PYTHON=../python SPHINXOPTS="--quiet --nitpicky --fail-on-warning --warning-file sphinx-warnings.txt" html
+    - name: 'Deploy HTML documentation to GitHub Pages'
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: Doc/build/html
+        enable_jekyll: false
+        user_name: ${{ env.USER }}
+        user_email: ${{ env.EMAIL }}
+        cname: python.qubitpi.org
     - name: 'Check warnings'
       if: github.event_name == 'pull_request'
       run: |
