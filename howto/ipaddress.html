@@ -1,46 +1,47 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="An introduction to the ipaddress module" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/howto/ipaddress.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="author, Peter Moody,, author, Nick Coghlan,. Overview: This document aims to provide a gentle introduction to the ipaddress module. It is aimed primarily at users that aren’t already familiar with ..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="author, Peter Moody,, author, Nick Coghlan,. Overview: This document aims to provide a gentle introduction to the ipaddress module. It is aimed primarily at users that aren’t already familiar with ..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>An introduction to the ipaddress module &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An introduction to the ipaddress module &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/howto/ipaddress.html" />
+    <link rel="canonical" href="/howto/ipaddress.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="next" title="Argument Clinic How-To" href="clinic.html" />
-    <link rel="prev" title="Argparse Tutorial" href="argparse.html" />
-    <link rel="canonical" href="https://docs.python.org/3/howto/ipaddress.html" />
+    <link rel="next" title="Instrumenting CPython with DTrace and SystemTap" href="instrumentation.html" />
+    <link rel="prev" title="HOWTO Fetch Internet Resources Using The urllib Package" href="urllib2.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/howto/ipaddress.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -104,13 +120,13 @@
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="argparse.html"
-                          title="previous chapter">Argparse Tutorial</a></p>
+    <p class="topless"><a href="urllib2.html"
+                          title="previous chapter">HOWTO Fetch Internet Resources Using The urllib Package</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="clinic.html"
-                          title="next chapter">Argument Clinic How-To</a></p>
+    <p class="topless"><a href="instrumentation.html"
+                          title="next chapter">Instrumenting CPython with DTrace and SystemTap</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -128,7 +144,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -138,13 +154,13 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="clinic.html" title="Argument Clinic How-To"
+          <a href="instrumentation.html" title="Instrumenting CPython with DTrace and SystemTap"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="argparse.html" title="Argparse Tutorial"
+          <a href="urllib2.html" title="HOWTO Fetch Internet Resources Using The urllib Package"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -154,7 +170,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python HOWTOs</a> &#187;</li>
@@ -164,14 +180,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -182,30 +205,30 @@
           <div class="body" role="main">
             
   <section id="an-introduction-to-the-ipaddress-module">
-<span id="ipaddress-howto"></span><h1>An introduction to the ipaddress module<a class="headerlink" href="#an-introduction-to-the-ipaddress-module" title="Permalink to this headline">¶</a></h1>
+<span id="ipaddress-howto"></span><h1>An introduction to the ipaddress module<a class="headerlink" href="#an-introduction-to-the-ipaddress-module" title="Link to this heading">¶</a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">author</dt>
+<dt class="field-odd">author<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Peter Moody</p>
 </dd>
-<dt class="field-even">author</dt>
+<dt class="field-even">author<span class="colon">:</span></dt>
 <dd class="field-even"><p>Nick Coghlan</p>
 </dd>
 </dl>
-<div class="topic">
+<aside class="topic">
 <p class="topic-title">Overview</p>
 <p>This document aims to provide a gentle introduction to the
 <a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a> module. It is aimed primarily at users that aren’t
 already familiar with IP networking terminology, but may also be useful
 to network engineers wanting an overview of how <a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a>
 represents IP network addressing concepts.</p>
-</div>
+</aside>
 <section id="creating-address-network-interface-objects">
-<h2>Creating Address/Network/Interface objects<a class="headerlink" href="#creating-address-network-interface-objects" title="Permalink to this headline">¶</a></h2>
+<h2>Creating Address/Network/Interface objects<a class="headerlink" href="#creating-address-network-interface-objects" title="Link to this heading">¶</a></h2>
 <p>Since <a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a> is a module for inspecting and manipulating IP addresses,
 the first thing you’ll want to do is create some objects.  You can use
 <a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a> to create objects from strings and integers.</p>
 <section id="a-note-on-ip-versions">
-<h3>A Note on IP Versions<a class="headerlink" href="#a-note-on-ip-versions" title="Permalink to this headline">¶</a></h3>
+<h3>A Note on IP Versions<a class="headerlink" href="#a-note-on-ip-versions" title="Link to this heading">¶</a></h3>
 <p>For readers that aren’t particularly familiar with IP addressing, it’s
 important to know that the Internet Protocol (IP) is currently in the process
 of moving from version 4 of the protocol to version 6. This transition is
@@ -218,7 +241,7 @@ least be aware that these two versions exist, and it will sometimes be
 necessary to force the use of one version or the other.</p>
 </section>
 <section id="ip-host-addresses">
-<h3>IP Host Addresses<a class="headerlink" href="#ip-host-addresses" title="Permalink to this headline">¶</a></h3>
+<h3>IP Host Addresses<a class="headerlink" href="#ip-host-addresses" title="Link to this heading">¶</a></h3>
 <p>Addresses, often referred to as “host addresses” are the most basic unit
 when working with IP addressing. The simplest way to create addresses is
 to use the <a class="reference internal" href="../library/ipaddress.html#ipaddress.ip_address" title="ipaddress.ip_address"><code class="xref py py-func docutils literal notranslate"><span class="pre">ipaddress.ip_address()</span></code></a> factory function, which automatically
@@ -251,7 +274,7 @@ addresses for small integers:</p>
 </div>
 </section>
 <section id="defining-networks">
-<h3>Defining Networks<a class="headerlink" href="#defining-networks" title="Permalink to this headline">¶</a></h3>
+<h3>Defining Networks<a class="headerlink" href="#defining-networks" title="Link to this heading">¶</a></h3>
 <p>Host addresses are usually grouped together into IP networks, so
 <a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a> provides a way to create, inspect and manipulate network
 definitions. IP network objects are constructed from strings that define the
@@ -300,7 +323,7 @@ by calling the class constructor directly instead of using the factory
 function.</p>
 </section>
 <section id="host-interfaces">
-<h3>Host Interfaces<a class="headerlink" href="#host-interfaces" title="Permalink to this headline">¶</a></h3>
+<h3>Host Interfaces<a class="headerlink" href="#host-interfaces" title="Link to this heading">¶</a></h3>
 <p>As mentioned just above, if you need to describe an address on a particular
 network, neither the address nor the network classes are sufficient.
 Notation like <code class="docutils literal notranslate"><span class="pre">192.0.2.1/24</span></code> is commonly used by network engineers and the
@@ -321,7 +344,7 @@ version can be forced by calling the relevant constructor directly.</p>
 </section>
 </section>
 <section id="inspecting-address-network-interface-objects">
-<h2>Inspecting Address/Network/Interface Objects<a class="headerlink" href="#inspecting-address-network-interface-objects" title="Permalink to this headline">¶</a></h2>
+<h2>Inspecting Address/Network/Interface Objects<a class="headerlink" href="#inspecting-address-network-interface-objects" title="Link to this heading">¶</a></h2>
 <p>You’ve gone to the trouble of creating an IPv(4|6)(Address|Network|Interface)
 object, so you probably want to get information about it.  <a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a>
 tries to make doing this easy and intuitive.</p>
@@ -355,12 +378,12 @@ tries to make doing this easy and intuitive.</p>
 <p>Iterating through the “usable” addresses on a network:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net4</span> <span class="o">=</span> <span class="n">ipaddress</span><span class="o">.</span><span class="n">ip_network</span><span class="p">(</span><span class="s1">&#39;192.0.2.0/24&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">net4</span><span class="o">.</span><span class="n">hosts</span><span class="p">():</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">192.0.2.1</span>
 <span class="go">192.0.2.2</span>
 <span class="go">192.0.2.3</span>
 <span class="go">192.0.2.4</span>
-<span class="gp">...</span>
+<span class="go">...</span>
 <span class="go">192.0.2.252</span>
 <span class="go">192.0.2.253</span>
 <span class="go">192.0.2.254</span>
@@ -397,7 +420,7 @@ easily ensure the most concise or most verbose form is used for IPv6
 addresses while still correctly handling IPv4 addresses.</p>
 </section>
 <section id="networks-as-lists-of-addresses">
-<h2>Networks as lists of Addresses<a class="headerlink" href="#networks-as-lists-of-addresses" title="Permalink to this headline">¶</a></h2>
+<h2>Networks as lists of Addresses<a class="headerlink" href="#networks-as-lists-of-addresses" title="Link to this heading">¶</a></h2>
 <p>It’s sometimes useful to treat networks as lists.  This means it is possible
 to index them like this:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -426,7 +449,7 @@ membership test syntax like this:</p>
 </div>
 </section>
 <section id="comparisons">
-<h2>Comparisons<a class="headerlink" href="#comparisons" title="Permalink to this headline">¶</a></h2>
+<h2>Comparisons<a class="headerlink" href="#comparisons" title="Link to this heading">¶</a></h2>
 <p><a class="reference internal" href="../library/ipaddress.html#module-ipaddress" title="ipaddress: IPv4/IPv6 manipulation library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ipaddress</span></code></a> provides some simple, hopefully intuitive ways to compare
 objects, where it makes sense:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ipaddress</span><span class="o">.</span><span class="n">ip_address</span><span class="p">(</span><span class="s1">&#39;192.0.2.1&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ipaddress</span><span class="o">.</span><span class="n">ip_address</span><span class="p">(</span><span class="s1">&#39;192.0.2.2&#39;</span><span class="p">)</span>
@@ -437,7 +460,7 @@ objects, where it makes sense:</p>
 different versions or different types.</p>
 </section>
 <section id="using-ip-addresses-with-other-modules">
-<h2>Using IP Addresses with other modules<a class="headerlink" href="#using-ip-addresses-with-other-modules" title="Permalink to this headline">¶</a></h2>
+<h2>Using IP Addresses with other modules<a class="headerlink" href="#using-ip-addresses-with-other-modules" title="Link to this heading">¶</a></h2>
 <p>Other modules that use IP addresses (such as <a class="reference internal" href="../library/socket.html#module-socket" title="socket: Low-level networking interface."><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code></a>) usually won’t
 accept objects from this module directly. Instead, they must be coerced to
 an integer or string that the other module will accept:</p>
@@ -450,7 +473,7 @@ an integer or string that the other module will accept:</p>
 </div>
 </section>
 <section id="getting-more-detail-when-instance-creation-fails">
-<h2>Getting more detail when instance creation fails<a class="headerlink" href="#getting-more-detail-when-instance-creation-fails" title="Permalink to this headline">¶</a></h2>
+<h2>Getting more detail when instance creation fails<a class="headerlink" href="#getting-more-detail-when-instance-creation-fails" title="Link to this heading">¶</a></h2>
 <p>When creating address/network/interface objects using the version-agnostic
 factory functions, any errors will be reported as <a class="reference internal" href="../library/exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> with
 a generic error message that simply says the passed in value was not
@@ -500,7 +523,7 @@ you can still write code like the following:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -525,13 +548,13 @@ you can still write code like the following:</p>
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="argparse.html"
-                          title="previous chapter">Argparse Tutorial</a></p>
+    <p class="topless"><a href="urllib2.html"
+                          title="previous chapter">HOWTO Fetch Internet Resources Using The urllib Package</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="clinic.html"
-                          title="next chapter">Argument Clinic How-To</a></p>
+    <p class="topless"><a href="instrumentation.html"
+                          title="next chapter">Instrumenting CPython with DTrace and SystemTap</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -545,10 +568,14 @@ you can still write code like the following:</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -558,13 +585,13 @@ you can still write code like the following:</p>
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="clinic.html" title="Argument Clinic How-To"
+          <a href="instrumentation.html" title="Instrumenting CPython with DTrace and SystemTap"
              >next</a> |</li>
         <li class="right" >
-          <a href="argparse.html" title="Argparse Tutorial"
+          <a href="urllib2.html" title="HOWTO Fetch Internet Resources Using The urllib Package"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -574,7 +601,7 @@ you can still write code like the following:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python HOWTOs</a> &#187;</li>
@@ -584,37 +611,54 @@ you can still write code like the following:</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

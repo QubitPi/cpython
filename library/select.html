@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="select — Waiting for I/O completion" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/select.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="This module provides access to the select() and poll() functions available in most operating systems, devpoll() available on Solaris and derivatives, epoll() available on Linux 2.5+ and kqueue() av..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="This module provides access to the select() and poll() functions available in most operating systems, devpoll() available on Solaris and derivatives, epoll() available on Linux 2.5+ and kqueue() av..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>select — Waiting for I/O completion &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select — Waiting for I/O completion &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/select.html" />
+    <link rel="canonical" href="/library/select.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="selectors — High-level I/O multiplexing" href="selectors.html" />
     <link rel="prev" title="ssl — TLS/SSL wrapper for socket objects" href="ssl.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/select.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/select.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -121,7 +137,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -137,7 +153,7 @@
           <a href="ssl.html" title="ssl — TLS/SSL wrapper for socket objects"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -147,7 +163,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -158,14 +174,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -176,7 +199,7 @@
           <div class="body" role="main">
             
   <section id="module-select">
-<span id="select-waiting-for-i-o-completion"></span><h1><a class="reference internal" href="#module-select" title="select: Wait for I/O completion on multiple streams."><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code></a> — Waiting for I/O completion<a class="headerlink" href="#module-select" title="Permalink to this headline">¶</a></h1>
+<span id="select-waiting-for-i-o-completion"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> — Waiting for I/O completion<a class="headerlink" href="#module-select" title="Link to this heading">¶</a></h1>
 <hr class="docutils" />
 <p>This module provides access to the <code class="xref c c-func docutils literal notranslate"><span class="pre">select()</span></code> and <code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> functions
 available in most operating systems, <code class="xref c c-func docutils literal notranslate"><span class="pre">devpoll()</span></code> available on
@@ -193,14 +216,15 @@ multiplexing, built upon the <a class="reference internal" href="#module-select"
 encouraged to use the <a class="reference internal" href="selectors.html#module-selectors" title="selectors: High-level I/O multiplexing."><code class="xref py py-mod docutils literal notranslate"><span class="pre">selectors</span></code></a> module instead, unless they want
 precise control over the OS-level primitives used.</p>
 </div>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
-<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not WASI.</p>
+<p>This module does not work or is not available on WebAssembly. See
 <a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
-</p>
+</div>
 <p>The module defines the following:</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="select.error">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">error</span></span><a class="headerlink" href="#select.error" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">error</span></span><a class="headerlink" href="#select.error" title="Link to this definition">¶</a></dt>
 <dd><p>A deprecated alias of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.3: </span>Following <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-3151/"><strong>PEP 3151</strong></a>, this class was made an alias of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
@@ -209,7 +233,7 @@ precise control over the OS-level primitives used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="select.devpoll">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">devpoll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">devpoll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll" title="Link to this definition">¶</a></dt>
 <dd><p>(Only supported on Solaris and derivatives.)  Returns a <code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code>
 polling object; see section <a class="reference internal" href="#devpoll-objects"><span class="std std-ref">/dev/poll Polling Objects</span></a> below for the
 methods supported by devpoll objects.</p>
@@ -220,7 +244,7 @@ increases this value, <code class="xref c c-func docutils literal notranslate"><
 incomplete list of active file descriptors.</p>
 <p>The new file descriptor is <a class="reference internal" href="os.html#fd-inheritance"><span class="std std-ref">non-inheritable</span></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.3.</span></p>
+<p><span class="versionmodified added">Added in version 3.3.</span></p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.4: </span>The new file descriptor is now non-inheritable.</p>
@@ -229,7 +253,7 @@ incomplete list of active file descriptors.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="select.epoll">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">epoll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sizehint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">epoll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sizehint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll" title="Link to this definition">¶</a></dt>
 <dd><p>(Only supported on Linux 2.5.44 and newer.) Return an edge polling object,
 which can be used as Edge or Level Triggered interface for I/O
 events.</p>
@@ -261,7 +285,7 @@ Use <a class="reference internal" href="os.html#os.set_inheritable" title="os.se
 
 <dl class="py function">
 <dt class="sig sig-object py" id="select.poll">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.poll" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.poll" title="Link to this definition">¶</a></dt>
 <dd><p>(Not supported by all operating systems.)  Returns a polling object, which
 supports registering and unregistering file descriptors, and then polling them
 for I/O events; see section <a class="reference internal" href="#poll-objects"><span class="std std-ref">Polling Objects</span></a> below for the methods supported
@@ -270,7 +294,7 @@ by polling objects.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="select.kqueue">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">kqueue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">kqueue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue" title="Link to this definition">¶</a></dt>
 <dd><p>(Only supported on BSD.)  Returns a kernel queue object; see section
 <a class="reference internal" href="#kqueue-objects"><span class="std std-ref">Kqueue Objects</span></a> below for the methods supported by kqueue objects.</p>
 <p>The new file descriptor is <a class="reference internal" href="os.html#fd-inheritance"><span class="std std-ref">non-inheritable</span></a>.</p>
@@ -281,14 +305,14 @@ by polling objects.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="select.kevent">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">kevent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ident</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">KQ_FILTER_READ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">KQ_EV_ADD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fflags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">udata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.kevent" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">kevent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ident</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">KQ_FILTER_READ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">KQ_EV_ADD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fflags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">udata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.kevent" title="Link to this definition">¶</a></dt>
 <dd><p>(Only supported on BSD.)  Returns a kernel event object; see section
 <a class="reference internal" href="#kevent-objects"><span class="std std-ref">Kevent Objects</span></a> below for the methods supported by kevent objects.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="select.select">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlist</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.select" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlist</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.select" title="Link to this definition">¶</a></dt>
 <dd><p>This is a straightforward interface to the Unix <code class="xref c c-func docutils literal notranslate"><span class="pre">select()</span></code> system call.
 The first three arguments are iterables of ‘waitable objects’: either
 integers representing file descriptors or objects with a parameterless method
@@ -301,7 +325,7 @@ your system considers such a condition)</p></li>
 </ul>
 <p>Empty iterables are allowed, but acceptance of three empty iterables is
 platform-dependent. (It is known to work on Unix but not on Windows.)  The
-optional <em>timeout</em> argument specifies a time-out as a floating point number
+optional <em>timeout</em> argument specifies a time-out as a floating-point number
 in seconds.  When the <em>timeout</em> argument is omitted the function blocks until
 at least one file descriptor is ready.  A time-out value of zero specifies a
 poll and never blocks.</p>
@@ -329,57 +353,59 @@ a signal, except if the signal handler raises an exception (see
 </div>
 </dd></dl>
 
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="select.PIPE_BUF">
-<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">PIPE_BUF</span></span><a class="headerlink" href="#select.PIPE_BUF" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">select.</span></span><span class="sig-name descname"><span class="pre">PIPE_BUF</span></span><a class="headerlink" href="#select.PIPE_BUF" title="Link to this definition">¶</a></dt>
 <dd><p>The minimum number of bytes which can be written without blocking to a pipe
 when the pipe has been reported as ready for writing by <a class="reference internal" href="#select.select" title="select.select"><code class="xref py py-func docutils literal notranslate"><span class="pre">select()</span></code></a>,
-<a class="reference internal" href="#select.poll" title="select.poll"><code class="xref py py-func docutils literal notranslate"><span class="pre">poll()</span></code></a> or another interface in this module.  This doesn’t apply
+<code class="xref py py-func docutils literal notranslate"><span class="pre">poll()</span></code> or another interface in this module.  This doesn’t apply
 to other kind of file-like objects such as sockets.</p>
 <p>This value is guaranteed by POSIX to be at least 512.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix</p>
+</div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.2.</span></p>
+<p><span class="versionmodified added">Added in version 3.2.</span></p>
 </div>
 </dd></dl>
 
 <section id="dev-poll-polling-objects">
-<span id="devpoll-objects"></span><h2><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> Polling Objects<a class="headerlink" href="#dev-poll-polling-objects" title="Permalink to this headline">¶</a></h2>
+<span id="devpoll-objects"></span><h2><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> Polling Objects<a class="headerlink" href="#dev-poll-polling-objects" title="Link to this heading">¶</a></h2>
 <p>Solaris and derivatives have <code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code>. While <code class="xref c c-func docutils literal notranslate"><span class="pre">select()</span></code> is
-O(highest file descriptor) and <code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> is O(number of file
-descriptors), <code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> is O(active file descriptors).</p>
+<em>O</em>(<em>highest file descriptor</em>) and <code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> is <em>O</em>(<em>number of file
+descriptors</em>), <code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> is <em>O</em>(<em>active file descriptors</em>).</p>
 <p><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> behaviour is very close to the standard <code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code>
 object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="select.devpoll.close">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.close" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.close" title="Link to this definition">¶</a></dt>
 <dd><p>Close the file descriptor of the polling object.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.devpoll.closed">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#select.devpoll.closed" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#select.devpoll.closed" title="Link to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the polling object is closed.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.devpoll.fileno">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.fileno" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.fileno" title="Link to this definition">¶</a></dt>
 <dd><p>Return the file descriptor number of the polling object.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.devpoll.register">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.register" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.register" title="Link to this definition">¶</a></dt>
 <dd><p>Register a file descriptor with the polling object.  Future calls to the
 <a class="reference internal" href="#select.poll" title="select.poll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll()</span></code></a> method will then check whether the file descriptor has any
 pending I/O events.  <em>fd</em> can be either an integer, or an object with a
@@ -400,7 +426,7 @@ compared with <code class="xref c c-func docutils literal notranslate"><span cla
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.devpoll.modify">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.modify" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.modify" title="Link to this definition">¶</a></dt>
 <dd><p>This method does an <a class="reference internal" href="#select.devpoll.unregister" title="select.devpoll.unregister"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unregister()</span></code></a> followed by a
 <a class="reference internal" href="#select.devpoll.register" title="select.devpoll.register"><code class="xref py py-meth docutils literal notranslate"><span class="pre">register()</span></code></a>. It is (a bit) more efficient that doing the same
 explicitly.</p>
@@ -408,7 +434,7 @@ explicitly.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.devpoll.unregister">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.unregister" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.unregister" title="Link to this definition">¶</a></dt>
 <dd><p>Remove a file descriptor being tracked by a polling object.  Just like the
 <a class="reference internal" href="#select.devpoll.register" title="select.devpoll.register"><code class="xref py py-meth docutils literal notranslate"><span class="pre">register()</span></code></a> method, <em>fd</em> can be an integer or an object with a
 <a class="reference internal" href="io.html#io.IOBase.fileno" title="io.IOBase.fileno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fileno()</span></code></a> method that returns an integer.</p>
@@ -418,7 +444,7 @@ safely ignored.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.devpoll.poll">
-<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.poll" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">devpoll.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.devpoll.poll" title="Link to this definition">¶</a></dt>
 <dd><p>Polls the set of registered file descriptors, and returns a possibly empty list
 containing <code class="docutils literal notranslate"><span class="pre">(fd,</span> <span class="pre">event)</span></code> 2-tuples for the descriptors that have events or
 errors to report. <em>fd</em> is the file descriptor, and <em>event</em> is a bitmask with
@@ -439,15 +465,11 @@ a signal, except if the signal handler raises an exception (see
 
 </section>
 <section id="edge-and-level-trigger-polling-epoll-objects">
-<span id="epoll-objects"></span><h2>Edge and Level Trigger Polling (epoll) Objects<a class="headerlink" href="#edge-and-level-trigger-polling-epoll-objects" title="Permalink to this headline">¶</a></h2>
+<span id="epoll-objects"></span><h2>Edge and Level Trigger Polling (epoll) Objects<a class="headerlink" href="#edge-and-level-trigger-polling-epoll-objects" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p><a class="reference external" href="https://linux.die.net/man/4/epoll">https://linux.die.net/man/4/epoll</a></p>
 <p><em>eventmask</em></p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -502,52 +524,59 @@ down writing half of connection.</p></td>
 <tr class="row-odd"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">EPOLLMSG</span></code></p></td>
 <td><p>Ignored.</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">EPOLLWAKEUP</span></code></p></td>
+<td><p>Prevents sleep during event waiting.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.6: </span><code class="xref py py-const docutils literal notranslate"><span class="pre">EPOLLEXCLUSIVE</span></code> was added.  It’s only supported by Linux Kernel 4.5
+<p><span class="versionmodified added">Added in version 3.6: </span><code class="xref py py-const docutils literal notranslate"><span class="pre">EPOLLEXCLUSIVE</span></code> was added.  It’s only supported by Linux Kernel 4.5
+or later.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.14: </span><code class="xref py py-const docutils literal notranslate"><span class="pre">EPOLLWAKEUP</span></code> was added. It’s only supported by Linux Kernel 3.5
 or later.</p>
 </div>
 </div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.close">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.close" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.close" title="Link to this definition">¶</a></dt>
 <dd><p>Close the control file descriptor of the epoll object.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.epoll.closed">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#select.epoll.closed" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#select.epoll.closed" title="Link to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the epoll object is closed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.fileno">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.fileno" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.fileno" title="Link to this definition">¶</a></dt>
 <dd><p>Return the file descriptor number of the control fd.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.fromfd">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">fromfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.fromfd" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">fromfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.fromfd" title="Link to this definition">¶</a></dt>
 <dd><p>Create an epoll object from a given file descriptor.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.register">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.register" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.register" title="Link to this definition">¶</a></dt>
 <dd><p>Register a fd descriptor with the epoll object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.modify">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.modify" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.modify" title="Link to this definition">¶</a></dt>
 <dd><p>Modify a registered file descriptor.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.unregister">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.unregister" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.unregister" title="Link to this definition">¶</a></dt>
 <dd><p>Remove a registered file descriptor from the epoll object.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.9: </span>The method no longer ignores the <a class="reference internal" href="errno.html#errno.EBADF" title="errno.EBADF"><code class="xref py py-data docutils literal notranslate"><span class="pre">EBADF</span></code></a> error.</p>
@@ -556,7 +585,7 @@ or later.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.epoll.poll">
-<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxevents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.poll" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">epoll.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxevents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.epoll.poll" title="Link to this definition">¶</a></dt>
 <dd><p>Wait for events. timeout in seconds (float)</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.5: </span>The function is now retried with a recomputed timeout when interrupted by
@@ -568,17 +597,17 @@ a signal, except if the signal handler raises an exception (see
 
 </section>
 <section id="polling-objects">
-<span id="poll-objects"></span><h2>Polling Objects<a class="headerlink" href="#polling-objects" title="Permalink to this headline">¶</a></h2>
+<span id="poll-objects"></span><h2>Polling Objects<a class="headerlink" href="#polling-objects" title="Link to this heading">¶</a></h2>
 <p>The <code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> system call, supported on most Unix systems, provides better
 scalability for network servers that service many, many clients at the same
 time. <code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> scales better because the system call only requires listing
 the file descriptors of interest, while <code class="xref c c-func docutils literal notranslate"><span class="pre">select()</span></code> builds a bitmap, turns
 on bits for the fds of interest, and then afterward the whole bitmap has to be
-linearly scanned again. <code class="xref c c-func docutils literal notranslate"><span class="pre">select()</span></code> is O(highest file descriptor), while
-<code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> is O(number of file descriptors).</p>
+linearly scanned again. <code class="xref c c-func docutils literal notranslate"><span class="pre">select()</span></code> is <em>O</em>(<em>highest file descriptor</em>), while
+<code class="xref c c-func docutils literal notranslate"><span class="pre">poll()</span></code> is <em>O</em>(<em>number of file descriptors</em>).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="select.poll.register">
-<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.register" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.register" title="Link to this definition">¶</a></dt>
 <dd><p>Register a file descriptor with the polling object.  Future calls to the
 <a class="reference internal" href="#select.poll" title="select.poll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll()</span></code></a> method will then check whether the file descriptor has any
 pending I/O events.  <em>fd</em> can be either an integer, or an object with a
@@ -589,10 +618,6 @@ check for, and can be a combination of the constants <code class="xref py py-con
 <code class="xref py py-const docutils literal notranslate"><span class="pre">POLLPRI</span></code>, and <code class="xref py py-const docutils literal notranslate"><span class="pre">POLLOUT</span></code>, described in the table below.  If not
 specified, the default value used will check for all 3 types of events.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 69%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -629,7 +654,7 @@ the same effect as registering the descriptor exactly once.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.poll.modify">
-<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.modify" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.modify" title="Link to this definition">¶</a></dt>
 <dd><p>Modifies an already registered fd. This has the same effect as
 <code class="docutils literal notranslate"><span class="pre">register(fd,</span> <span class="pre">eventmask)</span></code>.  Attempting to modify a file descriptor
 that was never registered causes an <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> exception with errno
@@ -638,7 +663,7 @@ that was never registered causes an <a class="reference internal" href="exceptio
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.poll.unregister">
-<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.unregister" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.unregister" title="Link to this definition">¶</a></dt>
 <dd><p>Remove a file descriptor being tracked by a polling object.  Just like the
 <a class="reference internal" href="#select.poll.register" title="select.poll.register"><code class="xref py py-meth docutils literal notranslate"><span class="pre">register()</span></code></a> method, <em>fd</em> can be an integer or an object with a
 <a class="reference internal" href="io.html#io.IOBase.fileno" title="io.IOBase.fileno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fileno()</span></code></a> method that returns an integer.</p>
@@ -648,7 +673,7 @@ that was never registered causes an <a class="reference internal" href="exceptio
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.poll.poll">
-<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.poll" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">poll.</span></span><span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#select.poll.poll" title="Link to this definition">¶</a></dt>
 <dd><p>Polls the set of registered file descriptors, and returns a possibly empty list
 containing <code class="docutils literal notranslate"><span class="pre">(fd,</span> <span class="pre">event)</span></code> 2-tuples for the descriptors that have events or
 errors to report. <em>fd</em> is the file descriptor, and <em>event</em> is a bitmask with
@@ -669,34 +694,34 @@ a signal, except if the signal handler raises an exception (see
 
 </section>
 <section id="kqueue-objects">
-<span id="id1"></span><h2>Kqueue Objects<a class="headerlink" href="#kqueue-objects" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Kqueue Objects<a class="headerlink" href="#kqueue-objects" title="Link to this heading">¶</a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="select.kqueue.close">
-<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue.close" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue.close" title="Link to this definition">¶</a></dt>
 <dd><p>Close the control file descriptor of the kqueue object.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kqueue.closed">
-<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#select.kqueue.closed" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#select.kqueue.closed" title="Link to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the kqueue object is closed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.kqueue.fileno">
-<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue.fileno" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue.fileno" title="Link to this definition">¶</a></dt>
 <dd><p>Return the file descriptor number of the control fd.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.kqueue.fromfd">
-<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">fromfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue.fromfd" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">fromfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#select.kqueue.fromfd" title="Link to this definition">¶</a></dt>
 <dd><p>Create a kqueue object from a given file descriptor.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="select.kqueue.control">
-<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_events</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">eventlist</span></span></span><a class="headerlink" href="#select.kqueue.control" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kqueue.</span></span><span class="sig-name descname"><span class="pre">control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_events</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">eventlist</span></span></span><a class="headerlink" href="#select.kqueue.control" title="Link to this definition">¶</a></dt>
 <dd><p>Low level interface to kevent</p>
 <ul class="simple">
 <li><p>changelist must be an iterable of kevent objects or <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
@@ -714,11 +739,11 @@ a signal, except if the signal handler raises an exception (see
 
 </section>
 <section id="kevent-objects">
-<span id="id2"></span><h2>Kevent Objects<a class="headerlink" href="#kevent-objects" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?query=kqueue&amp;sektion=2">https://www.freebsd.org/cgi/man.cgi?query=kqueue&amp;sektion=2</a></p>
+<span id="id2"></span><h2>Kevent Objects<a class="headerlink" href="#kevent-objects" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://man.freebsd.org/cgi/man.cgi?query=kqueue&amp;sektion=2">https://man.freebsd.org/cgi/man.cgi?query=kqueue&amp;sektion=2</a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kevent.ident">
-<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">ident</span></span><a class="headerlink" href="#select.kevent.ident" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">ident</span></span><a class="headerlink" href="#select.kevent.ident" title="Link to this definition">¶</a></dt>
 <dd><p>Value used to identify the event. The interpretation depends on the filter
 but it’s usually the file descriptor. In the constructor ident can either
 be an int or an object with a <a class="reference internal" href="io.html#io.IOBase.fileno" title="io.IOBase.fileno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fileno()</span></code></a> method. kevent
@@ -727,13 +752,9 @@ stores the integer internally.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kevent.filter">
-<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">filter</span></span><a class="headerlink" href="#select.kevent.filter" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">filter</span></span><a class="headerlink" href="#select.kevent.filter" title="Link to this definition">¶</a></dt>
 <dd><p>Name of the kernel filter.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -775,13 +796,9 @@ delivered to the process</p></td>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kevent.flags">
-<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">flags</span></span><a class="headerlink" href="#select.kevent.flags" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">flags</span></span><a class="headerlink" href="#select.kevent.flags" title="Link to this definition">¶</a></dt>
 <dd><p>Filter action.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -824,14 +841,10 @@ delivered to the process</p></td>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kevent.fflags">
-<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">fflags</span></span><a class="headerlink" href="#select.kevent.fflags" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">fflags</span></span><a class="headerlink" href="#select.kevent.fflags" title="Link to this definition">¶</a></dt>
 <dd><p>Filter specific flags.</p>
 <p><code class="xref py py-const docutils literal notranslate"><span class="pre">KQ_FILTER_READ</span></code> and  <code class="xref py py-const docutils literal notranslate"><span class="pre">KQ_FILTER_WRITE</span></code> filter flags:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 61%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -845,10 +858,6 @@ delivered to the process</p></td>
 </table>
 <p><code class="xref py py-const docutils literal notranslate"><span class="pre">KQ_FILTER_VNODE</span></code> filter flags:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 61%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -880,10 +889,6 @@ delivered to the process</p></td>
 </table>
 <p><code class="xref py py-const docutils literal notranslate"><span class="pre">KQ_FILTER_PROC</span></code> filter flags:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 61%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -919,10 +924,6 @@ delivered to the process</p></td>
 </table>
 <p><code class="xref py py-const docutils literal notranslate"><span class="pre">KQ_FILTER_NETDEV</span></code> filter flags (not available on macOS):</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 61%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -944,13 +945,13 @@ delivered to the process</p></td>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kevent.data">
-<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#select.kevent.data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#select.kevent.data" title="Link to this definition">¶</a></dt>
 <dd><p>Filter specific data.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="select.kevent.udata">
-<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">udata</span></span><a class="headerlink" href="#select.kevent.udata" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kevent.</span></span><span class="sig-name descname"><span class="pre">udata</span></span><a class="headerlink" href="#select.kevent.udata" title="Link to this definition">¶</a></dt>
 <dd><p>User defined value.</p>
 </dd></dl>
 
@@ -962,7 +963,7 @@ delivered to the process</p></td>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -1000,10 +1001,14 @@ delivered to the process</p></td>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -1019,7 +1024,7 @@ delivered to the process</p></td>
           <a href="ssl.html" title="ssl — TLS/SSL wrapper for socket objects"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -1029,7 +1034,7 @@ delivered to the process</p></td>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -1040,37 +1045,54 @@ delivered to the process</p></td>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="What’s New In Python 3.1" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/whatsnew/3.1.html" />
 <meta property="og:site_name" content="Python documentation" />
-<meta property="og:description" content="Author, Raymond Hettinger,. This article explains the new features in Python 3.1, compared to 3.0. Python 3.1 was released on June 27, 2009. PEP 372: Ordered Dictionaries: Regular Python dictionari..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:description" content="Author, Raymond Hettinger,. This article explains the new features in Python 3.1, compared to 3.0. Python 3.1 was released on June 27, 2009. PEP 372: Ordered Dictionaries: Regular Python dictionari..." />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
-<meta name="description" content="Author, Raymond Hettinger,. This article explains the new features in Python 3.1, compared to 3.0. Python 3.1 was released on June 27, 2009. PEP 372: Ordered Dictionaries: Regular Python dictionari..." />
+<meta name="description" content="Author, Raymond Hettinger,. This article explains the new features in Python 3.1, compared to 3.0. Python 3.1 was released on June 27, 2009. PEP 372: Ordered Dictionaries: Regular Python dictionari..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>What’s New In Python 3.1 &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What’s New In Python 3.1 &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/whatsnew/3.1.html" />
+    <link rel="canonical" href="/whatsnew/3.1.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="What’s New In Python 3.0" href="3.0.html" />
     <link rel="prev" title="What’s New In Python 3.2" href="3.2.html" />
-    <link rel="canonical" href="https://docs.python.org/3/whatsnew/3.1.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/whatsnew/3.1.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -124,7 +140,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,7 +156,7 @@
           <a href="3.2.html" title="What’s New In Python 3.2"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -150,7 +166,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">What’s New in Python</a> &#187;</li>
@@ -160,14 +176,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -178,16 +201,16 @@
           <div class="body" role="main">
             
   <section id="what-s-new-in-python-3-1">
-<h1>What’s New In Python 3.1<a class="headerlink" href="#what-s-new-in-python-3-1" title="Permalink to this headline">¶</a></h1>
+<h1>What’s New In Python 3.1<a class="headerlink" href="#what-s-new-in-python-3-1" title="Link to this heading">¶</a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Author</dt>
+<dt class="field-odd">Author<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Raymond Hettinger</p>
 </dd>
 </dl>
 <p>This article explains the new features in Python 3.1, compared to 3.0.
-Python 3.1 was released on June 27, 2009.</p>
+Python 3.1 was released on June 27, 2009.</p>
 <section id="pep-372-ordered-dictionaries">
-<h2>PEP 372: Ordered Dictionaries<a class="headerlink" href="#pep-372-ordered-dictionaries" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 372: Ordered Dictionaries<a class="headerlink" href="#pep-372-ordered-dictionaries" title="Link to this heading">¶</a></h2>
 <p>Regular Python dictionaries iterate over key/value pairs in arbitrary order.
 Over the years, a number of authors have written alternative implementations
 that remember the order that the keys were originally inserted.  Based on
@@ -214,9 +237,30 @@ written by Raymond Hettinger.</p>
 </dd>
 </dl>
 </div>
+<p>Since an ordered dictionary remembers its insertion order, it can be used
+in conjunction with sorting to make a sorted dictionary:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># regular unsorted dictionary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;banana&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;pear&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># dictionary sorted by key</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="go">OrderedDict([(&#39;apple&#39;, 4), (&#39;banana&#39;, 3), (&#39;orange&#39;, 2), (&#39;pear&#39;, 1)])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># dictionary sorted by value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="go">OrderedDict([(&#39;pear&#39;, 1), (&#39;orange&#39;, 2), (&#39;banana&#39;, 3), (&#39;apple&#39;, 4)])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># dictionary sorted by length of the key string</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+<span class="go">OrderedDict([(&#39;pear&#39;, 1), (&#39;apple&#39;, 4), (&#39;orange&#39;, 2), (&#39;banana&#39;, 3)])</span>
+</pre></div>
+</div>
+<p>The new sorted dictionaries maintain their sort order when entries
+are deleted.  But when new keys are added, the keys are appended
+to the end and the sort is not maintained.</p>
 </section>
 <section id="pep-378-format-specifier-for-thousands-separator">
-<h2>PEP 378: Format Specifier for Thousands Separator<a class="headerlink" href="#pep-378-format-specifier-for-thousands-separator" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 378: Format Specifier for Thousands Separator<a class="headerlink" href="#pep-378-format-specifier-for-thousands-separator" title="Link to this heading">¶</a></h2>
 <p>The built-in <a class="reference internal" href="../library/functions.html#format" title="format"><code class="xref py py-func docutils literal notranslate"><span class="pre">format()</span></code></a> function and the <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> method use
 a mini-language that now includes a simple, non-locale aware way to format
 a number with a thousands separator.  That provides a way to humanize a
@@ -247,7 +291,7 @@ Mark Dickinson.</p>
 </div>
 </section>
 <section id="other-language-changes">
-<h2>Other Language Changes<a class="headerlink" href="#other-language-changes" title="Permalink to this headline">¶</a></h2>
+<h2>Other Language Changes<a class="headerlink" href="#other-language-changes" title="Link to this heading">¶</a></h2>
 <p>Some smaller changes made to the core Python language are:</p>
 <ul>
 <li><p>Directories and zip archives containing a <code class="file docutils literal notranslate"><span class="pre">__main__.py</span></code>
@@ -311,16 +355,16 @@ Previously it returned a float:</p>
 </div>
 <p>(Contributed by Mark Dickinson; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=4707">bpo-4707</a>.)</p>
 </li>
-<li><p>Python now uses David Gay’s algorithm for finding the shortest floating
-point representation that doesn’t change its value.  This should help
-mitigate some of the confusion surrounding binary floating point
+<li><p>Python now uses David Gay’s algorithm for finding the shortest floating-point
+representation that doesn’t change its value.  This should help
+mitigate some of the confusion surrounding binary floating-point
 numbers.</p>
 <p>The significance is easily seen with a number like <code class="docutils literal notranslate"><span class="pre">1.1</span></code> which does not
 have an exact equivalent in binary floating point.  Since there is no exact
 equivalent, an expression like <code class="docutils literal notranslate"><span class="pre">float('1.1')</span></code> evaluates to the nearest
 representable value which is <code class="docutils literal notranslate"><span class="pre">0x1.199999999999ap+0</span></code> in hex or
 <code class="docutils literal notranslate"><span class="pre">1.100000000000000088817841970012523233890533447265625</span></code> in decimal. That
-nearest value was and still is used in subsequent floating point
+nearest value was and still is used in subsequent floating-point
 calculations.</p>
 <p>What is new is how the number gets displayed.  Formerly, Python used a
 simple approach.  The value of <code class="docutils literal notranslate"><span class="pre">repr(1.1)</span></code> was computed as <code class="docutils literal notranslate"><span class="pre">format(1.1,</span>
@@ -328,7 +372,7 @@ simple approach.  The value of <code class="docutils literal notranslate"><span 
 using 17 digits was that it relied on IEEE-754 guarantees to assure that
 <code class="docutils literal notranslate"><span class="pre">eval(repr(1.1))</span></code> would round-trip exactly to its original value.  The
 disadvantage is that many people found the output to be confusing (mistaking
-intrinsic limitations of binary floating point representation as being a
+intrinsic limitations of binary floating-point representation as being a
 problem with Python itself).</p>
 <p>The new algorithm for <code class="docutils literal notranslate"><span class="pre">repr(1.1)</span></code> is smarter and returns <code class="docutils literal notranslate"><span class="pre">'1.1'</span></code>.
 Effectively, it searches all equivalent string representations (ones that
@@ -337,8 +381,8 @@ representation.</p>
 <p>The new algorithm tends to emit cleaner representations when possible, but
 it does not change the underlying values.  So, it is still the case that
 <code class="docutils literal notranslate"><span class="pre">1.1</span> <span class="pre">+</span> <span class="pre">2.2</span> <span class="pre">!=</span> <span class="pre">3.3</span></code> even though the representations may suggest otherwise.</p>
-<p>The new algorithm depends on certain features in the underlying floating
-point implementation.  If the required features are not found, the old
+<p>The new algorithm depends on certain features in the underlying floating-point
+implementation.  If the required features are not found, the old
 algorithm will continue to be used.  Also, the text pickle protocols
 assure cross-platform portability by using the old algorithm.</p>
 <p>(Contributed by Eric Smith and Mark Dickinson; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=1580">bpo-1580</a>)</p>
@@ -346,7 +390,7 @@ assure cross-platform portability by using the old algorithm.</p>
 </ul>
 </section>
 <section id="new-improved-and-deprecated-modules">
-<h2>New, Improved, and Deprecated Modules<a class="headerlink" href="#new-improved-and-deprecated-modules" title="Permalink to this headline">¶</a></h2>
+<h2>New, Improved, and Deprecated Modules<a class="headerlink" href="#new-improved-and-deprecated-modules" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Added a <a class="reference internal" href="../library/collections.html#collections.Counter" title="collections.Counter"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.Counter</span></code></a> class to support convenient
 counting of unique items in a sequence or iterable:</p>
@@ -460,42 +504,46 @@ works as expected in the interactive environment.</p>
 of tests. And it supports marking a test as an expected failure, a test that
 is known to be broken, but shouldn’t be counted as a failure on a
 TestResult:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestGizmo</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TestGizmo</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="nd">@unittest</span><span class="o">.</span><span class="n">skipUnless</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;win&quot;</span><span class="p">),</span> <span class="s2">&quot;requires Windows&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_gizmo_on_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_gizmo_on_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="o">...</span>
 
     <span class="nd">@unittest</span><span class="o">.</span><span class="n">expectedFailure</span>
-    <span class="k">def</span> <span class="nf">test_gimzo_without_required_library</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_gimzo_without_required_library</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="o">...</span>
 </pre></div>
 </div>
 <p>Also, tests for exceptions have been builtout to work with context managers
 using the <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> statement:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_division_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_division_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">/</span> <span class="mi">0</span>
 </pre></div>
 </div>
 <p>In addition, several new assertion methods were added including
-<code class="xref py py-func docutils literal notranslate"><span class="pre">assertSetEqual()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">assertDictEqual()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">assertDictContainsSubset()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">assertListEqual()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">assertTupleEqual()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">assertSequenceEqual()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">assertRaisesRegexp()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">assertIsNone()</span></code>,
-and <code class="xref py py-func docutils literal notranslate"><span class="pre">assertIsNotNone()</span></code>.</p>
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertSetEqual" title="unittest.TestCase.assertSetEqual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertSetEqual()</span></code></a>,
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertDictEqual" title="unittest.TestCase.assertDictEqual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertDictEqual()</span></code></a>,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">assertDictContainsSubset()</span></code>,
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertListEqual" title="unittest.TestCase.assertListEqual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertListEqual()</span></code></a>,
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertTupleEqual" title="unittest.TestCase.assertTupleEqual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertTupleEqual()</span></code></a>,
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertSequenceEqual" title="unittest.TestCase.assertSequenceEqual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertSequenceEqual()</span></code></a>,
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertRaisesRegex" title="unittest.TestCase.assertRaisesRegex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertRaisesRegexp()</span></code></a>,
+<a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertIsNone" title="unittest.TestCase.assertIsNone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertIsNone()</span></code></a>,
+and <a class="reference internal" href="../library/unittest.html#unittest.TestCase.assertIsNotNone" title="unittest.TestCase.assertIsNotNone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertIsNotNone()</span></code></a>.</p>
 <p>(Contributed by Benjamin Peterson and Antoine Pitrou.)</p>
 </li>
-<li><p>The <a class="reference internal" href="../library/io.html#module-io" title="io: Core tools for working with streams."><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code></a> module has three new constants for the <code class="xref py py-meth docutils literal notranslate"><span class="pre">seek()</span></code>
-method <code class="xref py py-data docutils literal notranslate"><span class="pre">SEEK_SET</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">SEEK_CUR</span></code>, and <code class="xref py py-data docutils literal notranslate"><span class="pre">SEEK_END</span></code>.</p></li>
-<li><p>The <a class="reference internal" href="../library/sys.html#sys.version_info" title="sys.version_info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.version_info</span></code></a> tuple is now a named tuple:</p>
+<li><p>The <a class="reference internal" href="../library/io.html#module-io" title="io: Core tools for working with streams."><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code></a> module has three new constants for the <a class="reference internal" href="../library/io.html#io.IOBase.seek" title="io.IOBase.seek"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seek()</span></code></a>
+method: <a class="reference internal" href="../library/os.html#os.SEEK_SET" title="os.SEEK_SET"><code class="xref py py-data docutils literal notranslate"><span class="pre">SEEK_SET</span></code></a>, <a class="reference internal" href="../library/os.html#os.SEEK_CUR" title="os.SEEK_CUR"><code class="xref py py-data docutils literal notranslate"><span class="pre">SEEK_CUR</span></code></a>, and <a class="reference internal" href="../library/os.html#os.SEEK_END" title="os.SEEK_END"><code class="xref py py-data docutils literal notranslate"><span class="pre">SEEK_END</span></code></a>.</p></li>
+<li><p>The <a class="reference internal" href="../library/sys.html#sys.version_info" title="sys.version_info"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.version_info</span></code></a> tuple is now a named tuple:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span>
 <span class="go">sys.version_info(major=3, minor=1, micro=0, releaselevel=&#39;alpha&#39;, serial=2)</span>
 </pre></div>
 </div>
 <p>(Contributed by Ross Light; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=4285">bpo-4285</a>.)</p>
 </li>
-<li><p>The <a class="reference internal" href="../library/nntplib.html#module-nntplib" title="nntplib: NNTP protocol client (requires sockets). (deprecated)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code></a> and <a class="reference internal" href="../library/imaplib.html#module-imaplib" title="imaplib: IMAP4 protocol client (requires sockets)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code></a> modules now support IPv6.</p>
+<li><p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> and <a class="reference internal" href="../library/imaplib.html#module-imaplib" title="imaplib: IMAP4 protocol client (requires sockets)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code></a> modules now support IPv6.</p>
 <p>(Contributed by Derek Morr; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=1655">bpo-1655</a> and <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=1664">bpo-1664</a>.)</p>
 </li>
 <li><p>The <a class="reference internal" href="../library/pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> module has been adapted for better interoperability with
@@ -531,7 +579,7 @@ imports.</p>
 </ul>
 </section>
 <section id="optimizations">
-<h2>Optimizations<a class="headerlink" href="#optimizations" title="Permalink to this headline">¶</a></h2>
+<h2>Optimizations<a class="headerlink" href="#optimizations" title="Link to this heading">¶</a></h2>
 <p>Major performance enhancements have been added:</p>
 <ul>
 <li><p>The new I/O library (as defined in <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-3116/"><strong>PEP 3116</strong></a>) was mostly written in
@@ -575,7 +623,7 @@ memory and allows pickles to be smaller.</p>
 </ul>
 </section>
 <section id="idle">
-<h2>IDLE<a class="headerlink" href="#idle" title="Permalink to this headline">¶</a></h2>
+<h2>IDLE<a class="headerlink" href="#idle" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>IDLE’s format menu now provides an option to strip trailing whitespace
 from a source file.</p>
@@ -584,7 +632,7 @@ from a source file.</p>
 </ul>
 </section>
 <section id="build-and-c-api-changes">
-<h2>Build and C API Changes<a class="headerlink" href="#build-and-c-api-changes" title="Permalink to this headline">¶</a></h2>
+<h2>Build and C API Changes<a class="headerlink" href="#build-and-c-api-changes" title="Link to this heading">¶</a></h2>
 <p>Changes to Python’s build process and to the C API include:</p>
 <ul>
 <li><p>Integers are now stored internally either in base <code class="docutils literal notranslate"><span class="pre">2**15</span></code> or in base
@@ -597,10 +645,10 @@ on 32-bit machines; on Unix, there’s a new configure option
 <code class="docutils literal notranslate"><span class="pre">--enable-big-digits</span></code> that can be used to override this default.</p>
 <p>Apart from the performance improvements this change should be invisible to
 end users, with one exception: for testing and debugging purposes there’s a
-new <a class="reference internal" href="../library/sys.html#sys.int_info" title="sys.int_info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.int_info</span></code></a> that provides information about the
+new <a class="reference internal" href="../library/sys.html#sys.int_info" title="sys.int_info"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.int_info</span></code></a> that provides information about the
 internal format, giving the number of bits per digit and the size in bytes
 of the C type used to store each digit:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">int_info</span>
 <span class="go">sys.int_info(bits_per_digit=30, sizeof_digit=4)</span>
 </pre></div>
@@ -628,13 +676,13 @@ deprecated.</p>
 </ul>
 </section>
 <section id="porting-to-python-3-1">
-<h2>Porting to Python 3.1<a class="headerlink" href="#porting-to-python-3-1" title="Permalink to this headline">¶</a></h2>
+<h2>Porting to Python 3.1<a class="headerlink" href="#porting-to-python-3-1" title="Link to this heading">¶</a></h2>
 <p>This section lists previously described changes and other bugfixes
 that may require changes to your code:</p>
 <ul>
-<li><p>The new floating point string representations can break existing doctests.
+<li><p>The new floating-point string representations can break existing doctests.
 For example:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">e</span><span class="p">():</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">e</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Compute the base of natural logarithms.</span>
 
 <span class="sd">    &gt;&gt;&gt; e()</span>
@@ -669,7 +717,7 @@ See the discussion above for more details.</p></li>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -710,10 +758,14 @@ See the discussion above for more details.</p></li>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -729,7 +781,7 @@ See the discussion above for more details.</p></li>
           <a href="3.2.html" title="What’s New In Python 3.2"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -739,7 +791,7 @@ See the discussion above for more details.</p></li>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >What’s New in Python</a> &#187;</li>
@@ -749,37 +801,54 @@ See the discussion above for more details.</p></li>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

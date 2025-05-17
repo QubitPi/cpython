@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="7. Input and Output" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/tutorial/inputoutput.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="There are several ways to present the output of a program; data can be printed in a human-readable form, or written to a file for future use. This chapter will discuss some of the possibilities. Fa..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="There are several ways to present the output of a program; data can be printed in a human-readable form, or written to a file for future use. This chapter will discuss some of the possibilities. Fa..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>7. Input and Output &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. Input and Output &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/tutorial/inputoutput.html" />
+    <link rel="canonical" href="/tutorial/inputoutput.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="8. Errors and Exceptions" href="errors.html" />
     <link rel="prev" title="6. Modules" href="modules.html" />
-    <link rel="canonical" href="https://docs.python.org/3/tutorial/inputoutput.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/tutorial/inputoutput.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -128,7 +144,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -144,7 +160,7 @@
           <a href="modules.html" title="6. Modules"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -154,7 +170,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">The Python Tutorial</a> &#187;</li>
@@ -164,14 +180,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -182,14 +205,14 @@
           <div class="body" role="main">
             
   <section id="input-and-output">
-<span id="tut-io"></span><h1><span class="section-number">7. </span>Input and Output<a class="headerlink" href="#input-and-output" title="Permalink to this headline">¶</a></h1>
+<span id="tut-io"></span><h1><span class="section-number">7. </span>Input and Output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h1>
 <p>There are several ways to present the output of a program; data can be printed
 in a human-readable form, or written to a file for future use. This chapter will
 discuss some of the possibilities.</p>
 <section id="fancier-output-formatting">
-<span id="tut-formatting"></span><h2><span class="section-number">7.1. </span>Fancier Output Formatting<a class="headerlink" href="#fancier-output-formatting" title="Permalink to this headline">¶</a></h2>
+<span id="tut-formatting"></span><h2><span class="section-number">7.1. </span>Fancier Output Formatting<a class="headerlink" href="#fancier-output-formatting" title="Link to this heading">¶</a></h2>
 <p>So far we’ve encountered two ways of writing values: <em>expression statements</em> and
-the <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> function.  (A third way is using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code> method
+the <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> function.  (A third way is using the <a class="reference internal" href="../library/io.html#io.TextIOBase.write" title="io.TextIOBase.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method
 of file objects; the standard output file can be referenced as <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code>.
 See the Library Reference for more information on this.)</p>
 <p>Often you’ll want more control over the formatting of your output than simply
@@ -209,14 +232,18 @@ characters that can refer to variables or literal values.</p>
 <li><p>The <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> method of strings requires more manual
 effort.  You’ll still use <code class="docutils literal notranslate"><span class="pre">{</span></code> and <code class="docutils literal notranslate"><span class="pre">}</span></code> to mark where a variable
 will be substituted and can provide detailed formatting directives,
-but you’ll also need to provide the information to be formatted.</p>
+but you’ll also need to provide the information to be formatted. In the following code
+block there are two examples of how to format variables:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">yes_votes</span> <span class="o">=</span> <span class="mi">42_572_654</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">no_votes</span> <span class="o">=</span> <span class="mi">43_132_495</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">percentage</span> <span class="o">=</span> <span class="n">yes_votes</span> <span class="o">/</span> <span class="p">(</span><span class="n">yes_votes</span> <span class="o">+</span> <span class="n">no_votes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_votes</span> <span class="o">=</span> <span class="mi">85_705_149</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">percentage</span> <span class="o">=</span> <span class="n">yes_votes</span> <span class="o">/</span> <span class="n">total_votes</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">{:-9}</span><span class="s1"> YES votes  </span><span class="si">{:2.2%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">yes_votes</span><span class="p">,</span> <span class="n">percentage</span><span class="p">)</span>
 <span class="go">&#39; 42572654 YES votes  49.67%&#39;</span>
 </pre></div>
 </div>
+<p>Notice how the <code class="docutils literal notranslate"><span class="pre">yes_votes</span></code> are padded with spaces and a negative sign only for negative numbers.
+The example also prints <code class="docutils literal notranslate"><span class="pre">percentage</span></code> multiplied by 100, with 2 decimal
+places and followed by a percent sign (see <a class="reference internal" href="../library/string.html#formatspec"><span class="std std-ref">Format Specification Mini-Language</span></a> for details).</p>
 </li>
 <li><p>Finally, you can do all the string handling yourself by using string slicing and
 concatenation operations to create any layout you can imagine.  The
@@ -248,12 +275,12 @@ particular, have two distinct representations.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="go">The value of x is 32.5, and y is 40000...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># The repr() of a string adds string quotes and backslashes:</span>
-<span class="gp">... </span><span class="n">hello</span> <span class="o">=</span> <span class="s1">&#39;hello, world</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hello</span> <span class="o">=</span> <span class="s1">&#39;hello, world</span><span class="se">\n</span><span class="s1">&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hellos</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">hello</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hellos</span><span class="p">)</span>
 <span class="go">&#39;hello, world\n&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># The argument to repr() may be any Python object:</span>
-<span class="gp">... </span><span class="nb">repr</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;spam&#39;</span><span class="p">,</span> <span class="s1">&#39;eggs&#39;</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">repr</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;spam&#39;</span><span class="p">,</span> <span class="s1">&#39;eggs&#39;</span><span class="p">)))</span>
 <span class="go">&quot;(32.5, 40000, (&#39;spam&#39;, &#39;eggs&#39;))&quot;</span>
 </pre></div>
 </div>
@@ -262,7 +289,7 @@ yet another way to substitute values into strings, using placeholders like
 <code class="docutils literal notranslate"><span class="pre">$x</span></code> and replacing them with values from a dictionary, but offers much less
 control of the formatting.</p>
 <section id="formatted-string-literals">
-<span id="tut-f-strings"></span><h3><span class="section-number">7.1.1. </span>Formatted String Literals<a class="headerlink" href="#formatted-string-literals" title="Permalink to this headline">¶</a></h3>
+<span id="tut-f-strings"></span><span id="index-0"></span><h3><span class="section-number">7.1.1. </span>Formatted String Literals<a class="headerlink" href="#formatted-string-literals" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="../reference/lexical_analysis.html#f-strings"><span class="std std-ref">Formatted string literals</span></a> (also called f-strings for
 short) let you include the value of Python expressions inside a string by
 prefixing the string with <code class="docutils literal notranslate"><span class="pre">f</span></code> or <code class="docutils literal notranslate"><span class="pre">F</span></code> and writing expressions as
@@ -270,7 +297,7 @@ prefixing the string with <code class="docutils literal notranslate"><span class
 <p>An optional format specifier can follow the expression. This allows greater
 control over how the value is formatted. The following example rounds pi to
 three places after the decimal:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value of pi is approximately </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
 <span class="go">The value of pi is approximately 3.142.</span>
 </pre></div>
@@ -310,7 +337,7 @@ on the <code class="docutils literal notranslate"><span class="pre">=</span></co
 the reference guide for the <a class="reference internal" href="../library/string.html#formatspec"><span class="std std-ref">Format Specification Mini-Language</span></a>.</p>
 </section>
 <section id="the-string-format-method">
-<span id="tut-string-format"></span><h3><span class="section-number">7.1.2. </span>The String format() Method<a class="headerlink" href="#the-string-format-method" title="Permalink to this headline">¶</a></h3>
+<span id="tut-string-format"></span><h3><span class="section-number">7.1.2. </span>The String format() Method<a class="headerlink" href="#the-string-format-method" title="Link to this heading">¶</a></h3>
 <p>Basic usage of the <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> method looks like this:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are the </span><span class="si">{}</span><span class="s1"> who say &quot;</span><span class="si">{}</span><span class="s1">!&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;knights&#39;</span><span class="p">,</span> <span class="s1">&#39;Ni&#39;</span><span class="p">))</span>
 <span class="go">We are the knights who say &quot;Ni!&quot;</span>
@@ -357,7 +384,13 @@ notation.</p>
 </pre></div>
 </div>
 <p>This is particularly useful in combination with the built-in function
-<a class="reference internal" href="../library/functions.html#vars" title="vars"><code class="xref py py-func docutils literal notranslate"><span class="pre">vars()</span></code></a>, which returns a dictionary containing all local variables.</p>
+<a class="reference internal" href="../library/functions.html#vars" title="vars"><code class="xref py py-func docutils literal notranslate"><span class="pre">vars()</span></code></a>, which returns a dictionary containing all local variables:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">: &#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span><span class="s1">&#39;};&#39;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">table</span><span class="p">))</span>
+<span class="go">__name__: __main__; __doc__: None; __package__: None; __loader__: ...</span>
+</pre></div>
+</div>
 <p>As an example, the following lines produce a tidily aligned
 set of columns giving integers and their squares and cubes:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
@@ -379,7 +412,7 @@ set of columns giving integers and their squares and cubes:</p>
 <a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format String Syntax</span></a>.</p>
 </section>
 <section id="manual-string-formatting">
-<h3><span class="section-number">7.1.3. </span>Manual String Formatting<a class="headerlink" href="#manual-string-formatting" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.1.3. </span>Manual String Formatting<a class="headerlink" href="#manual-string-formatting" title="Link to this heading">¶</a></h3>
 <p>Here’s the same table of squares and cubes, formatted manually:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
@@ -420,12 +453,14 @@ left with zeros.  It understands about plus and minus signs:</p>
 </div>
 </section>
 <section id="old-string-formatting">
-<h3><span class="section-number">7.1.4. </span>Old string formatting<a class="headerlink" href="#old-string-formatting" title="Permalink to this headline">¶</a></h3>
-<p>The % operator (modulo) can also be used for string formatting. Given <code class="docutils literal notranslate"><span class="pre">'string'</span>
-<span class="pre">%</span> <span class="pre">values</span></code>, instances of <code class="docutils literal notranslate"><span class="pre">%</span></code> in <code class="docutils literal notranslate"><span class="pre">string</span></code> are replaced with zero or more
-elements of <code class="docutils literal notranslate"><span class="pre">values</span></code>. This operation is commonly known as string
+<h3><span class="section-number">7.1.4. </span>Old string formatting<a class="headerlink" href="#old-string-formatting" title="Link to this heading">¶</a></h3>
+<p>The % operator (modulo) can also be used for string formatting.
+Given <code class="docutils literal notranslate"><span class="pre">format</span> <span class="pre">%</span> <span class="pre">values</span></code> (where <em>format</em> is a string),
+<code class="docutils literal notranslate"><span class="pre">%</span></code> conversion specifications in <em>format</em> are replaced with
+zero or more elements of <em>values</em>.
+This operation is commonly known as string
 interpolation. For example:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The value of pi is approximately </span><span class="si">%5.3f</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="go">The value of pi is approximately 3.142.</span>
 </pre></div>
@@ -434,8 +469,8 @@ interpolation. For example:</p>
 </section>
 </section>
 <section id="reading-and-writing-files">
-<span id="tut-files"></span><h2><span class="section-number">7.2. </span>Reading and Writing Files<a class="headerlink" href="#reading-and-writing-files" title="Permalink to this headline">¶</a></h2>
-<p id="index-0"><a class="reference internal" href="../library/functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> returns a <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file object</span></a>, and is most commonly used with
+<span id="tut-files"></span><h2><span class="section-number">7.2. </span>Reading and Writing Files<a class="headerlink" href="#reading-and-writing-files" title="Link to this heading">¶</a></h2>
+<p id="index-1"><a class="reference internal" href="../library/functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> returns a <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file object</span></a>, and is most commonly used with
 two positional arguments and one keyword argument:
 <code class="docutils literal notranslate"><span class="pre">open(filename,</span> <span class="pre">mode,</span> <span class="pre">encoding=None)</span></code></p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;workfile&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
@@ -499,7 +534,7 @@ automatically fail.</p>
 </pre></div>
 </div>
 <section id="methods-of-file-objects">
-<span id="tut-filemethods"></span><h3><span class="section-number">7.2.1. </span>Methods of File Objects<a class="headerlink" href="#methods-of-file-objects" title="Permalink to this headline">¶</a></h3>
+<span id="tut-filemethods"></span><h3><span class="section-number">7.2.1. </span>Methods of File Objects<a class="headerlink" href="#methods-of-file-objects" title="Link to this heading">¶</a></h3>
 <p>The rest of the examples in this section will assume that a file object called
 <code class="docutils literal notranslate"><span class="pre">f</span></code> has already been created.</p>
 <p>To read a file’s contents, call <code class="docutils literal notranslate"><span class="pre">f.read(size)</span></code>, which reads some quantity of
@@ -582,14 +617,14 @@ relative to the beginning of the file are allowed (the exception being seeking
 to the very file end with <code class="docutils literal notranslate"><span class="pre">seek(0,</span> <span class="pre">2)</span></code>) and the only valid <em>offset</em> values are
 those returned from the <code class="docutils literal notranslate"><span class="pre">f.tell()</span></code>, or zero. Any other <em>offset</em> value produces
 undefined behaviour.</p>
-<p>File objects have some additional methods, such as <code class="xref py py-meth docutils literal notranslate"><span class="pre">isatty()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">truncate()</span></code> which are less frequently used; consult the Library
+<p>File objects have some additional methods, such as <a class="reference internal" href="../library/io.html#io.IOBase.isatty" title="io.IOBase.isatty"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isatty()</span></code></a> and
+<a class="reference internal" href="../library/io.html#io.IOBase.truncate" title="io.IOBase.truncate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">truncate()</span></code></a> which are less frequently used; consult the Library
 Reference for a complete guide to file objects.</p>
 </section>
 <section id="saving-structured-data-with-json">
-<span id="tut-json"></span><h3><span class="section-number">7.2.2. </span>Saving structured data with <a class="reference internal" href="../library/json.html#module-json" title="json: Encode and decode the JSON format."><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code></a><a class="headerlink" href="#saving-structured-data-with-json" title="Permalink to this headline">¶</a></h3>
-<p id="index-1">Strings can easily be written to and read from a file.  Numbers take a bit more
-effort, since the <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code> method only returns strings, which will have to
+<span id="tut-json"></span><h3><span class="section-number">7.2.2. </span>Saving structured data with <a class="reference internal" href="../library/json.html#module-json" title="json: Encode and decode the JSON format."><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code></a><a class="headerlink" href="#saving-structured-data-with-json" title="Link to this heading">¶</a></h3>
+<p id="index-2">Strings can easily be written to and read from a file.  Numbers take a bit more
+effort, since the <a class="reference internal" href="../library/io.html#io.TextIOBase.read" title="io.TextIOBase.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> method only returns strings, which will have to
 be passed to a function like <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-func docutils literal notranslate"><span class="pre">int()</span></code></a>, which takes a string like <code class="docutils literal notranslate"><span class="pre">'123'</span></code>
 and returns its numeric value 123.  When you want to save more complex data
 types like nested lists and dictionaries, parsing and serializing by hand
@@ -610,7 +645,7 @@ it a good choice for interoperability.</p>
 </div>
 <p>If you have an object <code class="docutils literal notranslate"><span class="pre">x</span></code>, you can view its JSON string representation with a
 simple line of code:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;simple&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">&#39;[1, &quot;simple&quot;, &quot;list&quot;]&#39;</span>
@@ -654,7 +689,7 @@ arbitrary code, if the data was crafted by a skilled attacker.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -699,10 +734,14 @@ arbitrary code, if the data was crafted by a skilled attacker.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -718,7 +757,7 @@ arbitrary code, if the data was crafted by a skilled attacker.</p>
           <a href="modules.html" title="6. Modules"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -728,7 +767,7 @@ arbitrary code, if the data was crafted by a skilled attacker.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Tutorial</a> &#187;</li>
@@ -738,37 +777,54 @@ arbitrary code, if the data was crafted by a skilled attacker.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="zipimport — Import modules from Zip archives" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/zipimport.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/zipimport.py This module adds the ability to import Python modules (*.py,*.pyc) and packages from ZIP-format archives. It is usually not needed to use the zipimport module explicit..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/zipimport.py This module adds the ability to import Python modules (*.py,*.pyc) and packages from ZIP-format archives. It is usually not needed to use the zipimport module explicit..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>zipimport — Import modules from Zip archives &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zipimport — Import modules from Zip archives &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/zipimport.html" />
+    <link rel="canonical" href="/library/zipimport.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="pkgutil — Package extension utility" href="pkgutil.html" />
     <link rel="prev" title="Importing Modules" href="modules.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/zipimport.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/zipimport.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -118,7 +134,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -134,7 +150,7 @@
           <a href="modules.html" title="Importing Modules"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -144,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -155,14 +171,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -173,8 +196,8 @@
           <div class="body" role="main">
             
   <section id="module-zipimport">
-<span id="zipimport-import-modules-from-zip-archives"></span><h1><a class="reference internal" href="#module-zipimport" title="zipimport: Support for importing Python modules from ZIP archives."><code class="xref py py-mod docutils literal notranslate"><span class="pre">zipimport</span></code></a> — Import modules from Zip archives<a class="headerlink" href="#module-zipimport" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/zipimport.py">Lib/zipimport.py</a></p>
+<span id="zipimport-import-modules-from-zip-archives"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">zipimport</span></code> — Import modules from Zip archives<a class="headerlink" href="#module-zipimport" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/zipimport.py">Lib/zipimport.py</a></p>
 <hr class="docutils" />
 <p>This module adds the ability to import Python modules (<code class="file docutils literal notranslate"><span class="pre">*.py</span></code>,
 <code class="file docutils literal notranslate"><span class="pre">*.pyc</span></code>) and packages from ZIP-format archives. It is usually not
@@ -193,6 +216,9 @@ import from the <code class="file docutils literal notranslate"><span class="pre
 <code class="file docutils literal notranslate"><span class="pre">.py</span></code> files, Python will not attempt to modify the archive by adding the
 corresponding <code class="file docutils literal notranslate"><span class="pre">.pyc</span></code> file, meaning that if a ZIP archive
 doesn’t contain <code class="file docutils literal notranslate"><span class="pre">.pyc</span></code> files, importing may be rather slow.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>ZIP64 is supported</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.8: </span>Previously, ZIP archives with an archive comment were not supported.</p>
 </div>
@@ -214,104 +240,86 @@ implement.</p>
 <p>This module defines an exception:</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="zipimport.ZipImportError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zipimport.</span></span><span class="sig-name descname"><span class="pre">ZipImportError</span></span><a class="headerlink" href="#zipimport.ZipImportError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zipimport.</span></span><span class="sig-name descname"><span class="pre">ZipImportError</span></span><a class="headerlink" href="#zipimport.ZipImportError" title="Link to this definition">¶</a></dt>
 <dd><p>Exception raised by zipimporter objects. It’s a subclass of <a class="reference internal" href="exceptions.html#ImportError" title="ImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a>,
 so it can be caught as <a class="reference internal" href="exceptions.html#ImportError" title="ImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a>, too.</p>
 </dd></dl>
 
 <section id="zipimporter-objects">
-<span id="id1"></span><h2>zipimporter Objects<a class="headerlink" href="#zipimporter-objects" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>zipimporter Objects<a class="headerlink" href="#zipimporter-objects" title="Link to this heading">¶</a></h2>
 <p><a class="reference internal" href="#zipimport.zipimporter" title="zipimport.zipimporter"><code class="xref py py-class docutils literal notranslate"><span class="pre">zipimporter</span></code></a> is the class for importing ZIP files.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="zipimport.zipimporter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zipimport.</span></span><span class="sig-name descname"><span class="pre">zipimporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archivepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zipimport.</span></span><span class="sig-name descname"><span class="pre">zipimporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archivepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter" title="Link to this definition">¶</a></dt>
 <dd><p>Create a new zipimporter instance. <em>archivepath</em> must be a path to a ZIP
 file, or to a specific path within a ZIP file.  For example, an <em>archivepath</em>
 of <code class="file docutils literal notranslate"><span class="pre">foo/bar.zip/lib</span></code> will look for modules in the <code class="file docutils literal notranslate"><span class="pre">lib</span></code> directory
 inside the ZIP file <code class="file docutils literal notranslate"><span class="pre">foo/bar.zip</span></code> (provided that it exists).</p>
 <p><a class="reference internal" href="#zipimport.ZipImportError" title="zipimport.ZipImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZipImportError</span></code></a> is raised if <em>archivepath</em> doesn’t point to a valid ZIP
 archive.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.12: </span>Methods <code class="docutils literal notranslate"><span class="pre">find_loader()</span></code> and <code class="docutils literal notranslate"><span class="pre">find_module()</span></code>, deprecated in 3.10 are
+now removed.  Use <a class="reference internal" href="#zipimport.zipimporter.find_spec" title="zipimport.zipimporter.find_spec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_spec()</span></code></a> instead.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.create_module">
-<span class="sig-name descname"><span class="pre">create_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.create_module" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">create_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.create_module" title="Link to this definition">¶</a></dt>
 <dd><p>Implementation of <a class="reference internal" href="importlib.html#importlib.abc.Loader.create_module" title="importlib.abc.Loader.create_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.Loader.create_module()</span></code></a> that returns
 <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> to explicitly request the default semantics.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.exec_module">
-<span class="sig-name descname"><span class="pre">exec_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.exec_module" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">exec_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.exec_module" title="Link to this definition">¶</a></dt>
 <dd><p>Implementation of <a class="reference internal" href="importlib.html#importlib.abc.Loader.exec_module" title="importlib.abc.Loader.exec_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.Loader.exec_module()</span></code></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="zipimport.zipimporter.find_loader">
-<span class="sig-name descname"><span class="pre">find_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.find_loader" title="Permalink to this definition">¶</a></dt>
-<dd><p>An implementation of <a class="reference internal" href="importlib.html#importlib.abc.PathEntryFinder.find_loader" title="importlib.abc.PathEntryFinder.find_loader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.PathEntryFinder.find_loader()</span></code></a>.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 3.10: </span>Use <a class="reference internal" href="#zipimport.zipimporter.find_spec" title="zipimport.zipimporter.find_spec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_spec()</span></code></a> instead.</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="zipimport.zipimporter.find_module">
-<span class="sig-name descname"><span class="pre">find_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.find_module" title="Permalink to this definition">¶</a></dt>
-<dd><p>Search for a module specified by <em>fullname</em>. <em>fullname</em> must be the fully
-qualified (dotted) module name. It returns the zipimporter instance itself
-if the module was found, or <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> if it wasn’t. The optional
-<em>path</em> argument is ignored—it’s there for compatibility with the
-importer protocol.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 3.10: </span>Use <a class="reference internal" href="#zipimport.zipimporter.find_spec" title="zipimport.zipimporter.find_spec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_spec()</span></code></a> instead.</p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.find_spec">
-<span class="sig-name descname"><span class="pre">find_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.find_spec" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">find_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.find_spec" title="Link to this definition">¶</a></dt>
 <dd><p>An implementation of <a class="reference internal" href="importlib.html#importlib.abc.PathEntryFinder.find_spec" title="importlib.abc.PathEntryFinder.find_spec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.PathEntryFinder.find_spec()</span></code></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.get_code">
-<span class="sig-name descname"><span class="pre">get_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_code" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_code" title="Link to this definition">¶</a></dt>
 <dd><p>Return the code object for the specified module. Raise
 <a class="reference internal" href="#zipimport.ZipImportError" title="zipimport.ZipImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZipImportError</span></code></a> if the module couldn’t be imported.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.get_data">
-<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_data" title="Link to this definition">¶</a></dt>
 <dd><p>Return the data associated with <em>pathname</em>. Raise <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> if the
 file wasn’t found.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.3: </span><a class="reference internal" href="exceptions.html#IOError" title="IOError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IOError</span></code></a> used to be raised instead of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
+<p><span class="versionmodified changed">Changed in version 3.3: </span><a class="reference internal" href="exceptions.html#IOError" title="IOError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IOError</span></code></a> used to be raised, it is now an alias of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.get_filename">
-<span class="sig-name descname"><span class="pre">get_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_filename" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_filename" title="Link to this definition">¶</a></dt>
 <dd><p>Return the value <code class="docutils literal notranslate"><span class="pre">__file__</span></code> would be set to if the specified module
 was imported. Raise <a class="reference internal" href="#zipimport.ZipImportError" title="zipimport.ZipImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZipImportError</span></code></a> if the module couldn’t be
 imported.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.1.</span></p>
+<p><span class="versionmodified added">Added in version 3.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.get_source">
-<span class="sig-name descname"><span class="pre">get_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_source" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.get_source" title="Link to this definition">¶</a></dt>
 <dd><p>Return the source code for the specified module. Raise
 <a class="reference internal" href="#zipimport.ZipImportError" title="zipimport.ZipImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZipImportError</span></code></a> if the module couldn’t be found, return
 <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> if the archive does contain the module, but has no source
@@ -320,42 +328,42 @@ for it.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.is_package">
-<span class="sig-name descname"><span class="pre">is_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.is_package" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">is_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.is_package" title="Link to this definition">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the module specified by <em>fullname</em> is a package. Raise
 <a class="reference internal" href="#zipimport.ZipImportError" title="zipimport.ZipImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZipImportError</span></code></a> if the module couldn’t be found.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.load_module">
-<span class="sig-name descname"><span class="pre">load_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.load_module" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">load_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.load_module" title="Link to this definition">¶</a></dt>
 <dd><p>Load the module specified by <em>fullname</em>. <em>fullname</em> must be the fully
 qualified (dotted) module name. Returns the imported module on success,
 raises <a class="reference internal" href="#zipimport.ZipImportError" title="zipimport.ZipImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZipImportError</span></code></a> on failure.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 3.10: </span>Use <a class="reference internal" href="#zipimport.zipimporter.exec_module" title="zipimport.zipimporter.exec_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exec_module()</span></code></a> instead.</p>
+<div class="deprecated-removed">
+<p><span class="versionmodified removed">Deprecated since version 3.10, removed in version 3.15: </span>Use <a class="reference internal" href="#zipimport.zipimporter.exec_module" title="zipimport.zipimporter.exec_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exec_module()</span></code></a> instead.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="zipimport.zipimporter.invalidate_caches">
-<span class="sig-name descname"><span class="pre">invalidate_caches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.invalidate_caches" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">invalidate_caches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#zipimport.zipimporter.invalidate_caches" title="Link to this definition">¶</a></dt>
 <dd><p>Clear out the internal cache of information about files found within
 the ZIP archive.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="zipimport.zipimporter.archive">
-<span class="sig-name descname"><span class="pre">archive</span></span><a class="headerlink" href="#zipimport.zipimporter.archive" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">archive</span></span><a class="headerlink" href="#zipimport.zipimporter.archive" title="Link to this definition">¶</a></dt>
 <dd><p>The file name of the importer’s associated ZIP file, without a possible
 subpath.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="zipimport.zipimporter.prefix">
-<span class="sig-name descname"><span class="pre">prefix</span></span><a class="headerlink" href="#zipimport.zipimporter.prefix" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">prefix</span></span><a class="headerlink" href="#zipimport.zipimporter.prefix" title="Link to this definition">¶</a></dt>
 <dd><p>The subpath within the ZIP file where modules are searched.  This is the
 empty string for zipimporter objects which point to the root of the ZIP
 file.</p>
@@ -368,7 +376,7 @@ slash, equal the original <em>archivepath</em> argument given to the
 
 </section>
 <section id="examples">
-<span id="zipimport-examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<span id="zipimport-examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>Here is an example that imports a module from a ZIP archive - note that the
 <a class="reference internal" href="#module-zipimport" title="zipimport: Support for importing Python modules from ZIP archives."><code class="xref py py-mod docutils literal notranslate"><span class="pre">zipimport</span></code></a> module is not explicitly used.</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>unzip<span class="w"> </span>-l<span class="w"> </span>example.zip
@@ -395,7 +403,7 @@ slash, equal the original <em>archivepath</em> argument given to the
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -430,10 +438,14 @@ slash, equal the original <em>archivepath</em> argument given to the
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -449,7 +461,7 @@ slash, equal the original <em>archivepath</em> argument given to the
           <a href="modules.html" title="Importing Modules"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -459,7 +471,7 @@ slash, equal the original <em>archivepath</em> argument given to the
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -470,37 +482,54 @@ slash, equal the original <em>archivepath</em> argument given to the
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

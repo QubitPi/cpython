@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="compileall — Byte-compile Python libraries" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/compileall.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/compileall.py This module provides some utility functions to support installing Python libraries. These functions compile Python source files in a directory tree. This module can b..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/compileall.py This module provides some utility functions to support installing Python libraries. These functions compile Python source files in a directory tree. This module can b..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>compileall — Byte-compile Python libraries &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compileall — Byte-compile Python libraries &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/compileall.html" />
+    <link rel="canonical" href="/library/compileall.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="dis — Disassembler for Python bytecode" href="dis.html" />
     <link rel="prev" title="py_compile — Compile Python source files" href="py_compile.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/compileall.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/compileall.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -118,7 +134,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -134,7 +150,7 @@
           <a href="py_compile.html" title="py_compile — Compile Python source files"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -144,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -155,14 +171,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -173,55 +196,56 @@
           <div class="body" role="main">
             
   <section id="module-compileall">
-<span id="compileall-byte-compile-python-libraries"></span><h1><a class="reference internal" href="#module-compileall" title="compileall: Tools for byte-compiling all Python source files in a directory tree."><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code></a> — Byte-compile Python libraries<a class="headerlink" href="#module-compileall" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/compileall.py">Lib/compileall.py</a></p>
+<span id="compileall-byte-compile-python-libraries"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code> — Byte-compile Python libraries<a class="headerlink" href="#module-compileall" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/compileall.py">Lib/compileall.py</a></p>
 <hr class="docutils" />
 <p>This module provides some utility functions to support installing Python
 libraries.  These functions compile Python source files in a directory tree.
 This module can be used to create the cached byte-code files at library
 installation time, which makes them available for use even by users who don’t
 have write permission to the library directories.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
-<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not WASI.</p>
+<p>This module does not work or is not available on WebAssembly. See
 <a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
-</p>
+</div>
 <section id="command-line-use">
-<h2>Command-line use<a class="headerlink" href="#command-line-use" title="Permalink to this headline">¶</a></h2>
+<span id="compileall-cli"></span><h2>Command-line use<a class="headerlink" href="#command-line-use" title="Link to this heading">¶</a></h2>
 <p>This module can work as a script (using <strong class="program">python -m compileall</strong>) to
 compile Python sources.</p>
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-arg-directory">
-<span class="sig-name descname"><span class="pre">directory</span></span><span class="sig-prename descclassname"> <span class="pre">...</span></span><a class="headerlink" href="#cmdoption-compileall-arg-directory" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">directory</span></span><span class="sig-prename descclassname"> <span class="pre">...</span></span><a class="headerlink" href="#cmdoption-compileall-arg-directory" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object std" id="cmdoption-compileall-arg-file">
-<span class="sig-name descname"><span class="pre">file</span></span><span class="sig-prename descclassname"> <span class="pre">...</span></span><a class="headerlink" href="#cmdoption-compileall-arg-file" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file</span></span><span class="sig-prename descclassname"> <span class="pre">...</span></span><a class="headerlink" href="#cmdoption-compileall-arg-file" title="Link to this definition">¶</a></dt>
 <dd><p>Positional arguments are files to compile or directories that contain
 source files, traversed recursively.  If no argument is given, behave as if
-the command line was <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">&lt;directories</span> <span class="pre">from</span> <span class="pre">sys.path&gt;</span></code>.</p>
+the command line was <code class="samp docutils literal notranslate"><span class="pre">-l</span> <em><span class="pre">&lt;directories</span> <span class="pre">from</span> <span class="pre">sys.path&gt;</span></em></code>.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-l">
-<span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-l" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-l" title="Link to this definition">¶</a></dt>
 <dd><p>Do not recurse into subdirectories, only compile source code files directly
 contained in the named or implied directories.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-f">
-<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-f" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-f" title="Link to this definition">¶</a></dt>
 <dd><p>Force rebuild even if timestamps are up-to-date.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-q">
-<span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-q" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-q" title="Link to this definition">¶</a></dt>
 <dd><p>Do not print the list of files compiled. If passed once, error messages will
 still be printed. If passed twice (<code class="docutils literal notranslate"><span class="pre">-qq</span></code>), all output is suppressed.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-d">
-<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"> <span class="pre">destdir</span></span><a class="headerlink" href="#cmdoption-compileall-d" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"> <span class="pre">destdir</span></span><a class="headerlink" href="#cmdoption-compileall-d" title="Link to this definition">¶</a></dt>
 <dd><p>Directory prepended to the path to each file being compiled.  This will
 appear in compilation time tracebacks, and is also compiled in to the
 byte-code file, where it will be used in tracebacks and other messages in
@@ -229,63 +253,63 @@ cases where the source file does not exist at the time the byte-code file is
 executed.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-s">
-<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"> <span class="pre">strip_prefix</span></span><a class="headerlink" href="#cmdoption-compileall-s" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"> <span class="pre">strip_prefix</span></span><a class="headerlink" href="#cmdoption-compileall-s" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-p">
-<span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"> <span class="pre">prepend_prefix</span></span><a class="headerlink" href="#cmdoption-compileall-p" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"> <span class="pre">prepend_prefix</span></span><a class="headerlink" href="#cmdoption-compileall-p" title="Link to this definition">¶</a></dt>
 <dd><p>Remove (<code class="docutils literal notranslate"><span class="pre">-s</span></code>) or append (<code class="docutils literal notranslate"><span class="pre">-p</span></code>) the given prefix of paths
 recorded in the <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> files.
 Cannot be combined with <code class="docutils literal notranslate"><span class="pre">-d</span></code>.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-x">
-<span class="sig-name descname"><span class="pre">-x</span></span><span class="sig-prename descclassname"> <span class="pre">regex</span></span><a class="headerlink" href="#cmdoption-compileall-x" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-x</span></span><span class="sig-prename descclassname"> <span class="pre">regex</span></span><a class="headerlink" href="#cmdoption-compileall-x" title="Link to this definition">¶</a></dt>
 <dd><p>regex is used to search the full path to each file considered for
 compilation, and if the regex produces a match, the file is skipped.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-i">
-<span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"> <span class="pre">list</span></span><a class="headerlink" href="#cmdoption-compileall-i" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"> <span class="pre">list</span></span><a class="headerlink" href="#cmdoption-compileall-i" title="Link to this definition">¶</a></dt>
 <dd><p>Read the file <code class="docutils literal notranslate"><span class="pre">list</span></code> and add each line that it contains to the list of
 files and directories to compile.  If <code class="docutils literal notranslate"><span class="pre">list</span></code> is <code class="docutils literal notranslate"><span class="pre">-</span></code>, read lines from
 <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-b">
-<span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-b" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-b" title="Link to this definition">¶</a></dt>
 <dd><p>Write the byte-code files to their legacy locations and names, which may
 overwrite byte-code files created by another version of Python.  The default
 is to write files to their <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-3147/"><strong>PEP 3147</strong></a> locations and names, which allows
 byte-code files from multiple versions of Python to coexist.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-r">
-<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-r" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-r" title="Link to this definition">¶</a></dt>
 <dd><p>Control the maximum recursion level for subdirectories.
 If this is given, then <code class="docutils literal notranslate"><span class="pre">-l</span></code> option will not be taken into account.
 <strong class="program">python -m compileall &lt;directory&gt; -r 0</strong> is equivalent to
 <strong class="program">python -m compileall &lt;directory&gt; -l</strong>.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-j">
-<span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"> <span class="pre">N</span></span><a class="headerlink" href="#cmdoption-compileall-j" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"> <span class="pre">N</span></span><a class="headerlink" href="#cmdoption-compileall-j" title="Link to this definition">¶</a></dt>
 <dd><p>Use <em>N</em> workers to compile the files within the given directory.
-If <code class="docutils literal notranslate"><span class="pre">0</span></code> is used, then the result of <a class="reference internal" href="os.html#os.cpu_count" title="os.cpu_count"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.cpu_count()</span></code></a>
+If <code class="docutils literal notranslate"><span class="pre">0</span></code> is used, then the result of <a class="reference internal" href="os.html#os.process_cpu_count" title="os.process_cpu_count"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.process_cpu_count()</span></code></a>
 will be used.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-invalidation-mode">
-<span class="sig-name descname"><span class="pre">--invalidation-mode</span></span><span class="sig-prename descclassname"> <span class="pre">[timestamp|checked-hash|unchecked-hash]</span></span><a class="headerlink" href="#cmdoption-compileall-invalidation-mode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--invalidation-mode</span></span><span class="sig-prename descclassname"> <span class="pre">[timestamp|checked-hash|unchecked-hash]</span></span><a class="headerlink" href="#cmdoption-compileall-invalidation-mode" title="Link to this definition">¶</a></dt>
 <dd><p>Control how the generated byte-code files are invalidated at runtime.
 The <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> value, means that <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> files with the source timestamp
 and size embedded will be generated. The <code class="docutils literal notranslate"><span class="pre">checked-hash</span></code> and
@@ -298,23 +322,23 @@ variable is not set, and <code class="docutils literal notranslate"><span class=
 environment variable is set.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-o">
-<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">level</span></span><a class="headerlink" href="#cmdoption-compileall-o" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">level</span></span><a class="headerlink" href="#cmdoption-compileall-o" title="Link to this definition">¶</a></dt>
 <dd><p>Compile with the given optimization level. May be used multiple times
 to compile for multiple levels at a time (for example,
 <code class="docutils literal notranslate"><span class="pre">compileall</span> <span class="pre">-o</span> <span class="pre">1</span> <span class="pre">-o</span> <span class="pre">2</span></code>).</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-e">
-<span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"> <span class="pre">dir</span></span><a class="headerlink" href="#cmdoption-compileall-e" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"> <span class="pre">dir</span></span><a class="headerlink" href="#cmdoption-compileall-e" title="Link to this definition">¶</a></dt>
 <dd><p>Ignore symlinks pointing outside the given directory.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-compileall-hardlink-dupes">
-<span class="sig-name descname"><span class="pre">--hardlink-dupes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-hardlink-dupes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--hardlink-dupes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compileall-hardlink-dupes" title="Link to this definition">¶</a></dt>
 <dd><p>If two <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> files with different optimization level have
 the same content, use hard links to consolidate duplicate files.</p>
 </dd></dl>
@@ -339,16 +363,16 @@ Added the possibility to specify the <code class="docutils literal notranslate">
 <p>There is no command-line option to control the optimization level used by the
 <a class="reference internal" href="functions.html#compile" title="compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a> function, because the Python interpreter itself already
 provides the option: <strong class="program">python -O -m compileall</strong>.</p>
-<p>Similarly, the <a class="reference internal" href="functions.html#compile" title="compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a> function respects the <a class="reference internal" href="sys.html#sys.pycache_prefix" title="sys.pycache_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.pycache_prefix</span></code></a>
+<p>Similarly, the <a class="reference internal" href="functions.html#compile" title="compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a> function respects the <a class="reference internal" href="sys.html#sys.pycache_prefix" title="sys.pycache_prefix"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.pycache_prefix</span></code></a>
 setting. The generated bytecode cache will only be useful if <a class="reference internal" href="functions.html#compile" title="compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a> is
-run with the same <a class="reference internal" href="sys.html#sys.pycache_prefix" title="sys.pycache_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.pycache_prefix</span></code></a> (if any) that will be used at
+run with the same <a class="reference internal" href="sys.html#sys.pycache_prefix" title="sys.pycache_prefix"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.pycache_prefix</span></code></a> (if any) that will be used at
 runtime.</p>
 </section>
 <section id="public-functions">
-<h2>Public functions<a class="headerlink" href="#public-functions" title="Permalink to this headline">¶</a></h2>
+<h2>Public functions<a class="headerlink" href="#public-functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="compileall.compile_dir">
-<span class="sig-prename descclassname"><span class="pre">compileall.</span></span><span class="sig-name descname"><span class="pre">compile_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxlevels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.getrecursionlimit()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalidation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stripdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prependdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_sl_dest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardlink_dupes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compileall.compile_dir" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">compileall.</span></span><span class="sig-name descname"><span class="pre">compile_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxlevels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.getrecursionlimit()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalidation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">stripdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prependdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_sl_dest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardlink_dupes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compileall.compile_dir" title="Link to this definition">¶</a></dt>
 <dd><p>Recursively descend the directory tree named by <em>dir</em>, compiling all <code class="file docutils literal notranslate"><span class="pre">.py</span></code>
 files along the way. Return a true value if all the files compiled successfully,
 and a false value otherwise.</p>
@@ -410,7 +434,7 @@ no matter what the value of <em>optimize</em> is.</p>
 <p><span class="versionmodified changed">Changed in version 3.7: </span>The <em>invalidation_mode</em> parameter was added.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.7.2: </span>The <em>invalidation_mode</em> parameter’s default value is updated to None.</p>
+<p><span class="versionmodified changed">Changed in version 3.7.2: </span>The <em>invalidation_mode</em> parameter’s default value is updated to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.8: </span>Setting <em>workers</em> to 0 now chooses the optimal number of cores.</p>
@@ -423,7 +447,7 @@ Default value of <em>maxlevels</em> was changed from <code class="docutils liter
 
 <dl class="py function">
 <dt class="sig sig-object py" id="compileall.compile_file">
-<span class="sig-prename descclassname"><span class="pre">compileall.</span></span><span class="sig-name descname"><span class="pre">compile_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalidation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stripdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prependdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_sl_dest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardlink_dupes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compileall.compile_file" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">compileall.</span></span><span class="sig-name descname"><span class="pre">compile_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalidation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">stripdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prependdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_sl_dest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardlink_dupes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compileall.compile_file" title="Link to this definition">¶</a></dt>
 <dd><p>Compile the file with path <em>fullname</em>. Return a true value if the file
 compiled successfully, and a false value otherwise.</p>
 <p>If <em>ddir</em> is given, it is prepended to the path to the file being compiled
@@ -455,7 +479,7 @@ They may be specified as <code class="docutils literal notranslate"><span class=
 <p>If <em>hardlink_dupes</em> is true and two <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> files with different optimization
 level have the same content, use hard links to consolidate duplicate files.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.2.</span></p>
+<p><span class="versionmodified added">Added in version 3.2.</span></p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.5: </span><em>quiet</em> parameter was changed to a multilevel value.</p>
@@ -468,7 +492,7 @@ no matter what the value of <em>optimize</em> is.</p>
 <p><span class="versionmodified changed">Changed in version 3.7: </span>The <em>invalidation_mode</em> parameter was added.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.7.2: </span>The <em>invalidation_mode</em> parameter’s default value is updated to None.</p>
+<p><span class="versionmodified changed">Changed in version 3.7.2: </span>The <em>invalidation_mode</em> parameter’s default value is updated to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.9: </span>Added <em>stripdir</em>, <em>prependdir</em>, <em>limit_sl_dest</em> and <em>hardlink_dupes</em> arguments.</p>
@@ -477,7 +501,7 @@ no matter what the value of <em>optimize</em> is.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="compileall.compile_path">
-<span class="sig-prename descclassname"><span class="pre">compileall.</span></span><span class="sig-name descname"><span class="pre">compile_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_curdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxlevels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalidation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compileall.compile_path" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">compileall.</span></span><span class="sig-name descname"><span class="pre">compile_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_curdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxlevels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalidation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compileall.compile_path" title="Link to this definition">¶</a></dt>
 <dd><p>Byte-compile all the <code class="file docutils literal notranslate"><span class="pre">.py</span></code> files found along <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>. Return a
 true value if all the files compiled successfully, and a false value otherwise.</p>
 <p>If <em>skip_curdir</em> is true (the default), the current directory is not included
@@ -498,22 +522,22 @@ no matter what the value of <em>optimize</em> is.</p>
 <p><span class="versionmodified changed">Changed in version 3.7: </span>The <em>invalidation_mode</em> parameter was added.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.7.2: </span>The <em>invalidation_mode</em> parameter’s default value is updated to None.</p>
+<p><span class="versionmodified changed">Changed in version 3.7.2: </span>The <em>invalidation_mode</em> parameter’s default value is updated to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </div>
 </dd></dl>
 
 <p>To force a recompile of all the <code class="file docutils literal notranslate"><span class="pre">.py</span></code> files in the <code class="file docutils literal notranslate"><span class="pre">Lib/</span></code>
 subdirectory and all its subdirectories:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">compileall</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">compileall</span>
 
 <span class="n">compileall</span><span class="o">.</span><span class="n">compile_dir</span><span class="p">(</span><span class="s1">&#39;Lib/&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Perform same compilation, excluding files in .svn directories.</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="n">compileall</span><span class="o">.</span><span class="n">compile_dir</span><span class="p">(</span><span class="s1">&#39;Lib/&#39;</span><span class="p">,</span> <span class="n">rx</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[/</span><span class="se">\\</span><span class="s1">][.]svn&#39;</span><span class="p">),</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># pathlib.Path objects can also be used.</span>
-<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 <span class="n">compileall</span><span class="o">.</span><span class="n">compile_dir</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;Lib/&#39;</span><span class="p">),</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -532,7 +556,7 @@ subdirectory and all its subdirectories:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -567,10 +591,14 @@ subdirectory and all its subdirectories:</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -586,7 +614,7 @@ subdirectory and all its subdirectories:</p>
           <a href="py_compile.html" title="py_compile — Compile Python source files"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -596,7 +624,7 @@ subdirectory and all its subdirectories:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -607,37 +635,54 @@ subdirectory and all its subdirectories:</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

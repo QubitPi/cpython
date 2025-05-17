@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="xml.dom.minidom — Minimal DOM implementation" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/xml.dom.minidom.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/xml/dom/minidom.py xml.dom.minidom is a minimal implementation of the Document Object Model interface, with an API similar to that in other languages. It is intended to be simpler ..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/xml/dom/minidom.py xml.dom.minidom is a minimal implementation of the Document Object Model interface, with an API similar to that in other languages. It is intended to be simpler ..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>xml.dom.minidom — Minimal DOM implementation &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xml.dom.minidom — Minimal DOM implementation &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/xml.dom.minidom.html" />
+    <link rel="canonical" href="/library/xml.dom.minidom.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="xml.dom.pulldom — Support for building partial DOM trees" href="xml.dom.pulldom.html" />
     <link rel="prev" title="xml.dom — The Document Object Model API" href="xml.dom.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/xml.dom.minidom.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/xml.dom.minidom.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -119,7 +135,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -135,7 +151,7 @@
           <a href="xml.dom.html" title="xml.dom — The Document Object Model API"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -145,7 +161,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -156,14 +172,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -174,8 +197,8 @@
           <div class="body" role="main">
             
   <section id="module-xml.dom.minidom">
-<span id="xml-dom-minidom-minimal-dom-implementation"></span><h1><a class="reference internal" href="#module-xml.dom.minidom" title="xml.dom.minidom: Minimal Document Object Model (DOM) implementation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code></a> — Minimal DOM implementation<a class="headerlink" href="#module-xml.dom.minidom" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/xml/dom/minidom.py">Lib/xml/dom/minidom.py</a></p>
+<span id="xml-dom-minidom-minimal-dom-implementation"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code> — Minimal DOM implementation<a class="headerlink" href="#module-xml.dom.minidom" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/xml/dom/minidom.py">Lib/xml/dom/minidom.py</a></p>
 <hr class="docutils" />
 <p><a class="reference internal" href="#module-xml.dom.minidom" title="xml.dom.minidom: Minimal Document Object Model (DOM) implementation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code></a> is a minimal implementation of the Document Object
 Model interface, with an API similar to that in other languages.  It is intended
@@ -190,7 +213,7 @@ unauthenticated data see <a class="reference internal" href="xml.html#xml-vulner
 </div>
 <p>DOM applications typically start by parsing some XML into a DOM.  With
 <a class="reference internal" href="#module-xml.dom.minidom" title="xml.dom.minidom: Minimal Document Object Model (DOM) implementation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code></a>, this is done through the parse functions:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">parseString</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">xml.dom.minidom</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">parseString</span>
 
 <span class="n">dom1</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">temp</span><span class="se">\\</span><span class="s1">mydata.xml&#39;</span><span class="p">)</span>  <span class="c1"># parse an XML file by name</span>
 
@@ -203,7 +226,7 @@ unauthenticated data see <a class="reference internal" href="xml.html#xml-vulner
 <p>The <a class="reference internal" href="#xml.dom.minidom.parse" title="xml.dom.minidom.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a> function can take either a filename or an open file object.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="xml.dom.minidom.parse">
-<span class="sig-prename descclassname"><span class="pre">xml.dom.minidom.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename_or_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bufsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.parse" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">xml.dom.minidom.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename_or_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bufsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.parse" title="Link to this definition">¶</a></dt>
 <dd><p>Return a <code class="xref py py-class docutils literal notranslate"><span class="pre">Document</span></code> from the given input. <em>filename_or_file</em> may be
 either a file name, or a file-like object. <em>parser</em>, if given, must be a SAX2
 parser object. This function will change the document handler of the parser and
@@ -215,7 +238,7 @@ resolver) must have been done in advance.</p>
 instead:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="xml.dom.minidom.parseString">
-<span class="sig-prename descclassname"><span class="pre">xml.dom.minidom.</span></span><span class="sig-name descname"><span class="pre">parseString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.parseString" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">xml.dom.minidom.</span></span><span class="sig-name descname"><span class="pre">parseString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.parseString" title="Link to this definition">¶</a></dt>
 <dd><p>Return a <code class="xref py py-class docutils literal notranslate"><span class="pre">Document</span></code> that represents the <em>string</em>. This method creates an
 <a class="reference internal" href="io.html#io.StringIO" title="io.StringIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.StringIO</span></code></a> object for the string and passes that on to <a class="reference internal" href="#xml.dom.minidom.parse" title="xml.dom.minidom.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>.</p>
 </dd></dl>
@@ -233,7 +256,7 @@ Implementation” object.  You can get this object either by calling the
 <code class="xref py py-func docutils literal notranslate"><span class="pre">getDOMImplementation()</span></code> function in the <a class="reference internal" href="xml.dom.html#module-xml.dom" title="xml.dom: Document Object Model API for Python."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom</span></code></a> package or the
 <a class="reference internal" href="#module-xml.dom.minidom" title="xml.dom.minidom: Minimal Document Object Model (DOM) implementation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code></a> module.  Once you have a <code class="xref py py-class docutils literal notranslate"><span class="pre">Document</span></code>, you
 can add child nodes to it to populate the DOM:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="kn">import</span> <span class="n">getDOMImplementation</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">xml.dom.minidom</span><span class="w"> </span><span class="kn">import</span> <span class="n">getDOMImplementation</span>
 
 <span class="n">impl</span> <span class="o">=</span> <span class="n">getDOMImplementation</span><span class="p">()</span>
 
@@ -266,13 +289,13 @@ eventually take care of the objects in the tree.</p>
 </dl>
 </div>
 <section id="dom-objects">
-<span id="minidom-objects"></span><h2>DOM Objects<a class="headerlink" href="#dom-objects" title="Permalink to this headline">¶</a></h2>
+<span id="minidom-objects"></span><h2>DOM Objects<a class="headerlink" href="#dom-objects" title="Link to this heading">¶</a></h2>
 <p>The definition of the DOM API for Python is given as part of the <a class="reference internal" href="xml.dom.html#module-xml.dom" title="xml.dom: Document Object Model API for Python."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom</span></code></a>
 module documentation.  This section lists the differences between the API and
 <a class="reference internal" href="#module-xml.dom.minidom" title="xml.dom.minidom: Minimal Document Object Model (DOM) implementation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="xml.dom.minidom.Node.unlink">
-<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">unlink</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.unlink" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">unlink</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.unlink" title="Link to this definition">¶</a></dt>
 <dd><p>Break internal references within the DOM so that it will be garbage collected on
 versions of Python without cyclic GC.  Even when cyclic GC is available, using
 this can make large amounts of memory available sooner, so calling this on DOM
@@ -290,7 +313,7 @@ statement. The following code will automatically unlink <em>dom</em> when the
 
 <dl class="py method">
 <dt class="sig sig-object py" id="xml.dom.minidom.Node.writexml">
-<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">writexml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addindent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.writexml" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">writexml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addindent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.writexml" title="Link to this definition">¶</a></dt>
 <dd><p>Write XML to the writer object.  The writer receives texts but not bytes as input,
 it should have a <code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code> method which matches that of the file object
 interface.  The <em>indent</em> parameter is the indentation of the current node.
@@ -316,10 +339,10 @@ by the user.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="xml.dom.minidom.Node.toxml">
-<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">toxml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.toxml" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">toxml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.toxml" title="Link to this definition">¶</a></dt>
 <dd><p>Return a string or byte string containing the XML represented by
 the DOM node.</p>
-<p>With an explicit <em>encoding</em> <a class="footnote-reference brackets" href="#id3" id="id1">1</a> argument, the result is a byte
+<p>With an explicit <em>encoding</em> <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> argument, the result is a byte
 string in the specified encoding.
 With no <em>encoding</em> argument, the result is a Unicode string, and the
 XML declaration in the resulting string does not specify an
@@ -337,7 +360,7 @@ by the user.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="xml.dom.minidom.Node.toprettyxml">
-<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">toprettyxml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\t'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.toprettyxml" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Node.</span></span><span class="sig-name descname"><span class="pre">toprettyxml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\t'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.dom.minidom.Node.toprettyxml" title="Link to this definition">¶</a></dt>
 <dd><p>Return a pretty-printed version of the document. <em>indent</em> specifies the
 indentation string and defaults to a tabulator; <em>newl</em> specifies the string
 emitted at the end of each line and defaults to <code class="docutils literal notranslate"><span class="pre">\n</span></code>.</p>
@@ -355,10 +378,10 @@ by the user.</p>
 
 </section>
 <section id="dom-example">
-<span id="id2"></span><h2>DOM Example<a class="headerlink" href="#dom-example" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>DOM Example<a class="headerlink" href="#dom-example" title="Link to this heading">¶</a></h2>
 <p>This example program is a fairly realistic example of a simple program. In this
 particular case, we do not take much advantage of the flexibility of the DOM.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xml.dom.minidom</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xml.dom.minidom</span>
 
 <span class="n">document</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s2">&lt;slideshow&gt;</span>
@@ -378,14 +401,14 @@ particular case, we do not take much advantage of the flexibility of the DOM.</p
 
 <span class="n">dom</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">getText</span><span class="p">(</span><span class="n">nodelist</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getText</span><span class="p">(</span><span class="n">nodelist</span><span class="p">):</span>
     <span class="n">rc</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodelist</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">TEXT_NODE</span><span class="p">:</span>
             <span class="n">rc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handleSlideshow</span><span class="p">(</span><span class="n">slideshow</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handleSlideshow</span><span class="p">(</span><span class="n">slideshow</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&quot;</span><span class="p">)</span>
     <span class="n">handleSlideshowTitle</span><span class="p">(</span><span class="n">slideshow</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">slides</span> <span class="o">=</span> <span class="n">slideshow</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;slide&quot;</span><span class="p">)</span>
@@ -393,30 +416,30 @@ particular case, we do not take much advantage of the flexibility of the DOM.</p
     <span class="n">handleSlides</span><span class="p">(</span><span class="n">slides</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&lt;/html&gt;&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handleSlides</span><span class="p">(</span><span class="n">slides</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handleSlides</span><span class="p">(</span><span class="n">slides</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">slide</span> <span class="ow">in</span> <span class="n">slides</span><span class="p">:</span>
         <span class="n">handleSlide</span><span class="p">(</span><span class="n">slide</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handleSlide</span><span class="p">(</span><span class="n">slide</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handleSlide</span><span class="p">(</span><span class="n">slide</span><span class="p">):</span>
     <span class="n">handleSlideTitle</span><span class="p">(</span><span class="n">slide</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">handlePoints</span><span class="p">(</span><span class="n">slide</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;point&quot;</span><span class="p">))</span>
 
-<span class="k">def</span> <span class="nf">handleSlideshowTitle</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handleSlideshowTitle</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;title&gt;</span><span class="si">{</span><span class="n">getText</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">childNodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/title&gt;&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handleSlideTitle</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handleSlideTitle</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;h2&gt;</span><span class="si">{</span><span class="n">getText</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">childNodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/h2&gt;&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handlePoints</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handlePoints</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&lt;ul&gt;&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
         <span class="n">handlePoint</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&lt;/ul&gt;&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handlePoint</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handlePoint</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;li&gt;</span><span class="si">{</span><span class="n">getText</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">childNodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/li&gt;&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">handleToc</span><span class="p">(</span><span class="n">slides</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handleToc</span><span class="p">(</span><span class="n">slides</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">slide</span> <span class="ow">in</span> <span class="n">slides</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">slide</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;p&gt;</span><span class="si">{</span><span class="n">getText</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">childNodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">)</span>
@@ -426,7 +449,7 @@ particular case, we do not take much advantage of the flexibility of the DOM.</p
 </div>
 </section>
 <section id="minidom-and-the-dom-standard">
-<span id="minidom-and-dom"></span><h2>minidom and the DOM standard<a class="headerlink" href="#minidom-and-the-dom-standard" title="Permalink to this headline">¶</a></h2>
+<span id="minidom-and-dom"></span><h2>minidom and the DOM standard<a class="headerlink" href="#minidom-and-the-dom-standard" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="#module-xml.dom.minidom" title="xml.dom.minidom: Minimal Document Object Model (DOM) implementation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.minidom</span></code></a> module is essentially a DOM 1.0-compatible DOM with
 some DOM 2 features (primarily namespace features).</p>
 <p>Usage of the DOM interface in Python is straight-forward.  The following mapping
@@ -468,16 +491,17 @@ recommendations.</p></li>
 <p>Most of these reflect information in the XML document that is not of general
 utility to most DOM users.</p>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The encoding name included in the XML output should conform to
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The encoding name included in the XML output should conform to
 the appropriate standards. For example, “UTF-8” is valid, but
 “UTF8” is not valid in an XML document’s declaration, even though
 Python accepts it as an encoding name.
 See <a class="reference external" href="https://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl">https://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl</a>
 and <a class="reference external" href="https://www.iana.org/assignments/character-sets/character-sets.xhtml">https://www.iana.org/assignments/character-sets/character-sets.xhtml</a>.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -486,7 +510,7 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -522,10 +546,14 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -541,7 +569,7 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
           <a href="xml.dom.html" title="xml.dom — The Document Object Model API"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -551,7 +579,7 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -562,37 +590,54 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

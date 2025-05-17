@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="What’s New in Python 2.4" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/whatsnew/2.4.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Author, A.M. Kuchling,. This article explains the new features in Python 2.4.1, released on March 30, 2005. Python 2.4 is a medium-sized release. It doesn’t introduce as many changes as the radical..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Author, A.M. Kuchling,. This article explains the new features in Python 2.4.1, released on March 30, 2005. Python 2.4 is a medium-sized release. It doesn’t introduce as many changes as the radical..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>What’s New in Python 2.4 &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What’s New in Python 2.4 &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/whatsnew/2.4.html" />
+    <link rel="canonical" href="/whatsnew/2.4.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="What’s New in Python 2.3" href="2.3.html" />
     <link rel="prev" title="What’s New in Python 2.5" href="2.5.html" />
-    <link rel="canonical" href="https://docs.python.org/3/whatsnew/2.4.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/whatsnew/2.4.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -146,7 +162,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -162,7 +178,7 @@
           <a href="2.5.html" title="What’s New in Python 2.5"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -172,7 +188,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">What’s New in Python</a> &#187;</li>
@@ -182,14 +198,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -200,9 +223,9 @@
           <div class="body" role="main">
             
   <section id="what-s-new-in-python-2-4">
-<h1>What’s New in Python 2.4<a class="headerlink" href="#what-s-new-in-python-2-4" title="Permalink to this headline">¶</a></h1>
+<h1>What’s New in Python 2.4<a class="headerlink" href="#what-s-new-in-python-2-4" title="Link to this heading">¶</a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Author</dt>
+<dt class="field-odd">Author<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A.M. Kuchling</p>
 </dd>
 </dl>
@@ -221,7 +244,7 @@ Python Library Reference and the Python Reference Manual.  Often you will be
 referred to the PEP for a particular new feature for explanations of the
 implementation and design rationale.</p>
 <section id="pep-218-built-in-set-objects">
-<h2>PEP 218: Built-In Set Objects<a class="headerlink" href="#pep-218-built-in-set-objects" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 218: Built-In Set Objects<a class="headerlink" href="#pep-218-built-in-set-objects" title="Link to this heading">¶</a></h2>
 <p>Python 2.3 introduced the <code class="xref py py-mod docutils literal notranslate"><span class="pre">sets</span></code> module.  C implementations of set data
 types have now been added to the Python core as two new built-in types,
 <code class="docutils literal notranslate"><span class="pre">set(iterable)</span></code> and <code class="docutils literal notranslate"><span class="pre">frozenset(iterable)</span></code>.  They provide high speed
@@ -271,7 +294,7 @@ Hettinger.</p>
 </div>
 </section>
 <section id="pep-237-unifying-long-integers-and-integers">
-<h2>PEP 237: Unifying Long Integers and Integers<a class="headerlink" href="#pep-237-unifying-long-integers-and-integers" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 237: Unifying Long Integers and Integers<a class="headerlink" href="#pep-237-unifying-long-integers-and-integers" title="Link to this heading">¶</a></h2>
 <p>The lengthy transition process for this PEP, begun in Python 2.2, takes another
 step forward in Python 2.4.  In 2.3, certain integer operations that would
 behave differently after int/long unification triggered <a class="reference internal" href="../library/exceptions.html#FutureWarning" title="FutureWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">FutureWarning</span></code></a>
@@ -292,7 +315,7 @@ implemented by  Kalle Svensson.</p>
 </div>
 </section>
 <section id="pep-289-generator-expressions">
-<h2>PEP 289: Generator Expressions<a class="headerlink" href="#pep-289-generator-expressions" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 289: Generator Expressions<a class="headerlink" href="#pep-289-generator-expressions" title="Link to this heading">¶</a></h2>
 <p>The iterator feature introduced in Python 2.2 and the <a class="reference internal" href="../library/itertools.html#module-itertools" title="itertools: Functions creating iterators for efficient looping."><code class="xref py py-mod docutils literal notranslate"><span class="pre">itertools</span></code></a> module
 make it easier to write programs that loop through large data sets without
 having the entire data set in memory at one time.  List comprehensions don’t fit
@@ -345,7 +368,7 @@ steered by Hye-Shik Chang.</p>
 </div>
 </section>
 <section id="pep-292-simpler-string-substitutions">
-<h2>PEP 292: Simpler String Substitutions<a class="headerlink" href="#pep-292-simpler-string-substitutions" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 292: Simpler String Substitutions<a class="headerlink" href="#pep-292-simpler-string-substitutions" title="Link to this heading">¶</a></h2>
 <p>Some new classes in the standard library provide an alternative mechanism for
 substituting variables into strings; this style of substitution may be better
 for applications where untrained users need to edit templates.</p>
@@ -364,7 +387,7 @@ to explain to such users, and if they make a mistake, it’s difficult to provid
 helpful feedback to them.</p>
 <p>PEP 292 adds a <code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code> class to the <a class="reference internal" href="../library/string.html#module-string" title="string: Common string operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">string</span></code></a> module that uses
 <code class="docutils literal notranslate"><span class="pre">$</span></code> to indicate a substitution:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">string</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span><span class="s1">&#39;$page: $title&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">substitute</span><span class="p">({</span><span class="s1">&#39;page&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;The Best of Times&#39;</span><span class="p">})</span>
 <span class="go">&#39;2: The Best of Times&#39;</span>
@@ -387,15 +410,15 @@ ignores missing keys:</p>
 </div>
 </section>
 <section id="pep-318-decorators-for-functions-and-methods">
-<h2>PEP 318: Decorators for Functions and Methods<a class="headerlink" href="#pep-318-decorators-for-functions-and-methods" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 318: Decorators for Functions and Methods<a class="headerlink" href="#pep-318-decorators-for-functions-and-methods" title="Link to this heading">¶</a></h2>
 <p>Python 2.2 extended Python’s object model by adding static methods and class
 methods, but it didn’t extend Python’s syntax to provide any new way of defining
 static or class methods.  Instead, you had to write a <a class="reference internal" href="../reference/compound_stmts.html#def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">def</span></code></a> statement
 in the usual way, and pass the resulting method to a <a class="reference internal" href="../library/functions.html#staticmethod" title="staticmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">staticmethod()</span></code></a> or
 <a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">classmethod()</span></code></a> function that would wrap up the function as a method of the
 new type. Your code would look like this:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-   <span class="k">def</span> <span class="nf">meth</span> <span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
+   <span class="k">def</span><span class="w"> </span><span class="nf">meth</span> <span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
        <span class="o">...</span>
 
    <span class="n">meth</span> <span class="o">=</span> <span class="nb">classmethod</span><span class="p">(</span><span class="n">meth</span><span class="p">)</span>   <span class="c1"># Rebind name to wrapped-up class method</span>
@@ -413,10 +436,10 @@ additional information on a function object; they’re <em>decorating</em> funct
 more details.</p>
 <p>The notation borrows from Java and uses the <code class="docutils literal notranslate"><span class="pre">'&#64;'</span></code> character as an indicator.
 Using the new syntax, the example above would be written:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
 
    <span class="nd">@classmethod</span>
-   <span class="k">def</span> <span class="nf">meth</span> <span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+   <span class="k">def</span><span class="w"> </span><span class="nf">meth</span> <span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
        <span class="o">...</span>
 </pre></div>
 </div>
@@ -425,12 +448,12 @@ More generally, if you have the following:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@A</span>
 <span class="nd">@B</span>
 <span class="nd">@C</span>
-<span class="k">def</span> <span class="nf">f</span> <span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span> <span class="p">():</span>
     <span class="o">...</span>
 </pre></div>
 </div>
 <p>It’s equivalent to the following pre-decorator code:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">B</span><span class="p">(</span><span class="n">C</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -444,35 +467,35 @@ value of the decorator need not be callable (though it typically is), unless
 further decorators will be applied to the result.  It’s easy to write your own
 decorators.  The following simple example just sets an attribute on the function
 object:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">deco</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">deco</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 <span class="gp">... </span>   <span class="n">func</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;decorated&#39;</span>
 <span class="gp">... </span>   <span class="k">return</span> <span class="n">func</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nd">@deco</span>
-<span class="gp">... </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="k">pass</span>
+<span class="gp">... </span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">():</span> <span class="k">pass</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span>
 <span class="go">&lt;function f at 0x402ef0d4&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">attr</span>
 <span class="go">&#39;decorated&#39;</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
 <p>As a slightly more realistic example, the following decorator checks that the
 supplied argument is an integer:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">require_int</span> <span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span> <span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">require_int</span> <span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span> <span class="p">(</span><span class="n">arg</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">wrapper</span>
 
 <span class="nd">@require_int</span>
-<span class="k">def</span> <span class="nf">p1</span> <span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">p1</span> <span class="p">(</span><span class="n">arg</span><span class="p">):</span>
     <span class="nb">print</span> <span class="n">arg</span>
 
 <span class="nd">@require_int</span>
-<span class="k">def</span> <span class="nf">p2</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">p2</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
     <span class="nb">print</span> <span class="n">arg</span><span class="o">*</span><span class="mi">2</span>
 </pre></div>
 </div>
@@ -482,13 +505,14 @@ both specify the required type and check the returned type.</p>
 decorator function is called with only those arguments and must return a new
 decorator function; this function must take a single function and return a
 function, as previously described.  In other words, <code class="docutils literal notranslate"><span class="pre">&#64;A</span> <span class="pre">&#64;B</span> <span class="pre">&#64;C(args)</span></code> becomes:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
 <span class="n">_deco</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">B</span><span class="p">(</span><span class="n">_deco</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Getting this right can be slightly brain-bending, but it’s not too difficult.</p>
-<p>A small related change makes the <code class="xref py py-attr docutils literal notranslate"><span class="pre">func_name</span></code> attribute of functions
+<p>A small related change makes the <a class="reference internal" href="../reference/datamodel.html#function.__name__" title="function.__name__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">func_name</span></code></a>
+attribute of functions
 writable.  This attribute is used to display function names in tracebacks, so
 decorators should change the name of any new function that’s constructed and
 returned.</p>
@@ -505,7 +529,7 @@ checked in was patch #979728, written by Mark Russell.</p>
 </div>
 </section>
 <section id="pep-322-reverse-iteration">
-<h2>PEP 322: Reverse Iteration<a class="headerlink" href="#pep-322-reverse-iteration" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 322: Reverse Iteration<a class="headerlink" href="#pep-322-reverse-iteration" title="Link to this heading">¶</a></h2>
 <p>A new built-in function, <code class="docutils literal notranslate"><span class="pre">reversed(seq)</span></code>, takes a sequence and returns an
 iterator that loops over the elements of the sequence  in reverse order.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)):</span>
@@ -537,7 +561,7 @@ you want to reverse an iterator, first convert it to  a list with <a class="refe
 </div>
 </section>
 <section id="pep-324-new-subprocess-module">
-<h2>PEP 324: New subprocess Module<a class="headerlink" href="#pep-324-new-subprocess-module" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 324: New subprocess Module<a class="headerlink" href="#pep-324-new-subprocess-module" title="Link to this heading">¶</a></h2>
 <p>The standard library provides a number of ways to execute a subprocess, offering
 different features and different levels of complexity.
 <code class="docutils literal notranslate"><span class="pre">os.system(command)</span></code> is easy to use, but slow (it runs a shell process
@@ -547,9 +571,9 @@ capture standard output and standard error from the subprocess, but the naming
 is confusing.  The <a class="reference internal" href="../library/subprocess.html#module-subprocess" title="subprocess: Subprocess management."><code class="xref py py-mod docutils literal notranslate"><span class="pre">subprocess</span></code></a> module cleans  this up, providing a unified
 interface that offers all the features you might need.</p>
 <p>Instead of <code class="xref py py-mod docutils literal notranslate"><span class="pre">popen2</span></code>’s collection of classes, <a class="reference internal" href="../library/subprocess.html#module-subprocess" title="subprocess: Subprocess management."><code class="xref py py-mod docutils literal notranslate"><span class="pre">subprocess</span></code></a> contains a
-single class called <code class="xref py py-class docutils literal notranslate"><span class="pre">Popen</span></code>  whose constructor supports a number of
+single class called <a class="reference internal" href="../library/subprocess.html#subprocess.Popen" title="subprocess.Popen"><code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.Popen</span></code></a>  whose constructor supports a number of
 different keyword arguments.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">executable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">executable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">stdin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">preexec_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -612,7 +636,7 @@ others.</p>
 </div>
 </section>
 <section id="pep-327-decimal-data-type">
-<h2>PEP 327: Decimal Data Type<a class="headerlink" href="#pep-327-decimal-data-type" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 327: Decimal Data Type<a class="headerlink" href="#pep-327-decimal-data-type" title="Link to this heading">¶</a></h2>
 <p>Python has always supported floating-point (FP) numbers, based on the underlying
 C <span class="c-expr sig sig-inline c"><span class="kt">double</span></span> type, as a data type.  However, while most programming
 languages provide a floating-point type, many people (even programmers) are
@@ -620,7 +644,7 @@ unaware that floating-point numbers don’t represent certain decimal fractions
 accurately.  The new <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> type can represent these fractions
 accurately, up to a user-specified precision limit.</p>
 <section id="why-is-decimal-needed">
-<h3>Why is Decimal needed?<a class="headerlink" href="#why-is-decimal-needed" title="Permalink to this headline">¶</a></h3>
+<h3>Why is Decimal needed?<a class="headerlink" href="#why-is-decimal-needed" title="Link to this heading">¶</a></h3>
 <p>The limitations arise from the representation used for floating-point numbers.
 FP numbers are made up of three components:</p>
 <ul class="simple">
@@ -666,7 +690,7 @@ routines.</p>
 <p>Hence, the <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> type was created.</p>
 </section>
 <section id="the-decimal-type">
-<h3>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> type<a class="headerlink" href="#the-decimal-type" title="Permalink to this headline">¶</a></h3>
+<h3>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> type<a class="headerlink" href="#the-decimal-type" title="Link to this heading">¶</a></h3>
 <p>A new module, <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a>, was added to Python’s standard library.  It
 contains two classes, <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code>.  <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code>
 instances represent numbers, and <code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code> instances are used to wrap up
@@ -675,7 +699,7 @@ various settings such as the precision and default rounding mode.</p>
 numbers; once it’s been created, you can’t change the value an instance
 represents.  <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> instances can be created from integers or
 strings:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">decimal</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">decimal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="mi">1972</span><span class="p">)</span>
 <span class="go">Decimal(&quot;1972&quot;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;1.1&quot;</span><span class="p">)</span>
@@ -732,7 +756,7 @@ floating-point numbers:</p>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="w">  </span><span class="c">...</span>
 <span class="gr">TypeError</span>: <span class="n">You can interact Decimal only with int, long or Decimal data types.</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
 <p><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> numbers can be used with the <a class="reference internal" href="../library/math.html#module-math" title="math: Mathematical functions (sin() etc.)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code></a> and <a class="reference internal" href="../library/cmath.html#module-cmath" title="cmath: Mathematical functions for complex numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code></a>
@@ -740,7 +764,7 @@ modules, but note that they’ll be immediately converted to  floating-point
 numbers before the operation is performed, resulting in a possible loss of
 precision and accuracy.  You’ll also get back a regular floating-point number
 and not a <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">cmath</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="o">,</span><span class="w"> </span><span class="nn">cmath</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;123456789012.345&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">351364.18288201344</span>
@@ -757,7 +781,7 @@ you’ll have to implement them.</p>
 </div>
 </section>
 <section id="the-context-type">
-<h3>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code> type<a class="headerlink" href="#the-context-type" title="Permalink to this headline">¶</a></h3>
+<h3>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code> type<a class="headerlink" href="#the-context-type" title="Link to this heading">¶</a></h3>
 <p>Instances of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code> class encapsulate several settings for
 decimal operations:</p>
 <ul class="simple">
@@ -793,7 +817,7 @@ raised:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">decimal</span><span class="o">.</span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">traps</span><span class="p">[</span><span class="n">decimal</span><span class="o">.</span><span class="n">DivisionByZero</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">Decimal(&quot;Infinity&quot;)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code> instance also has various methods for formatting  numbers
@@ -806,10 +830,10 @@ includes a quick-start tutorial and a reference.</p>
 <dt><span class="target" id="index-9"></span><a class="pep reference external" href="https://peps.python.org/pep-0327/"><strong>PEP 327</strong></a> - Decimal Data Type</dt><dd><p>Written by Facundo Batista and implemented by Facundo Batista, Eric Price,
 Raymond Hettinger, Aahz, and Tim Peters.</p>
 </dd>
-<dt><a class="reference external" href="http://www.lahey.com/float.htm">http://www.lahey.com/float.htm</a></dt><dd><p>The article uses Fortran code to illustrate many of the problems that
+<dt><a class="reference external" href="https://web.archive.org/web/20230604072523/http://www.lahey.com/float.htm">http://www.lahey.com/float.htm</a></dt><dd><p>The article uses Fortran code to illustrate many of the problems that
 floating-point inaccuracy can cause.</p>
 </dd>
-<dt><a class="reference external" href="http://speleotrove.com/decimal/">http://speleotrove.com/decimal/</a></dt><dd><p>A description of a decimal-based representation.  This representation is being
+<dt><a class="reference external" href="https://speleotrove.com/decimal/">https://speleotrove.com/decimal/</a></dt><dd><p>A description of a decimal-based representation.  This representation is being
 proposed as a standard, and underlies the new Python decimal type.  Much of this
 material was written by Mike Cowlishaw, designer of the Rexx language.</p>
 </dd>
@@ -818,13 +842,13 @@ material was written by Mike Cowlishaw, designer of the Rexx language.</p>
 </section>
 </section>
 <section id="pep-328-multi-line-imports">
-<h2>PEP 328: Multi-line Imports<a class="headerlink" href="#pep-328-multi-line-imports" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 328: Multi-line Imports<a class="headerlink" href="#pep-328-multi-line-imports" title="Link to this heading">¶</a></h2>
 <p>One language change is a small syntactic tweak aimed at making it easier to
 import many names from a module.  In a <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module</span> <span class="pre">import</span> <span class="pre">names</span></code> statement,
 <em>names</em> is a sequence of names separated by commas.  If the sequence is  very
 long, you can either write multiple imports from the same module, or you can use
 backslashes to escape the line endings like this:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SimpleXMLRPCServer</span> <span class="kn">import</span> <span class="n">SimpleXMLRPCServer</span><span class="p">,</span>\
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">SimpleXMLRPCServer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleXMLRPCServer</span><span class="p">,</span>\
             <span class="n">SimpleXMLRPCRequestHandler</span><span class="p">,</span>\
             <span class="n">CGIXMLRPCRequestHandler</span><span class="p">,</span>\
             <span class="n">resolve_dotted_attribute</span>
@@ -833,7 +857,7 @@ backslashes to escape the line endings like this:</p>
 <p>The syntactic change in Python 2.4 simply allows putting the names within
 parentheses.  Python ignores newlines within a parenthesized expression, so the
 backslashes are no longer needed:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SimpleXMLRPCServer</span> <span class="kn">import</span> <span class="p">(</span><span class="n">SimpleXMLRPCServer</span><span class="p">,</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">SimpleXMLRPCServer</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">SimpleXMLRPCServer</span><span class="p">,</span>
                                 <span class="n">SimpleXMLRPCRequestHandler</span><span class="p">,</span>
                                 <span class="n">CGIXMLRPCRequestHandler</span><span class="p">,</span>
                                 <span class="n">resolve_dotted_attribute</span><span class="p">)</span>
@@ -851,7 +875,7 @@ PEP was not implemented for Python 2.4, but was completed for Python 2.5.</p>
 </div>
 </section>
 <section id="pep-331-locale-independent-float-string-conversions">
-<h2>PEP 331: Locale-Independent Float/String Conversions<a class="headerlink" href="#pep-331-locale-independent-float-string-conversions" title="Permalink to this headline">¶</a></h2>
+<h2>PEP 331: Locale-Independent Float/String Conversions<a class="headerlink" href="#pep-331-locale-independent-float-string-conversions" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../library/locale.html#module-locale" title="locale: Internationalization services."><code class="xref py py-mod docutils literal notranslate"><span class="pre">locale</span></code></a> modules lets Python software select various conversions and
 display conventions that are localized to a particular country or language.
 However, the module was careful to not change the numeric locale because various
@@ -871,7 +895,7 @@ both convert a string to a C <span class="c-expr sig sig-inline c"><span class="
 <span class="c-expr sig sig-inline c"><span class="kt">double</span></span> to an ASCII string.</p></li>
 </ul>
 <p>The code for these functions came from the GLib library
-(<a class="reference external" href="https://developer.gnome.org/glib/stable/">https://developer.gnome.org/glib/stable/</a>), whose developers kindly
+(<a class="reference external" href="http://web.archive.org/web/20210306104320/https://developer.gnome.org/glib/2.26/">https://developer-old.gnome.org/glib/2.26/</a>), whose developers kindly
 relicensed the relevant functions and donated them to the Python Software
 Foundation.  The <a class="reference internal" href="../library/locale.html#module-locale" title="locale: Internationalization services."><code class="xref py py-mod docutils literal notranslate"><span class="pre">locale</span></code></a> module  can now change the numeric locale,
 letting extensions such as GTK+  produce the correct results.</p>
@@ -884,7 +908,7 @@ letting extensions such as GTK+  produce the correct results.</p>
 </div>
 </section>
 <section id="other-language-changes">
-<h2>Other Language Changes<a class="headerlink" href="#other-language-changes" title="Permalink to this headline">¶</a></h2>
+<h2>Other Language Changes<a class="headerlink" href="#other-language-changes" title="Link to this heading">¶</a></h2>
 <p>Here are all of the changes that Python 2.4 makes to the core Python language.</p>
 <ul>
 <li><p>Decorators for functions and methods were added (<span class="target" id="index-12"></span><a class="pep reference external" href="https://peps.python.org/pep-0318/"><strong>PEP 318</strong></a>).</p></li>
@@ -1000,7 +1024,7 @@ dictionary.  (Contributed by Raymond Hettinger.)</p></li>
 empty list if called with no arguments. Previously they raised a
 <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exception.  This makes them more suitable for use with variable
 length argument lists:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">transpose</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
 <span class="gp">... </span>   <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">array</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transpose</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)])</span>
@@ -1019,7 +1043,7 @@ confusing errors.   (Fixed by Tim Peters.)</p></li>
 <code class="docutils literal notranslate"><span class="pre">None</span></code> is now a syntax error. (Contributed by Raymond Hettinger.)</p></li>
 </ul>
 <section id="optimizations">
-<h3>Optimizations<a class="headerlink" href="#optimizations" title="Permalink to this headline">¶</a></h3>
+<h3>Optimizations<a class="headerlink" href="#optimizations" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The inner loops for list and tuple slicing were optimized and now run about
 one-third faster.  The inner loops for dictionaries were also optimized,
@@ -1062,7 +1086,7 @@ smaller benefits from Python 2.4.)</p>
 </section>
 </section>
 <section id="new-improved-and-deprecated-modules">
-<h2>New, Improved, and Deprecated Modules<a class="headerlink" href="#new-improved-and-deprecated-modules" title="Permalink to this headline">¶</a></h2>
+<h2>New, Improved, and Deprecated Modules<a class="headerlink" href="#new-improved-and-deprecated-modules" title="Link to this heading">¶</a></h2>
 <p>As usual, Python’s standard library received a number of enhancements and bug
 fixes.  Here’s a partial list of the most notable changes, sorted alphabetically
 by module name. Consult the <code class="file docutils literal notranslate"><span class="pre">Misc/NEWS</span></code> file in the source tree for a more
@@ -1098,7 +1122,7 @@ previous ones left off.  (Implemented by Walter Dörwald.)</p></li>
 datatypes.  Currently it contains just one type, <code class="xref py py-class docutils literal notranslate"><span class="pre">deque</span></code>, a double-ended
 queue that supports efficiently adding and removing elements from either
 end:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="s1">&#39;ghi&#39;</span><span class="p">)</span>        <span class="c1"># make a new deque with three items</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">)</span>           <span class="c1"># add a new entry to the right side</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>       <span class="c1"># add a new entry to the left side</span>
@@ -1118,9 +1142,9 @@ end:</p>
 advantage of <a class="reference internal" href="../library/collections.html#collections.deque" title="collections.deque"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.deque</span></code></a> for improved performance.  (Contributed
 by Raymond Hettinger.)</p>
 </li>
-<li><p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">ConfigParser</span></code> classes have been enhanced slightly. The <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code>
+<li><p>The <a class="reference internal" href="../library/configparser.html#module-configparser" title="configparser: Configuration file parser."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> classes have been enhanced slightly. The <a class="reference internal" href="../library/configparser.html#configparser.ConfigParser.read" title="configparser.ConfigParser.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a>
 method now returns a list of the files that were successfully parsed, and the
-<a class="reference internal" href="../library/stdtypes.html#set" title="set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set()</span></code></a> method raises <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if passed a <em>value</em> argument that
+<a class="reference internal" href="../library/configparser.html#configparser.ConfigParser.set" title="configparser.ConfigParser.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set()</span></code></a> method raises <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if passed a <em>value</em> argument that
 isn’t a string.   (Contributed by John Belmonte and David Goodger.)</p></li>
 <li><p>The <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a> module now supports the ncurses extension
 <code class="xref py py-func docutils literal notranslate"><span class="pre">use_default_colors()</span></code>.  On platforms where the terminal supports
@@ -1142,7 +1166,7 @@ improvement in speed makes the module suitable for handling high volumes of
 data.  In addition, the module has two new functions <code class="xref py py-func docutils literal notranslate"><span class="pre">nlargest()</span></code> and
 <code class="xref py py-func docutils literal notranslate"><span class="pre">nsmallest()</span></code> that use heaps to find the N largest or smallest values in a
 dataset without the expense of a full sort.  (Contributed by Raymond Hettinger.)</p></li>
-<li><p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">httplib</span></code> module now contains constants for HTTP status codes defined
+<li><p>The <a class="reference internal" href="../library/http.html#module-http" title="http: HTTP status codes and messages"><code class="xref py py-mod docutils literal notranslate"><span class="pre">httplib</span></code></a> module now contains constants for HTTP status codes defined
 in various HTTP-related RFC documents.  Constants have names such as
 <code class="xref py py-const docutils literal notranslate"><span class="pre">OK</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">CREATED</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">CONTINUE</span></code>, and
 <code class="xref py py-const docutils literal notranslate"><span class="pre">MOVED_PERMANENTLY</span></code>; use pydoc to get a full list.  (Contributed by
@@ -1160,7 +1184,7 @@ value and an iterator over the subsequence.</p>
 <p>Here’s an example to make this clearer.  The <em>key</em> function simply returns
 whether a number is even or odd, so the result of <code class="xref py py-func docutils literal notranslate"><span class="pre">groupby()</span></code> is to return
 consecutive runs of odd or even numbers.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key_val</span><span class="p">,</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">):</span>
 <span class="gp">... </span>   <span class="nb">print</span> <span class="n">key_val</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
@@ -1170,7 +1194,7 @@ consecutive runs of odd or even numbers.</p>
 <span class="go">0 [8]</span>
 <span class="go">1 [9, 11]</span>
 <span class="go">0 [12, 14]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
 <p><code class="xref py py-func docutils literal notranslate"><span class="pre">groupby()</span></code> is typically used with sorted input.  The logic for
@@ -1229,7 +1253,7 @@ Hettinger.)</p>
 behavior is to log messages to standard error, but various keyword arguments can
 be specified to log to a particular file, change the logging format, or set the
 logging level. For example:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;/var/log/application.log&#39;</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># Log all messages</span>
     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%(levelname):%(process):%(thread):%(message)&#39;</span><span class="p">)</span>
@@ -1247,7 +1271,7 @@ that can be used to implement other rotating handlers.</p>
 structure.  This may shrink the size of certain pickle strings, but the primary
 effect is to make <code class="file docutils literal notranslate"><span class="pre">.pyc</span></code> files significantly smaller. (Contributed by
 Martin von Löwis.)</p></li>
-<li><p>The <a class="reference internal" href="../library/nntplib.html#module-nntplib" title="nntplib: NNTP protocol client (requires sockets). (deprecated)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code></a> module’s <code class="xref py py-class docutils literal notranslate"><span class="pre">NNTP</span></code> class gained <code class="xref py py-meth docutils literal notranslate"><span class="pre">description()</span></code> and
+<li><p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> module’s <code class="xref py py-class docutils literal notranslate"><span class="pre">NNTP</span></code> class gained <code class="xref py py-meth docutils literal notranslate"><span class="pre">description()</span></code> and
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">descriptions()</span></code> methods to retrieve  newsgroup descriptions for a single
 group or for a range of groups. (Contributed by Jürgen A. Erhard.)</p></li>
 <li><p>Two new functions were added to the <a class="reference internal" href="../library/operator.html#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module,
@@ -1266,14 +1290,14 @@ or <a class="reference internal" href="../library/functions.html#sorted" title="
 </div>
 <p>(Contributed by Raymond Hettinger.)</p>
 </li>
-<li><p>The <a class="reference internal" href="../library/optparse.html#module-optparse" title="optparse: Command-line option parsing library. (deprecated)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> module was updated in various ways.  The module now passes
+<li><p>The <a class="reference internal" href="../library/optparse.html#module-optparse" title="optparse: Command-line option parsing library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> module was updated in various ways.  The module now passes
 its messages through <a class="reference internal" href="../library/gettext.html#gettext.gettext" title="gettext.gettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettext.gettext()</span></code></a>, making it possible to
 internationalize Optik’s help and error messages.  Help messages for options can
 now include the string <code class="docutils literal notranslate"><span class="pre">'%default'</span></code>, which will be replaced by the option’s
 default value.  (Contributed by Greg Ward.)</p></li>
 <li><p>The long-term plan is to deprecate the <code class="xref py py-mod docutils literal notranslate"><span class="pre">rfc822</span></code> module in some future
 Python release in favor of the <a class="reference internal" href="../library/email.html#module-email" title="email: Package supporting the parsing, manipulating, and generating email messages."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email</span></code></a> package. To this end, the
-<code class="xref py py-func docutils literal notranslate"><span class="pre">email.Utils.formatdate()</span></code> function has been changed to make it usable as a
+<a class="reference internal" href="../library/email.utils.html#email.utils.formatdate" title="email.utils.formatdate"><code class="xref py py-func docutils literal notranslate"><span class="pre">email.Utils.formatdate</span></code></a> function has been changed to make it usable as a
 replacement for <code class="xref py py-func docutils literal notranslate"><span class="pre">rfc822.formatdate()</span></code>.  You may want to write new e-mail
 processing code with this in mind.  (Change implemented by Anthony Baxter.)</p></li>
 <li><p>A new <code class="docutils literal notranslate"><span class="pre">urandom(n)</span></code> function was added to the <a class="reference internal" href="../library/os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> module, returning
@@ -1328,7 +1352,7 @@ interface, accessed only by <a class="reference internal" href="../library/atexi
 <li><p>The <a class="reference internal" href="../library/threading.html#module-threading" title="threading: Thread-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> module now has an elegantly simple way to support
 thread-local data.  The module contains a <code class="xref py py-class docutils literal notranslate"><span class="pre">local</span></code> class whose attribute
 values are local to different threads.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">local</span><span class="p">()</span>
 <span class="n">data</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="mi">42</span>
@@ -1346,16 +1370,16 @@ comparable.  (Contributed by Raymond Hettinger.)</p></li>
 Python functions, class instances, sets, frozensets, deques, arrays, files,
 sockets, and regular expression pattern objects. (Contributed by Raymond
 Hettinger.)</p></li>
-<li><p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">xmlrpclib</span></code> module now supports a multi-call extension for
+<li><p>The <a class="reference internal" href="../library/xmlrpc.client.html#module-xmlrpc.client" title="xmlrpc.client: XML-RPC client access."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xmlrpclib</span></code></a> module now supports a multi-call extension for
 transmitting multiple XML-RPC calls in a single HTTP operation. (Contributed by
 Brian Quinlan.)</p></li>
 <li><p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">mpz</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">rotor</span></code>, and <code class="xref py py-mod docutils literal notranslate"><span class="pre">xreadlines</span></code> modules have  been
 removed.</p></li>
 </ul>
 <section id="cookielib">
-<h3>cookielib<a class="headerlink" href="#cookielib" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">cookielib</span></code> library supports client-side handling for HTTP cookies,
-mirroring the <code class="xref py py-mod docutils literal notranslate"><span class="pre">Cookie</span></code> module’s server-side cookie support. Cookies are
+<h3>cookielib<a class="headerlink" href="#cookielib" title="Link to this heading">¶</a></h3>
+<p>The <a class="reference internal" href="../library/http.cookiejar.html#module-http.cookiejar" title="http.cookiejar: Classes for automatic handling of HTTP cookies."><code class="xref py py-mod docutils literal notranslate"><span class="pre">cookielib</span></code></a> library supports client-side handling for HTTP cookies,
+mirroring the <a class="reference internal" href="../library/http.cookies.html#module-http.cookies" title="http.cookies: Support for HTTP state management (cookies)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">Cookie</span></code></a> module’s server-side cookie support. Cookies are
 stored in cookie jars; the library transparently stores cookies offered by the
 web server in the cookie jar, and fetches the cookie from the jar when
 connecting to the server. As in web browsers, policy objects control whether
@@ -1364,20 +1388,20 @@ cookies are accepted or not.</p>
 are provided: one that stores cookies in the Netscape format so applications can
 use the Mozilla or Lynx cookie files, and one that stores cookies in the same
 format as the Perl libwww library.</p>
-<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib2</span></code> has been changed to interact with <code class="xref py py-mod docutils literal notranslate"><span class="pre">cookielib</span></code>:
+<p><a class="reference internal" href="../library/urllib.request.html#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib2</span></code></a> has been changed to interact with <a class="reference internal" href="../library/http.cookiejar.html#module-http.cookiejar" title="http.cookiejar: Classes for automatic handling of HTTP cookies."><code class="xref py py-mod docutils literal notranslate"><span class="pre">cookielib</span></code></a>:
 <code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPCookieProcessor</span></code> manages a cookie jar that is used when accessing
 URLs.</p>
 <p>This module was contributed by John J. Lee.</p>
 </section>
 <section id="doctest">
-<h3>doctest<a class="headerlink" href="#doctest" title="Permalink to this headline">¶</a></h3>
+<h3>doctest<a class="headerlink" href="#doctest" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../library/doctest.html#module-doctest" title="doctest: Test pieces of code within docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">doctest</span></code></a> module underwent considerable refactoring thanks to Edward
 Loper and Tim Peters.  Testing can still be as simple as running
 <a class="reference internal" href="../library/doctest.html#doctest.testmod" title="doctest.testmod"><code class="xref py py-func docutils literal notranslate"><span class="pre">doctest.testmod()</span></code></a>, but the refactorings allow customizing the module’s
 operation in various ways</p>
 <p>The new <code class="xref py py-class docutils literal notranslate"><span class="pre">DocTestFinder</span></code> class extracts the tests from a given  object’s
 docstrings:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&gt;&gt;&gt; f(2,2)</span>
 <span class="sd">4</span>
 <span class="sd">&gt;&gt;&gt; f(3,2)</span>
@@ -1416,7 +1440,7 @@ a completely new subclass of <code class="xref py py-class docutils literal notr
 with the <a class="reference internal" href="../library/doctest.html#doctest.ELLIPSIS" title="doctest.ELLIPSIS"><code class="xref py py-const docutils literal notranslate"><span class="pre">doctest.ELLIPSIS</span></code></a> option flag, an ellipsis (<code class="docutils literal notranslate"><span class="pre">...</span></code>) in the
 expected output matches any substring,  making it easier to accommodate outputs
 that vary in minor ways:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">o</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">o</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&gt;&gt;&gt; o(1)</span>
 <span class="sd">&lt;__main__.C instance at 0x...&gt;</span>
 <span class="sd">&gt;&gt;&gt;</span>
@@ -1424,7 +1448,7 @@ that vary in minor ways:</p>
 </pre></div>
 </div>
 <p>Another special string, <code class="docutils literal notranslate"><span class="pre">&lt;BLANKLINE&gt;</span></code>, matches a blank line:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">p</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&gt;&gt;&gt; p(1)</span>
 <span class="sd">&lt;BLANKLINE&gt;</span>
 <span class="sd">&gt;&gt;&gt;</span>
@@ -1435,7 +1459,7 @@ that vary in minor ways:</p>
 specifying the <a class="reference internal" href="../library/doctest.html#doctest.REPORT_UDIFF" title="doctest.REPORT_UDIFF"><code class="xref py py-const docutils literal notranslate"><span class="pre">doctest.REPORT_UDIFF</span></code></a> (unified diffs),
 <a class="reference internal" href="../library/doctest.html#doctest.REPORT_CDIFF" title="doctest.REPORT_CDIFF"><code class="xref py py-const docutils literal notranslate"><span class="pre">doctest.REPORT_CDIFF</span></code></a> (context diffs), or <a class="reference internal" href="../library/doctest.html#doctest.REPORT_NDIFF" title="doctest.REPORT_NDIFF"><code class="xref py py-const docutils literal notranslate"><span class="pre">doctest.REPORT_NDIFF</span></code></a>
 (delta-style) option flags.  For example:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&gt;&gt;&gt; g(4)</span>
 <span class="sd">here</span>
 <span class="sd">is</span>
@@ -1465,7 +1489,7 @@ Differences (unified diff with -expected +actual):
 </section>
 </section>
 <section id="build-and-c-api-changes">
-<h2>Build and C API Changes<a class="headerlink" href="#build-and-c-api-changes" title="Permalink to this headline">¶</a></h2>
+<h2>Build and C API Changes<a class="headerlink" href="#build-and-c-api-changes" title="Link to this heading">¶</a></h2>
 <p>Some of the changes to Python’s build process and to the C API are:</p>
 <ul class="simple">
 <li><p>Three new convenience macros were added for common return values from
@@ -1482,13 +1506,13 @@ lookups without masking exceptions raised during the look-up process.
 <li><p>The <span class="c-expr sig sig-inline c"><span class="n">Py_IS_NAN</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></span> macro returns 1 if  its float or double argument
 <em>X</em> is a NaN.   (Contributed by Tim Peters.)</p></li>
 <li><p>C code can avoid unnecessary locking by using the new
-<a class="reference internal" href="../c-api/init.html#c.PyEval_ThreadsInitialized" title="PyEval_ThreadsInitialized"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyEval_ThreadsInitialized()</span></code></a> function to tell  if any thread operations
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyEval_ThreadsInitialized()</span></code> function to tell  if any thread operations
 have been performed.  If this function  returns false, no lock operations are
 needed. (Contributed by Nick Coghlan.)</p></li>
 <li><p>A new function, <a class="reference internal" href="../c-api/arg.html#c.PyArg_VaParseTupleAndKeywords" title="PyArg_VaParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_VaParseTupleAndKeywords()</span></code></a>, is the same as
 <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a> but takes a  <code class="xref c c-type docutils literal notranslate"><span class="pre">va_list</span></code> instead of a
 number of arguments. (Contributed by Greg Chapman.)</p></li>
-<li><p>A new method flag, <code class="xref py py-const docutils literal notranslate"><span class="pre">METH_COEXISTS</span></code>, allows a function defined in slots
+<li><p>A new method flag, <a class="reference internal" href="../c-api/structures.html#c.METH_COEXIST" title="METH_COEXIST"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_COEXIST</span></code></a>, allows a function defined in slots
 to co-exist with a <a class="reference internal" href="../c-api/structures.html#c.PyCFunction" title="PyCFunction"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCFunction</span></code></a> having the same name.  This can halve
 the access time for a method such as <code class="xref py py-meth docutils literal notranslate"><span class="pre">set.__contains__()</span></code>.  (Contributed by
 Raymond Hettinger.)</p></li>
@@ -1505,7 +1529,7 @@ register”.  (Contributed by Jeremy Hylton.)</p></li>
 <code class="xref c c-type docutils literal notranslate"><span class="pre">PyTracebackObject</span></code>.</p></li>
 </ul>
 <section id="port-specific-changes">
-<h3>Port-Specific Changes<a class="headerlink" href="#port-specific-changes" title="Permalink to this headline">¶</a></h3>
+<h3>Port-Specific Changes<a class="headerlink" href="#port-specific-changes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The Windows port now builds under MSVC++ 7.1 as well as version 6.
 (Contributed by Martin von Löwis.)</p></li>
@@ -1513,7 +1537,7 @@ register”.  (Contributed by Jeremy Hylton.)</p></li>
 </section>
 </section>
 <section id="porting-to-python-2-4">
-<h2>Porting to Python 2.4<a class="headerlink" href="#porting-to-python-2-4" title="Permalink to this headline">¶</a></h2>
+<h2>Porting to Python 2.4<a class="headerlink" href="#porting-to-python-2-4" title="Link to this heading">¶</a></h2>
 <p>This section lists previously described changes that may require changes to your
 code:</p>
 <ul class="simple">
@@ -1547,7 +1571,7 @@ example, you can no longer set a handler on the <code class="xref py py-const do
 </ul>
 </section>
 <section id="acknowledgements">
-<span id="acks"></span><h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<span id="acks"></span><h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h2>
 <p>The author would like to thank the following people for offering suggestions,
 corrections and assistance with various drafts of this article: Koray Can,
 Hye-Shik Chang, Michael Dyck, Raymond Hettinger, Brian Hurt, Hamish Lawson,
@@ -1560,7 +1584,7 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -1623,10 +1647,14 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -1642,7 +1670,7 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
           <a href="2.5.html" title="What’s New in Python 2.5"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -1652,7 +1680,7 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >What’s New in Python</a> &#187;</li>
@@ -1662,37 +1690,54 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

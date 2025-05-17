@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Low-level API Index" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/asyncio-llapi-index.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="This page lists all low-level asyncio APIs. Obtaining the Event Loop:,, asyncio.get_running_loop(), The preferred function to get the running event loop.,, asyncio.get_event_loop(), Get an event lo..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="This page lists all low-level asyncio APIs. Obtaining the Event Loop:,, asyncio.get_running_loop(), The preferred function to get the running event loop.,, asyncio.get_event_loop(), Get an event lo..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>Low-level API Index &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low-level API Index &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/asyncio-llapi-index.html" />
+    <link rel="canonical" href="/library/asyncio-llapi-index.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="Developing with asyncio" href="asyncio-dev.html" />
     <link rel="prev" title="High-level API Index" href="asyncio-api-index.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/asyncio-llapi-index.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/asyncio-llapi-index.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -121,7 +137,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -137,7 +153,7 @@
           <a href="asyncio-api-index.html" title="High-level API Index"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -147,7 +163,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -159,14 +175,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -177,14 +200,14 @@
           <div class="body" role="main">
             
   <section id="low-level-api-index">
-<h1>Low-level API Index<a class="headerlink" href="#low-level-api-index" title="Permalink to this headline">¶</a></h1>
+<h1>Low-level API Index<a class="headerlink" href="#low-level-api-index" title="Link to this heading">¶</a></h1>
 <p>This page lists all low-level asyncio APIs.</p>
 <section id="obtaining-the-event-loop">
-<h2>Obtaining the Event Loop<a class="headerlink" href="#obtaining-the-event-loop" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given full-width-table docutils align-default">
+<h2>Obtaining the Event Loop<a class="headerlink" href="#obtaining-the-event-loop" title="Link to this heading">¶</a></h2>
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.get_running_loop" title="asyncio.get_running_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.get_running_loop()</span></code></a></p></td>
@@ -207,14 +230,14 @@
 </ul>
 </section>
 <section id="event-loop-methods">
-<h2>Event Loop Methods<a class="headerlink" href="#event-loop-methods" title="Permalink to this headline">¶</a></h2>
+<h2>Event Loop Methods<a class="headerlink" href="#event-loop-methods" title="Link to this heading">¶</a></h2>
 <p>See also the main documentation section about the
 <a class="reference internal" href="asyncio-eventloop.html#asyncio-event-loop-methods"><span class="std std-ref">Event Loop Methods</span></a>.</p>
 <p class="rubric">Lifecycle</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.run_until_complete" title="asyncio.loop.run_until_complete"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.run_until_complete()</span></code></a></p></td>
@@ -241,10 +264,10 @@
 </tbody>
 </table>
 <p class="rubric">Debugging</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.set_debug" title="asyncio.loop.set_debug"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.set_debug()</span></code></a></p></td>
@@ -256,10 +279,10 @@
 </tbody>
 </table>
 <p class="rubric">Scheduling Callbacks</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.call_soon" title="asyncio.loop.call_soon"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.call_soon()</span></code></a></p></td>
@@ -276,11 +299,11 @@
 </tr>
 </tbody>
 </table>
-<p class="rubric">Thread/Process Pool</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<p class="rubric">Thread/Interpreter/Process Pool</p>
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">await</span></code> <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.run_in_executor" title="asyncio.loop.run_in_executor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.run_in_executor()</span></code></a></p></td>
@@ -293,10 +316,10 @@ a <a class="reference internal" href="concurrent.futures.html#module-concurrent.
 </tbody>
 </table>
 <p class="rubric">Tasks and Futures</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_future" title="asyncio.loop.create_future"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_future()</span></code></a></p></td>
@@ -316,10 +339,10 @@ to create <a class="reference internal" href="asyncio-task.html#asyncio.Task" ti
 </tbody>
 </table>
 <p class="rubric">DNS</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">await</span></code> <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.getaddrinfo" title="asyncio.loop.getaddrinfo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.getaddrinfo()</span></code></a></p></td>
@@ -331,10 +354,10 @@ to create <a class="reference internal" href="asyncio-task.html#asyncio.Task" ti
 </tbody>
 </table>
 <p class="rubric">Networking and IPC</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">await</span></code> <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a></p></td>
@@ -371,10 +394,10 @@ pair.</p></td>
 </tbody>
 </table>
 <p class="rubric">Sockets</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">await</span></code> <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.sock_recv" title="asyncio.loop.sock_recv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.sock_recv()</span></code></a></p></td>
@@ -419,10 +442,10 @@ pair.</p></td>
 </tbody>
 </table>
 <p class="rubric">Unix Signals</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_signal_handler" title="asyncio.loop.add_signal_handler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_signal_handler()</span></code></a></p></td>
@@ -434,10 +457,10 @@ pair.</p></td>
 </tbody>
 </table>
 <p class="rubric">Subprocesses</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_exec" title="asyncio.loop.subprocess_exec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_exec()</span></code></a></p></td>
@@ -449,10 +472,10 @@ pair.</p></td>
 </tbody>
 </table>
 <p class="rubric">Error Handling</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.call_exception_handler" title="asyncio.loop.call_exception_handler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.call_exception_handler()</span></code></a></p></td>
@@ -483,12 +506,12 @@ pair.</p></td>
 </ul>
 </section>
 <section id="transports">
-<h2>Transports<a class="headerlink" href="#transports" title="Permalink to this headline">¶</a></h2>
+<h2>Transports<a class="headerlink" href="#transports" title="Link to this heading">¶</a></h2>
 <p>All transports implement the following methods:</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-protocol.html#asyncio.BaseTransport.close" title="asyncio.BaseTransport.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transport.close()</span></code></a></p></td>
@@ -513,10 +536,10 @@ pipes, etc).  Returned from methods like
 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a>, <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_connection" title="asyncio.loop.create_unix_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_connection()</span></code></a>,
 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.connect_read_pipe" title="asyncio.loop.connect_read_pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.connect_read_pipe()</span></code></a>, etc:</p>
 <p class="rubric">Read Transports</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-protocol.html#asyncio.ReadTransport.is_reading" title="asyncio.ReadTransport.is_reading"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transport.is_reading()</span></code></a></p></td>
@@ -535,10 +558,10 @@ pipes, etc).  Returned from methods like
 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a>, <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_connection" title="asyncio.loop.create_unix_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_connection()</span></code></a>,
 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.connect_write_pipe" title="asyncio.loop.connect_write_pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.connect_write_pipe()</span></code></a>, etc:</p>
 <p class="rubric">Write Transports</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-protocol.html#asyncio.WriteTransport.write" title="asyncio.WriteTransport.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transport.write()</span></code></a></p></td>
@@ -569,10 +592,10 @@ pipes, etc).  Returned from methods like
 </table>
 <p>Transports returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_datagram_endpoint" title="asyncio.loop.create_datagram_endpoint"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_datagram_endpoint()</span></code></a>:</p>
 <p class="rubric">Datagram Transports</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-protocol.html#asyncio.DatagramTransport.sendto" title="asyncio.DatagramTransport.sendto"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transport.sendto()</span></code></a></p></td>
@@ -587,10 +610,10 @@ pipes, etc).  Returned from methods like
 Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_exec" title="asyncio.loop.subprocess_exec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_exec()</span></code></a> and
 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_shell" title="asyncio.loop.subprocess_shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_shell()</span></code></a>:</p>
 <p class="rubric">Subprocess Transports</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-protocol.html#asyncio.SubprocessTransport.get_pid" title="asyncio.SubprocessTransport.get_pid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transport.get_pid()</span></code></a></p></td>
@@ -619,12 +642,12 @@ Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.l
 </table>
 </section>
 <section id="protocols">
-<h2>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h2>
+<h2>Protocols<a class="headerlink" href="#protocols" title="Link to this heading">¶</a></h2>
 <p>Protocol classes can implement the following <strong>callback methods</strong>:</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code> <a class="reference internal" href="asyncio-protocol.html#asyncio.BaseProtocol.connection_made" title="asyncio.BaseProtocol.connection_made"><code class="xref py py-meth docutils literal notranslate"><span class="pre">connection_made()</span></code></a></p></td>
@@ -642,10 +665,10 @@ Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.l
 </tbody>
 </table>
 <p class="rubric">Streaming Protocols (TCP, Unix Sockets, Pipes)</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code> <a class="reference internal" href="asyncio-protocol.html#asyncio.Protocol.data_received" title="asyncio.Protocol.data_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">data_received()</span></code></a></p></td>
@@ -657,10 +680,10 @@ Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.l
 </tbody>
 </table>
 <p class="rubric">Buffered Streaming Protocols</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code> <a class="reference internal" href="asyncio-protocol.html#asyncio.BufferedProtocol.get_buffer" title="asyncio.BufferedProtocol.get_buffer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_buffer()</span></code></a></p></td>
@@ -675,10 +698,10 @@ Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.l
 </tbody>
 </table>
 <p class="rubric">Datagram Protocols</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code> <a class="reference internal" href="asyncio-protocol.html#asyncio.DatagramProtocol.datagram_received" title="asyncio.DatagramProtocol.datagram_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">datagram_received()</span></code></a></p></td>
@@ -691,10 +714,10 @@ Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.l
 </tbody>
 </table>
 <p class="rubric">Subprocess Protocols</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code> <a class="reference internal" href="asyncio-protocol.html#asyncio.SubprocessProtocol.pipe_data_received" title="asyncio.SubprocessProtocol.pipe_data_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pipe_data_received()</span></code></a></p></td>
@@ -706,22 +729,24 @@ Returned by <a class="reference internal" href="asyncio-eventloop.html#asyncio.l
 the child process is closed.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code> <a class="reference internal" href="asyncio-protocol.html#asyncio.SubprocessProtocol.process_exited" title="asyncio.SubprocessProtocol.process_exited"><code class="xref py py-meth docutils literal notranslate"><span class="pre">process_exited()</span></code></a></p></td>
-<td><p>Called when the child process has exited.</p></td>
+<td><p>Called when the child process has exited. It can be called before
+<a class="reference internal" href="asyncio-protocol.html#asyncio.SubprocessProtocol.pipe_data_received" title="asyncio.SubprocessProtocol.pipe_data_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pipe_data_received()</span></code></a> and
+<a class="reference internal" href="asyncio-protocol.html#asyncio.SubprocessProtocol.pipe_connection_lost" title="asyncio.SubprocessProtocol.pipe_connection_lost"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pipe_connection_lost()</span></code></a> methods.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="event-loop-policies">
-<h2>Event Loop Policies<a class="headerlink" href="#event-loop-policies" title="Permalink to this headline">¶</a></h2>
+<h2>Event Loop Policies<a class="headerlink" href="#event-loop-policies" title="Link to this heading">¶</a></h2>
 <p>Policies is a low-level mechanism to alter the behavior of
 functions like <a class="reference internal" href="asyncio-eventloop.html#asyncio.get_event_loop" title="asyncio.get_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.get_event_loop()</span></code></a>.  See also
 the main <a class="reference internal" href="asyncio-policy.html#asyncio-policies"><span class="std std-ref">policies section</span></a> for more
 details.</p>
 <p class="rubric">Accessing Policies</p>
-<table class="colwidths-given full-width-table docutils align-default">
+<table class="full-width-table docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="asyncio-policy.html#asyncio.get_event_loop_policy" title="asyncio.get_event_loop_policy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">asyncio.get_event_loop_policy()</span></code></a></p></td>
@@ -743,7 +768,7 @@ details.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -781,10 +806,14 @@ details.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -800,7 +829,7 @@ details.</p>
           <a href="asyncio-api-index.html" title="High-level API Index"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -810,7 +839,7 @@ details.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -822,37 +851,54 @@ details.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

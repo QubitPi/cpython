@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="1. Extending Python with C or C++" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/extending/extending.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="It is quite easy to add new built-in modules to Python, if you know how to program in C. Such extension modules can do two things that can’t be done directly in Python: they can implement new built..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="It is quite easy to add new built-in modules to Python, if you know how to program in C. Such extension modules can do two things that can’t be done directly in Python: they can implement new built..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>1. Extending Python with C or C++ &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Extending Python with C or C++ &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/extending/extending.html" />
+    <link rel="canonical" href="/extending/extending.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="2. Defining Extension Types: Tutorial" href="newtypes_tutorial.html" />
     <link rel="prev" title="Extending and Embedding the Python Interpreter" href="index.html" />
-    <link rel="canonical" href="https://docs.python.org/3/extending/extending.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/extending/extending.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -134,7 +150,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -150,7 +166,7 @@
           <a href="index.html" title="Extending and Embedding the Python Interpreter"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -160,7 +176,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extending and Embedding the Python Interpreter</a> &#187;</li>
@@ -170,14 +186,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -188,7 +211,7 @@
           <div class="body" role="main">
             
   <section id="extending-python-with-c-or-c">
-<span id="extending-intro"></span><h1><span class="section-number">1. </span>Extending Python with C or C++<a class="headerlink" href="#extending-python-with-c-or-c" title="Permalink to this headline">¶</a></h1>
+<span id="extending-intro"></span><h1><span class="section-number">1. </span>Extending Python with C or C++<a class="headerlink" href="#extending-python-with-c-or-c" title="Link to this heading">¶</a></h1>
 <p>It is quite easy to add new built-in modules to Python, if you know how to
 program in C.  Such <em class="dfn">extension modules</em> can do two things that can’t be
 done directly in Python: they can implement new built-in object types, and they
@@ -212,13 +235,13 @@ portable between implementations of Python than writing and compiling a C
 extension module.</p>
 </div>
 <section id="a-simple-example">
-<span id="extending-simpleexample"></span><h2><span class="section-number">1.1. </span>A Simple Example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h2>
+<span id="extending-simpleexample"></span><h2><span class="section-number">1.1. </span>A Simple Example<a class="headerlink" href="#a-simple-example" title="Link to this heading">¶</a></h2>
 <p>Let’s create an extension module called <code class="docutils literal notranslate"><span class="pre">spam</span></code> (the favorite food of Monty
 Python fans…) and let’s say we want to create a Python interface to the C
-library function <code class="xref c c-func docutils literal notranslate"><span class="pre">system()</span></code> <a class="footnote-reference brackets" href="#id5" id="id1">1</a>. This function takes a null-terminated
+library function <code class="xref c c-func docutils literal notranslate"><span class="pre">system()</span></code> <a class="footnote-reference brackets" href="#id5" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. This function takes a null-terminated
 character string as argument and returns an integer.  We want this function to
 be callable from Python as follows:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spam</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">spam</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">status</span> <span class="o">=</span> <span class="n">spam</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;ls -l&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -238,8 +261,10 @@ the module and a copyright notice if you like).</p>
 <p>Since Python may define some pre-processor definitions which affect the standard
 headers on some systems, you <em>must</em> include <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> before any standard
 headers are included.</p>
-<p>It is recommended to always define <code class="docutils literal notranslate"><span class="pre">PY_SSIZE_T_CLEAN</span></code> before including
-<code class="docutils literal notranslate"><span class="pre">Python.h</span></code>.  See <a class="reference internal" href="#parsetuple"><span class="std std-ref">Extracting Parameters in Extension Functions</span></a> for a description of this macro.</p>
+<p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">PY_SSIZE_T_CLEAN</span></code> was used to indicate that <code class="docutils literal notranslate"><span class="pre">Py_ssize_t</span></code> should be
+used in some APIs instead of <code class="docutils literal notranslate"><span class="pre">int</span></code>.
+It is not necessary since Python 3.13, but we keep it here for backward compatibility.
+See <a class="reference internal" href="../c-api/arg.html#arg-parsing-string-and-buffers"><span class="std std-ref">Strings and buffers</span></a> for a description of this macro.</p>
 </div>
 <p>All user-visible symbols defined by <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> have a prefix of <code class="docutils literal notranslate"><span class="pre">Py</span></code> or
 <code class="docutils literal notranslate"><span class="pre">PY</span></code>, except those defined in standard header files. For convenience, and
@@ -285,7 +310,7 @@ latter case it also raises an appropriate exception so the calling function can
 return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> immediately (as we saw in the example).</p>
 </section>
 <section id="intermezzo-errors-and-exceptions">
-<span id="extending-errors"></span><h2><span class="section-number">1.2. </span>Intermezzo: Errors and Exceptions<a class="headerlink" href="#intermezzo-errors-and-exceptions" title="Permalink to this headline">¶</a></h2>
+<span id="extending-errors"></span><h2><span class="section-number">1.2. </span>Intermezzo: Errors and Exceptions<a class="headerlink" href="#intermezzo-errors-and-exceptions" title="Link to this heading">¶</a></h2>
 <p>An important convention throughout the Python interpreter is the following: when
 a function fails, it should set an exception condition and return an error value
 (usually <code class="docutils literal notranslate"><span class="pre">-1</span></code> or a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer).  Exception information is stored in
@@ -345,7 +370,7 @@ an error indicator!</p>
 C objects corresponding to all built-in Python exceptions, such as
 <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code>, which you can use directly. Of course, you
 should choose exceptions wisely — don’t use <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code> to mean
-that a file couldn’t be opened (that should probably be <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_IOError</span></code>).
+that a file couldn’t be opened (that should probably be <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_OSError</span></code>).
 If something’s wrong with the argument list, the <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>
 function usually raises <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code>.  If you have an argument whose
 value must be in a particular range or must satisfy other conditions,
@@ -367,9 +392,7 @@ with an exception object:</p>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">SpamError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyErr_NewException</span><span class="p">(</span><span class="s">&quot;spam.error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
-<span class="w">    </span><span class="n">Py_XINCREF</span><span class="p">(</span><span class="n">SpamError</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyModule_AddObject</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SpamError</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Py_XDECREF</span><span class="p">(</span><span class="n">SpamError</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyModule_AddObjectRef</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SpamError</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Py_CLEAR</span><span class="p">(</span><span class="n">SpamError</span><span class="p">);</span>
 <span class="w">        </span><span class="n">Py_DECREF</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
@@ -389,7 +412,7 @@ removed from the module by external code, an owned reference to the class is
 needed to ensure that it will not be discarded, causing <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code> to
 become a dangling pointer. Should it become a dangling pointer, C code which
 raises the exception could cause a core dump or other unintended side effects.</p>
-<p>We discuss the use of <code class="docutils literal notranslate"><span class="pre">PyMODINIT_FUNC</span></code> as a function return type later in this
+<p>We discuss the use of <a class="reference internal" href="../c-api/intro.html#c.PyMODINIT_FUNC" title="PyMODINIT_FUNC"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyMODINIT_FUNC</span></code></a> as a function return type later in this
 sample.</p>
 <p>The <code class="xref py py-exc docutils literal notranslate"><span class="pre">spam.error</span></code> exception can be raised in your extension module using a
 call to <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetString" title="PyErr_SetString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetString()</span></code></a> as shown below:</p>
@@ -412,7 +435,7 @@ call to <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_Set
 </div>
 </section>
 <section id="back-to-the-example">
-<span id="backtoexample"></span><h2><span class="section-number">1.3. </span>Back to the Example<a class="headerlink" href="#back-to-the-example" title="Permalink to this headline">¶</a></h2>
+<span id="backtoexample"></span><h2><span class="section-number">1.3. </span>Back to the Example<a class="headerlink" href="#back-to-the-example" title="Link to this heading">¶</a></h2>
 <p>Going back to our example function, you should now be able to understand this
 statement:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">command</span><span class="p">))</span>
@@ -451,7 +474,7 @@ genuine Python object rather than a <code class="docutils literal notranslate"><
 contexts, as we have seen.</p>
 </section>
 <section id="the-module-s-method-table-and-initialization-function">
-<span id="methodtable"></span><h2><span class="section-number">1.4. </span>The Module’s Method Table and Initialization Function<a class="headerlink" href="#the-module-s-method-table-and-initialization-function" title="Permalink to this headline">¶</a></h2>
+<span id="methodtable"></span><h2><span class="section-number">1.4. </span>The Module’s Method Table and Initialization Function<a class="headerlink" href="#the-module-s-method-table-and-initialization-function" title="Link to this heading">¶</a></h2>
 <p>I promised to show how <code class="xref c c-func docutils literal notranslate"><span class="pre">spam_system()</span></code> is called from Python programs.
 First, we need to list its name and address in a “method table”:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyMethodDef</span><span class="w"> </span><span class="n">SpamMethods</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -470,7 +493,7 @@ that an obsolete variant of <a class="reference internal" href="../c-api/arg.htm
 <p>When using only <code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span></code>, the function should expect the Python-level
 parameters to be passed in as a tuple acceptable for parsing via
 <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>; more information on this function is provided below.</p>
-<p>The <code class="xref py py-const docutils literal notranslate"><span class="pre">METH_KEYWORDS</span></code> bit may be set in the third field if keyword
+<p>The <a class="reference internal" href="../c-api/structures.html#c.METH_KEYWORDS" title="METH_KEYWORDS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_KEYWORDS</span></code></a> bit may be set in the third field if keyword
 arguments should be passed to the function.  In this case, the C function should
 accept a third <code class="docutils literal notranslate"><span class="pre">PyObject</span> <span class="pre">*</span></code> parameter which will be a dictionary of keywords.
 Use <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a> to parse the arguments to such a
@@ -497,7 +520,7 @@ only non-<code class="docutils literal notranslate"><span class="pre">static</sp
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note that PyMODINIT_FUNC declares the function as <code class="docutils literal notranslate"><span class="pre">PyObject</span> <span class="pre">*</span></code> return type,
+<p>Note that <a class="reference internal" href="../c-api/intro.html#c.PyMODINIT_FUNC" title="PyMODINIT_FUNC"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyMODINIT_FUNC</span></code></a> declares the function as <code class="docutils literal notranslate"><span class="pre">PyObject</span> <span class="pre">*</span></code> return type,
 declares any special linkage declarations required by the platform, and for C++
 declares the function as <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code>.</p>
 <p>When the Python program imports module <code class="xref py py-mod docutils literal notranslate"><span class="pre">spam</span></code> for the first time,
@@ -514,14 +537,15 @@ so that it then gets inserted into <code class="docutils literal notranslate"><s
 automatically unless there’s an entry in the <code class="xref c c-data docutils literal notranslate"><span class="pre">PyImport_Inittab</span></code> table.
 To add the module to the initialization table, use <a class="reference internal" href="../c-api/import.html#c.PyImport_AppendInittab" title="PyImport_AppendInittab"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyImport_AppendInittab()</span></code></a>,
 optionally followed by an import of the module:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+
+<span class="kt">int</span>
 <span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_DecodeLocale</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">program</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fatal error: cannot decode argv[0]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">PyStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PyConfig</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PyConfig_InitPythonConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
 
 <span class="w">    </span><span class="cm">/* Add a built-in module, before Py_Initialize */</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyImport_AppendInittab</span><span class="p">(</span><span class="s">&quot;spam&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PyInit_spam</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -530,11 +554,18 @@ optionally followed by an import of the module:</p>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="cm">/* Pass argv[0] to the Python interpreter */</span>
-<span class="w">    </span><span class="n">Py_SetProgramName</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyConfig_SetBytesString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">.</span><span class="n">program_name</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyStatus_Exception</span><span class="p">(</span><span class="n">status</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">exception</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="cm">/* Initialize the Python interpreter.  Required.</span>
 <span class="cm">       If this step fails, it will be a fatal error. */</span>
-<span class="w">    </span><span class="n">Py_Initialize</span><span class="p">();</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_InitializeFromConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyStatus_Exception</span><span class="p">(</span><span class="n">status</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">exception</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">PyConfig_Clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
 
 <span class="w">    </span><span class="cm">/* Optionally import the module; alternatively,</span>
 <span class="cm">       import can be deferred until the embedded script</span>
@@ -545,10 +576,13 @@ optionally followed by an import of the module:</p>
 <span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error: could not import module &#39;spam&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="c1">// ... use Python C API here ...</span>
 
-<span class="w">    </span><span class="n">PyMem_RawFree</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nl">exception</span><span class="p">:</span>
+<span class="w">     </span><span class="n">PyConfig_Clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+<span class="w">     </span><span class="n">Py_ExitStatusException</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -572,7 +606,7 @@ For details on multi-phase initialization, see <span class="target" id="index-0"
 </div>
 </section>
 <section id="compilation-and-linkage">
-<span id="compilation"></span><h2><span class="section-number">1.5. </span>Compilation and Linkage<a class="headerlink" href="#compilation-and-linkage" title="Permalink to this headline">¶</a></h2>
+<span id="compilation"></span><h2><span class="section-number">1.5. </span>Compilation and Linkage<a class="headerlink" href="#compilation-and-linkage" title="Link to this heading">¶</a></h2>
 <p>There are two more things to do before you can use your new extension: compiling
 and linking it with the Python system.  If you use dynamic loading, the details
 may depend on the style of dynamic loading your system uses; see the chapters
@@ -600,7 +634,7 @@ on the line in the configuration file as well, for instance:</p>
 </div>
 </section>
 <section id="calling-python-functions-from-c">
-<span id="callingpython"></span><h2><span class="section-number">1.6. </span>Calling Python Functions from C<a class="headerlink" href="#calling-python-functions-from-c" title="Permalink to this headline">¶</a></h2>
+<span id="callingpython"></span><h2><span class="section-number">1.6. </span>Calling Python Functions from C<a class="headerlink" href="#calling-python-functions-from-c" title="Link to this heading">¶</a></h2>
 <p>So far we have concentrated on making C functions callable from Python.  The
 reverse is also useful: calling Python functions from C. This is especially the
 case for libraries that support so-called “callback” functions.  If a C
@@ -644,7 +678,7 @@ be part of a module definition:</p>
 </pre></div>
 </div>
 <p>This function must be registered with the interpreter using the
-<a class="reference internal" href="../c-api/structures.html#METH_VARARGS" title="METH_VARARGS"><code class="xref py py-const docutils literal notranslate"><span class="pre">METH_VARARGS</span></code></a> flag; this is described in section <a class="reference internal" href="#methodtable"><span class="std std-ref">The Module’s Method Table and Initialization Function</span></a>.  The
+<a class="reference internal" href="../c-api/structures.html#c.METH_VARARGS" title="METH_VARARGS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_VARARGS</span></code></a> flag; this is described in section <a class="reference internal" href="#methodtable"><span class="std std-ref">The Module’s Method Table and Initialization Function</span></a>.  The
 <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> function and its arguments are documented in section
 <a class="reference internal" href="#parsetuple"><span class="std std-ref">Extracting Parameters in Extension Functions</span></a>.</p>
 <p>The macros <a class="reference internal" href="../c-api/refcounting.html#c.Py_XINCREF" title="Py_XINCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XINCREF()</span></code></a> and <a class="reference internal" href="../c-api/refcounting.html#c.Py_XDECREF" title="Py_XDECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XDECREF()</span></code></a> increment/decrement the
@@ -733,7 +767,7 @@ the above example, we use <a class="reference internal" href="../c-api/arg.html#
 </div>
 </section>
 <section id="extracting-parameters-in-extension-functions">
-<span id="parsetuple"></span><h2><span class="section-number">1.7. </span>Extracting Parameters in Extension Functions<a class="headerlink" href="#extracting-parameters-in-extension-functions" title="Permalink to this headline">¶</a></h2>
+<span id="parsetuple"></span><h2><span class="section-number">1.7. </span>Extracting Parameters in Extension Functions<a class="headerlink" href="#extracting-parameters-in-extension-functions" title="Link to this heading">¶</a></h2>
 <p id="index-2">The <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> function is declared as follows:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">PyArg_ParseTuple</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
 </pre></div>
@@ -750,7 +784,7 @@ at least overwrite random bits in memory.  So be careful!</p>
 <p>Note that any Python object references which are provided to the caller are
 <em>borrowed</em> references; do not decrement their reference count!</p>
 <p>Some example calls:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN  </span><span class="cm">/* Make &quot;s#&quot; use Py_ssize_t rather than int. */</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
 </pre></div>
 </div>
@@ -810,10 +844,10 @@ at least overwrite random bits in memory.  So be careful!</p>
 </div>
 </section>
 <section id="keyword-parameters-for-extension-functions">
-<span id="parsetupleandkeywords"></span><h2><span class="section-number">1.8. </span>Keyword Parameters for Extension Functions<a class="headerlink" href="#keyword-parameters-for-extension-functions" title="Permalink to this headline">¶</a></h2>
+<span id="parsetupleandkeywords"></span><h2><span class="section-number">1.8. </span>Keyword Parameters for Extension Functions<a class="headerlink" href="#keyword-parameters-for-extension-functions" title="Link to this heading">¶</a></h2>
 <p id="index-3">The <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a> function is declared as follows:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">PyArg_ParseTupleAndKeywords</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">kwdict</span><span class="p">,</span>
-<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">kwlist</span><span class="p">[],</span><span class="w"> </span><span class="p">...);</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">kwlist</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
 </pre></div>
 </div>
 <p>The <em>arg</em> and <em>format</em> parameters are identical to those of the
@@ -831,7 +865,7 @@ be raised.</p>
 </div>
 <p id="index-4">Here is an example module which uses keywords, based on an example by Geoff
 Philbrick (<a class="reference external" href="mailto:philbrick&#37;&#52;&#48;hks&#46;com">philbrick<span>&#64;</span>hks<span>&#46;</span>com</a>):</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN  </span><span class="cm">/* Make &quot;s#&quot; use Py_ssize_t rather than int. */</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
 
 <span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span>
@@ -882,7 +916,7 @@ Philbrick (<a class="reference external" href="mailto:philbrick&#37;&#52;&#48;hk
 </div>
 </section>
 <section id="building-arbitrary-values">
-<span id="buildvalue"></span><h2><span class="section-number">1.9. </span>Building Arbitrary Values<a class="headerlink" href="#building-arbitrary-values" title="Permalink to this headline">¶</a></h2>
+<span id="buildvalue"></span><h2><span class="section-number">1.9. </span>Building Arbitrary Values<a class="headerlink" href="#building-arbitrary-values" title="Link to this heading">¶</a></h2>
 <p>This function is the counterpart to <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>.  It is declared
 as follows:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">Py_BuildValue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
@@ -921,7 +955,7 @@ Py_BuildValue(&quot;((ii)(ii)) (ii)&quot;,
 </div>
 </section>
 <section id="reference-counts">
-<span id="refcounts"></span><h2><span class="section-number">1.10. </span>Reference Counts<a class="headerlink" href="#reference-counts" title="Permalink to this headline">¶</a></h2>
+<span id="refcounts"></span><h2><span class="section-number">1.10. </span>Reference Counts<a class="headerlink" href="#reference-counts" title="Link to this heading">¶</a></h2>
 <p>In languages like C or C++, the programmer is responsible for dynamic allocation
 and deallocation of memory on the heap.  In C, this is done using the functions
 <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> and <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code>.  In C++, the operators <code class="docutils literal notranslate"><span class="pre">new</span></code> and
@@ -933,7 +967,7 @@ It is important to call <code class="xref c c-func docutils literal notranslate"
 is forgotten but <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> is not called for it, the memory it occupies
 cannot be reused until the program terminates.  This is called a <em class="dfn">memory
 leak</em>.  On the other hand, if a program calls <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> for a block and then
-continues to use the block, it creates a conflict with re-use of the block
+continues to use the block, it creates a conflict with reuse of the block
 through another <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> call.  This is called <em class="dfn">using freed memory</em>.
 It has the same bad consequences as referencing uninitialized data — core
 dumps, wrong results, mysterious crashes.</p>
@@ -982,7 +1016,7 @@ The <a class="reference internal" href="../library/gc.html#module-gc" title="gc:
 <a class="reference internal" href="../library/gc.html#gc.collect" title="gc.collect"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect()</span></code></a> function), as well as configuration
 interfaces and the ability to disable the detector at runtime.</p>
 <section id="reference-counting-in-python">
-<span id="refcountsinpython"></span><h3><span class="section-number">1.10.1. </span>Reference Counting in Python<a class="headerlink" href="#reference-counting-in-python" title="Permalink to this headline">¶</a></h3>
+<span id="refcountsinpython"></span><h3><span class="section-number">1.10.1. </span>Reference Counting in Python<a class="headerlink" href="#reference-counting-in-python" title="Link to this heading">¶</a></h3>
 <p>There are two macros, <code class="docutils literal notranslate"><span class="pre">Py_INCREF(x)</span></code> and <code class="docutils literal notranslate"><span class="pre">Py_DECREF(x)</span></code>, which handle the
 incrementing and decrementing of the reference count. <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> also
 frees the object when the count reaches zero. For flexibility, it doesn’t call
@@ -997,11 +1031,11 @@ responsible for calling <a class="reference internal" href="../c-api/refcounting
 needed.  Ownership of a reference can be transferred.  There are three ways to
 dispose of an owned reference: pass it on, store it, or call <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a>.
 Forgetting to dispose of an owned reference creates a memory leak.</p>
-<p>It is also possible to <em class="dfn">borrow</em> <a class="footnote-reference brackets" href="#id6" id="id2">2</a> a reference to an object.  The
+<p>It is also possible to <em class="dfn">borrow</em> <a class="footnote-reference brackets" href="#id6" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> a reference to an object.  The
 borrower of a reference should not call <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a>.  The borrower must
 not hold on to the object longer than the owner from which it was borrowed.
 Using a borrowed reference after the owner has disposed of it risks using freed
-memory and should be avoided completely <a class="footnote-reference brackets" href="#id7" id="id3">3</a>.</p>
+memory and should be avoided completely <a class="footnote-reference brackets" href="#id7" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 <p>The advantage of borrowing over owning a reference is that you don’t need to
 take care of disposing of the reference on all possible paths through the code
 — in other words, with a borrowed reference you don’t run the risk of leaking
@@ -1016,7 +1050,7 @@ owner responsibilities (the new owner must dispose of the reference properly, as
 well as the previous owner).</p>
 </section>
 <section id="ownership-rules">
-<span id="ownershiprules"></span><h3><span class="section-number">1.10.2. </span>Ownership Rules<a class="headerlink" href="#ownership-rules" title="Permalink to this headline">¶</a></h3>
+<span id="ownershiprules"></span><h3><span class="section-number">1.10.2. </span>Ownership Rules<a class="headerlink" href="#ownership-rules" title="Link to this heading">¶</a></h3>
 <p>Whenever an object reference is passed into or out of a function, it is part of
 the function’s interface specification whether ownership is transferred with the
 reference or not.</p>
@@ -1053,7 +1087,7 @@ be an owned reference — ownership is transferred from the function to its
 caller.</p>
 </section>
 <section id="thin-ice">
-<span id="thinice"></span><h3><span class="section-number">1.10.3. </span>Thin Ice<a class="headerlink" href="#thin-ice" title="Permalink to this headline">¶</a></h3>
+<span id="thinice"></span><h3><span class="section-number">1.10.3. </span>Thin Ice<a class="headerlink" href="#thin-ice" title="Link to this heading">¶</a></h3>
 <p>There are a few situations where seemingly harmless use of a borrowed reference
 can lead to problems.  These all have to do with implicit invocations of the
 interpreter, which can cause the owner of a reference to dispose of it.</p>
@@ -1123,7 +1157,7 @@ Obviously, the following function has the same problem as the previous one:</p>
 </div>
 </section>
 <section id="null-pointers">
-<span id="nullpointers"></span><h3><span class="section-number">1.10.4. </span>NULL Pointers<a class="headerlink" href="#null-pointers" title="Permalink to this headline">¶</a></h3>
+<span id="nullpointers"></span><h3><span class="section-number">1.10.4. </span>NULL Pointers<a class="headerlink" href="#null-pointers" title="Link to this heading">¶</a></h3>
 <p>In general, functions that take object references as arguments do not expect you
 to pass them <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointers, and will dump core (or cause later core dumps) if
 you do so.  Functions that return object references generally return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> only
@@ -1144,12 +1178,12 @@ this would generate redundant tests.  There are no variants with <code class="do
 checking.</p>
 <p>The C function calling mechanism guarantees that the argument list passed to C
 functions (<code class="docutils literal notranslate"><span class="pre">args</span></code> in the examples) is never <code class="docutils literal notranslate"><span class="pre">NULL</span></code> — in fact it guarantees
-that it is always a tuple <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
+that it is always a tuple <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
 <p>It is a severe error to ever let a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer “escape” to the Python user.</p>
 </section>
 </section>
 <section id="writing-extensions-in-c">
-<span id="cplusplus"></span><h2><span class="section-number">1.11. </span>Writing Extensions in C++<a class="headerlink" href="#writing-extensions-in-c" title="Permalink to this headline">¶</a></h2>
+<span id="cplusplus"></span><h2><span class="section-number">1.11. </span>Writing Extensions in C++<a class="headerlink" href="#writing-extensions-in-c" title="Link to this heading">¶</a></h2>
 <p>It is possible to write extension modules in C++.  Some restrictions apply.  If
 the main program (the Python interpreter) is compiled and linked by the C
 compiler, global or static objects with constructors cannot be used.  This is
@@ -1161,7 +1195,7 @@ already if the symbol <code class="docutils literal notranslate"><span class="pr
 define this symbol).</p>
 </section>
 <section id="providing-a-c-api-for-an-extension-module">
-<span id="using-capsules"></span><h2><span class="section-number">1.12. </span>Providing a C API for an Extension Module<a class="headerlink" href="#providing-a-c-api-for-an-extension-module" title="Permalink to this headline">¶</a></h2>
+<span id="using-capsules"></span><h2><span class="section-number">1.12. </span>Providing a C API for an Extension Module<a class="headerlink" href="#providing-a-c-api-for-an-extension-module" title="Link to this heading">¶</a></h2>
 <p>Many extension modules just provide new functions and types to be used from
 Python, but sometimes the code in an extension module can be useful for other
 extension modules. For example, an extension module could implement a type
@@ -1278,8 +1312,7 @@ function must take care of initializing the C API pointer array:</p>
 <span class="w">    </span><span class="cm">/* Create a Capsule containing the API pointer array&#39;s address */</span>
 <span class="w">    </span><span class="n">c_api_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyCapsule_New</span><span class="p">((</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PySpam_API</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spam._C_API&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyModule_AddObject</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_C_API&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c_api_object</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Py_XDECREF</span><span class="p">(</span><span class="n">c_api_object</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyModule_Add</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_C_API&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c_api_object</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Py_DECREF</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1289,7 +1322,7 @@ function must take care of initializing the C API pointer array:</p>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">PySpam_API</span></code> is declared <code class="docutils literal notranslate"><span class="pre">static</span></code>; otherwise the pointer
-array would disappear when <code class="xref py py-func docutils literal notranslate"><span class="pre">PyInit_spam()</span></code> terminates!</p>
+array would disappear when <code class="xref c c-func docutils literal notranslate"><span class="pre">PyInit_spam()</span></code> terminates!</p>
 <p>The bulk of the work is in the header file <code class="file docutils literal notranslate"><span class="pre">spammodule.h</span></code>, which looks
 like this:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef Py_SPAMMODULE_H</span>
@@ -1369,25 +1402,29 @@ Manual in the section <a class="reference internal" href="../c-api/capsule.html#
 <code class="file docutils literal notranslate"><span class="pre">Include/pycapsule.h</span></code> and <code class="file docutils literal notranslate"><span class="pre">Objects/pycapsule.c</span></code> in the Python source
 code distribution).</p>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>An interface for this function already exists in the standard module <a class="reference internal" href="../library/os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>An interface for this function already exists in the standard module <a class="reference internal" href="../library/os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a>
 — it was chosen as a simple and straightforward example.</p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>The metaphor of “borrowing” a reference is not completely correct: the owner
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>The metaphor of “borrowing” a reference is not completely correct: the owner
 still has a copy of the reference.</p>
-</dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>Checking that the reference count is at least 1 <strong>does not work</strong> — the
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Checking that the reference count is at least 1 <strong>does not work</strong> — the
 reference count itself could be in freed memory and may thus be reused for
 another object!</p>
-</dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
-<dd><p>These guarantees don’t hold when you use the “old” style calling convention —
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>These guarantees don’t hold when you use the “old” style calling convention —
 this is still found in much existing code.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -1396,7 +1433,7 @@ this is still found in much existing code.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -1447,10 +1484,14 @@ this is still found in much existing code.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -1466,7 +1507,7 @@ this is still found in much existing code.</p>
           <a href="index.html" title="Extending and Embedding the Python Interpreter"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -1476,7 +1517,7 @@ this is still found in much existing code.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Extending and Embedding the Python Interpreter</a> &#187;</li>
@@ -1486,37 +1527,54 @@ this is still found in much existing code.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

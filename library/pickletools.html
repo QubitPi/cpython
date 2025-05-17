@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="pickletools — Tools for pickle developers" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/pickletools.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/pickletools.py This module contains various constants relating to the intimate details of the pickle module, some lengthy comments about the implementation, and a few useful functi..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/pickletools.py This module contains various constants relating to the intimate details of the pickle module, some lengthy comments about the implementation, and a few useful functi..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>pickletools — Tools for pickle developers &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pickletools — Tools for pickle developers &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/pickletools.html" />
+    <link rel="canonical" href="/library/pickletools.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="MS Windows Specific Services" href="windows.html" />
     <link rel="prev" title="dis — Disassembler for Python bytecode" href="dis.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/pickletools.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/pickletools.html">
       
     
 
@@ -52,44 +53,59 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickletools</span></code> — Tools for pickle developers</a><ul>
-<li><a class="reference internal" href="#command-line-usage">Command line usage</a><ul>
-<li><a class="reference internal" href="#command-line-options">Command line options</a></li>
+<li><a class="reference internal" href="#command-line-usage">Command-line usage</a><ul>
+<li><a class="reference internal" href="#command-line-options">Command-line options</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#programmatic-interface">Programmatic Interface</a></li>
+<li><a class="reference internal" href="#programmatic-interface">Programmatic interface</a></li>
 </ul>
 </li>
 </ul>
@@ -121,7 +137,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -137,7 +153,7 @@
           <a href="dis.html" title="dis — Disassembler for Python bytecode"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -147,7 +163,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -158,14 +174,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -176,8 +199,8 @@
           <div class="body" role="main">
             
   <section id="module-pickletools">
-<span id="pickletools-tools-for-pickle-developers"></span><h1><a class="reference internal" href="#module-pickletools" title="pickletools: Contains extensive comments about the pickle protocols and pickle-machine opcodes, as well as some useful functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickletools</span></code></a> — Tools for pickle developers<a class="headerlink" href="#module-pickletools" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/pickletools.py">Lib/pickletools.py</a></p>
+<span id="pickletools-tools-for-pickle-developers"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickletools</span></code> — Tools for pickle developers<a class="headerlink" href="#module-pickletools" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/pickletools.py">Lib/pickletools.py</a></p>
 <hr class="docutils" />
 <p>This module contains various constants relating to the intimate details of the
 <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> module, some lengthy comments about the implementation, and a
@@ -186,9 +209,9 @@ are useful for Python core developers who are working on the <a class="reference
 ordinary users of the <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> module probably won’t find the
 <a class="reference internal" href="#module-pickletools" title="pickletools: Contains extensive comments about the pickle protocols and pickle-machine opcodes, as well as some useful functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickletools</span></code></a> module relevant.</p>
 <section id="command-line-usage">
-<h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
+<span id="pickletools-cli"></span><h2>Command-line usage<a class="headerlink" href="#command-line-usage" title="Link to this heading">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.2.</span></p>
+<p><span class="versionmodified added">Added in version 3.2.</span></p>
 </div>
 <p>When invoked from the command line, <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pickletools</span></code> will
 disassemble the contents of one or more pickle files.  Note that if
@@ -212,46 +235,52 @@ not execute pickle bytecode.</p>
 </pre></div>
 </div>
 <section id="command-line-options">
-<h3>Command line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">¶</a></h3>
-<dl class="std cmdoption">
+<h3>Command-line options<a class="headerlink" href="#command-line-options" title="Link to this heading">¶</a></h3>
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pickletools-a">
-<span id="cmdoption-pickletools-annotate"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--annotate</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pickletools-a" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-pickletools-annotate"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--annotate</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pickletools-a" title="Link to this definition">¶</a></dt>
 <dd><p>Annotate each line with a short opcode description.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pickletools-o">
-<span id="cmdoption-pickletools-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;file&gt;</span></span><a class="headerlink" href="#cmdoption-pickletools-o" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-pickletools-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;file&gt;</span></span><a class="headerlink" href="#cmdoption-pickletools-o" title="Link to this definition">¶</a></dt>
 <dd><p>Name of a file where the output should be written.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pickletools-l">
-<span id="cmdoption-pickletools-indentlevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--indentlevel</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;num&gt;</span></span><a class="headerlink" href="#cmdoption-pickletools-l" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-pickletools-indentlevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--indentlevel</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;num&gt;</span></span><a class="headerlink" href="#cmdoption-pickletools-l" title="Link to this definition">¶</a></dt>
 <dd><p>The number of blanks by which to indent a new MARK level.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pickletools-m">
-<span id="cmdoption-pickletools-memo"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--memo</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pickletools-m" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-pickletools-memo"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--memo</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pickletools-m" title="Link to this definition">¶</a></dt>
 <dd><p>When multiple objects are disassembled, preserve memo between
 disassemblies.</p>
 </dd></dl>
 
-<dl class="std cmdoption">
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pickletools-p">
-<span id="cmdoption-pickletools-preamble"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--preamble</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;preamble&gt;</span></span><a class="headerlink" href="#cmdoption-pickletools-p" title="Permalink to this definition">¶</a></dt>
-<dd><p>When more than one pickle file are specified, print given preamble
+<span id="cmdoption-pickletools-preamble"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--preamble</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;preamble&gt;</span></span><a class="headerlink" href="#cmdoption-pickletools-p" title="Link to this definition">¶</a></dt>
+<dd><p>When more than one pickle file is specified, print given preamble
 before each disassembly.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pickletools-arg-pickle_file">
+<span class="sig-name descname"><span class="pre">pickle_file</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pickletools-arg-pickle_file" title="Link to this definition">¶</a></dt>
+<dd><p>A pickle file to read, or <code class="docutils literal notranslate"><span class="pre">-</span></code> to indicate reading from standard input.</p>
 </dd></dl>
 
 </section>
 </section>
 <section id="programmatic-interface">
-<h2>Programmatic Interface<a class="headerlink" href="#programmatic-interface" title="Permalink to this headline">¶</a></h2>
+<h2>Programmatic interface<a class="headerlink" href="#programmatic-interface" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pickletools.dis">
-<span class="sig-prename descclassname"><span class="pre">pickletools.</span></span><span class="sig-name descname"><span class="pre">dis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pickle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indentlevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pickletools.dis" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pickletools.</span></span><span class="sig-name descname"><span class="pre">dis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pickle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indentlevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pickletools.dis" title="Link to this definition">¶</a></dt>
 <dd><p>Outputs a symbolic disassembly of the pickle to the file-like
 object <em>out</em>, defaulting to <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code>.  <em>pickle</em> can be a
 string or a file-like object.  <em>memo</em> can be a Python dictionary
@@ -262,14 +291,14 @@ stream, are indented by <em>indentlevel</em> spaces.  If a nonzero value
 is given to <em>annotate</em>, each opcode in the output is annotated with
 a short description.  The value of <em>annotate</em> is used as a hint for
 the column where annotation should start.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 3.2: </span>The <em>annotate</em> argument.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.2: </span>Added the <em>annotate</em> parameter.</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pickletools.genops">
-<span class="sig-prename descclassname"><span class="pre">pickletools.</span></span><span class="sig-name descname"><span class="pre">genops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pickle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pickletools.genops" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pickletools.</span></span><span class="sig-name descname"><span class="pre">genops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pickle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pickletools.genops" title="Link to this definition">¶</a></dt>
 <dd><p>Provides an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> over all of the opcodes in a pickle, returning a
 sequence of <code class="docutils literal notranslate"><span class="pre">(opcode,</span> <span class="pre">arg,</span> <span class="pre">pos)</span></code> triples.  <em>opcode</em> is an instance of an
 <code class="xref py py-class docutils literal notranslate"><span class="pre">OpcodeInfo</span></code> class; <em>arg</em> is the decoded value, as a Python object, of
@@ -279,7 +308,7 @@ the opcode’s argument; <em>pos</em> is the position at which this opcode is lo
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pickletools.optimize">
-<span class="sig-prename descclassname"><span class="pre">pickletools.</span></span><span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">picklestring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pickletools.optimize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pickletools.</span></span><span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">picklestring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pickletools.optimize" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a new equivalent pickle string after eliminating unused <code class="docutils literal notranslate"><span class="pre">PUT</span></code>
 opcodes. The optimized pickle is shorter, takes less transmission time,
 requires less storage space, and unpickles more efficiently.</p>
@@ -293,17 +322,17 @@ requires less storage space, and unpickles more efficiently.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickletools</span></code> — Tools for pickle developers</a><ul>
-<li><a class="reference internal" href="#command-line-usage">Command line usage</a><ul>
-<li><a class="reference internal" href="#command-line-options">Command line options</a></li>
+<li><a class="reference internal" href="#command-line-usage">Command-line usage</a><ul>
+<li><a class="reference internal" href="#command-line-options">Command-line options</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#programmatic-interface">Programmatic Interface</a></li>
+<li><a class="reference internal" href="#programmatic-interface">Programmatic interface</a></li>
 </ul>
 </li>
 </ul>
@@ -331,10 +360,14 @@ requires less storage space, and unpickles more efficiently.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -350,7 +383,7 @@ requires less storage space, and unpickles more efficiently.</p>
           <a href="dis.html" title="dis — Disassembler for Python bytecode"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -360,7 +393,7 @@ requires less storage space, and unpickles more efficiently.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -371,37 +404,54 @@ requires less storage space, and unpickles more efficiently.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

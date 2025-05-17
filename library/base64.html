@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="base64 — Base16, Base32, Base64, Base85 Data Encodings" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/base64.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/base64.py This module provides functions for encoding binary data to printable ASCII characters and decoding such encodings back to binary data. It provides encoding and decoding f..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/base64.py This module provides functions for encoding binary data to printable ASCII characters and decoding such encodings back to binary data. It provides encoding and decoding f..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>base64 — Base16, Base32, Base64, Base85 Data Encodings &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base64 — Base16, Base32, Base64, Base85 Data Encodings &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/base64.html" />
+    <link rel="canonical" href="/library/base64.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="binascii — Convert between binary and ASCII" href="binascii.html" />
     <link rel="prev" title="mimetypes — Map filenames to MIME types" href="mimetypes.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/base64.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/base64.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -117,7 +133,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -133,7 +149,7 @@
           <a href="mimetypes.html" title="mimetypes — Map filenames to MIME types"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -143,7 +159,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -154,14 +170,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -172,8 +195,8 @@
           <div class="body" role="main">
             
   <section id="module-base64">
-<span id="base64-base16-base32-base64-base85-data-encodings"></span><h1><a class="reference internal" href="#module-base64" title="base64: RFC 4648: Base16, Base32, Base64 Data Encodings; Base85 and Ascii85"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base64</span></code></a> — Base16, Base32, Base64, Base85 Data Encodings<a class="headerlink" href="#module-base64" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/base64.py">Lib/base64.py</a></p>
+<span id="base64-base16-base32-base64-base85-data-encodings"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">base64</span></code> — Base16, Base32, Base64, Base85 Data Encodings<a class="headerlink" href="#module-base64" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/base64.py">Lib/base64.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>This module provides functions for encoding binary data to printable
 ASCII characters and decoding such encodings back to binary data.
@@ -205,20 +228,20 @@ encoding and decoding functions in this module.  Ascii85/Base85 support added.</
 <p>The modern interface provides:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b64encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b64encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altchars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b64encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b64encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altchars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b64encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em> using Base64 and return the encoded
 <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p>Optional <em>altchars</em> must be a <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> of length 2 which
 specifies an alternative alphabet for the <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">/</span></code> characters.
 This allows an application to e.g. generate URL or filesystem safe Base64
 strings.  The default is <code class="docutils literal notranslate"><span class="pre">None</span></code>, for which the standard Base64 alphabet is used.</p>
-<p>May assert or raise a a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if the length of <em>altchars</em> is not 2.  Raises a
+<p>May assert or raise a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if the length of <em>altchars</em> is not 2.  Raises a
 <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if <em>altchars</em> is not a <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b64decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b64decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altchars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b64decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b64decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altchars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b64decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the Base64 encoded <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string
 <em>s</em> and return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p>Optional <em>altchars</em> must be a <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string
@@ -237,21 +260,21 @@ these non-alphabet characters in the input result in a
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.standard_b64encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">standard_b64encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.standard_b64encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">standard_b64encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.standard_b64encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em> using the standard Base64 alphabet
 and return the encoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.standard_b64decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">standard_b64decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.standard_b64decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">standard_b64decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.standard_b64decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>s</em> using the standard
 Base64 alphabet and return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.urlsafe_b64encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">urlsafe_b64encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.urlsafe_b64encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">urlsafe_b64encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.urlsafe_b64encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em> using the
 URL- and filesystem-safe alphabet, which
 substitutes <code class="docutils literal notranslate"><span class="pre">-</span></code> instead of <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">_</span></code> instead of <code class="docutils literal notranslate"><span class="pre">/</span></code> in the
@@ -261,7 +284,7 @@ can still contain <code class="docutils literal notranslate"><span class="pre">=
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.urlsafe_b64decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">urlsafe_b64decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.urlsafe_b64decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">urlsafe_b64decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.urlsafe_b64decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>s</em>
 using the URL- and filesystem-safe
 alphabet, which substitutes <code class="docutils literal notranslate"><span class="pre">-</span></code> instead of <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">_</span></code> instead of
@@ -271,14 +294,14 @@ alphabet, which substitutes <code class="docutils literal notranslate"><span cla
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b32encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em> using Base32 and return the
 encoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b32decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casefold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map01</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casefold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map01</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the Base32 encoded <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>s</em> and
 return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p>Optional <em>casefold</em> is a flag specifying
@@ -297,17 +320,17 @@ input.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b32hexencode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32hexencode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32hexencode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32hexencode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32hexencode" title="Link to this definition">¶</a></dt>
 <dd><p>Similar to <a class="reference internal" href="#base64.b32encode" title="base64.b32encode"><code class="xref py py-func docutils literal notranslate"><span class="pre">b32encode()</span></code></a> but uses the Extended Hex Alphabet, as defined in
 <span class="target" id="index-7"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4648.html"><strong>RFC 4648</strong></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b32hexdecode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32hexdecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casefold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32hexdecode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b32hexdecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casefold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b32hexdecode" title="Link to this definition">¶</a></dt>
 <dd><p>Similar to <a class="reference internal" href="#base64.b32decode" title="base64.b32decode"><code class="xref py py-func docutils literal notranslate"><span class="pre">b32decode()</span></code></a> but uses the Extended Hex Alphabet, as defined in
 <span class="target" id="index-8"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4648.html"><strong>RFC 4648</strong></a>.</p>
 <p>This version does not allow the digit 0 (zero) to the letter O (oh) and digit
@@ -315,20 +338,20 @@ input.</p>
 characters are included in the Extended Hex Alphabet and are not
 interchangeable.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b16encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b16encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b16encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b16encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b16encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em> using Base16 and return the
 encoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b16decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b16decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casefold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b16decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b16decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casefold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b16decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the Base16 encoded <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>s</em> and
 return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p>Optional <em>casefold</em> is a flag specifying whether a
@@ -341,7 +364,7 @@ input.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.a85encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">a85encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">foldspaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrapcol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adobe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.a85encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">a85encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">foldspaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrapcol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adobe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.a85encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>b</em> using Ascii85 and return the
 encoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p><em>foldspaces</em> is an optional flag that uses the special short sequence ‘y’
@@ -349,19 +372,19 @@ instead of 4 consecutive spaces (ASCII 0x20) as supported by ‘btoa’. This
 feature is not supported by the “standard” Ascii85 encoding.</p>
 <p><em>wrapcol</em> controls whether the output should have newline (<code class="docutils literal notranslate"><span class="pre">b'\n'</span></code>)
 characters added to it. If this is non-zero, each output line will be
-at most this many characters long.</p>
+at most this many characters long, excluding the trailing newline.</p>
 <p><em>pad</em> controls whether the input is padded to a multiple of 4
 before encoding. Note that the <code class="docutils literal notranslate"><span class="pre">btoa</span></code> implementation always pads.</p>
 <p><em>adobe</em> controls whether the encoded byte sequence is framed with <code class="docutils literal notranslate"><span class="pre">&lt;~</span></code>
 and <code class="docutils literal notranslate"><span class="pre">~&gt;</span></code>, which is used by the Adobe implementation.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.a85decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">a85decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">foldspaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adobe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignorechars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">b'</span> <span class="pre">\t\n\r\x0b'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.a85decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">a85decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">foldspaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adobe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignorechars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">b'</span> <span class="pre">\t\n\r\x0b'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.a85decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the Ascii85 encoded <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>b</em> and
 return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p><em>foldspaces</em> is a flag that specifies whether the ‘y’ short sequence
@@ -374,37 +397,57 @@ containing characters to ignore
 from the input. This should only contain whitespace characters, and by
 default contains all whitespace characters in ASCII.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b85encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b85encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b85encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b85encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b85encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>b</em> using base85 (as used in e.g.
 git-style binary diffs) and return the encoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p>If <em>pad</em> is true, the input is padded with <code class="docutils literal notranslate"><span class="pre">b'\0'</span></code> so its length is a
 multiple of 4 bytes before encoding.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.b85decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b85decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b85decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">b85decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.b85decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the base85-encoded <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>b</em> and
 return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.  Padding is implicitly removed, if
 necessary.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="base64.z85encode">
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">z85encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.z85encode" title="Link to this definition">¶</a></dt>
+<dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em> using Z85 (as used in ZeroMQ)
+and return the encoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.  See <a class="reference external" href="https://rfc.zeromq.org/spec/32/">Z85  specification</a> for more information.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.13.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="base64.z85decode">
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">z85decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.z85decode" title="Link to this definition">¶</a></dt>
+<dd><p>Decode the Z85-encoded <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> or ASCII string <em>s</em> and
+return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.  See <a class="reference external" href="https://rfc.zeromq.org/spec/32/">Z85  specification</a> for more information.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.13.</span></p>
 </div>
 </dd></dl>
 
 <p>The legacy interface:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.decode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the contents of the binary <em>input</em> file and write the resulting binary
 data to the <em>output</em> file. <em>input</em> and <em>output</em> must be <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file objects</span></a>. <em>input</em> will be read until <code class="docutils literal notranslate"><span class="pre">input.readline()</span></code> returns an
 empty bytes object.</p>
@@ -412,17 +455,17 @@ empty bytes object.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.decodebytes">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">decodebytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.decodebytes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">decodebytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.decodebytes" title="Link to this definition">¶</a></dt>
 <dd><p>Decode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em>, which must contain one or more
 lines of base64 encoded data, and return the decoded <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.1.</span></p>
+<p><span class="versionmodified added">Added in version 3.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.encode">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the contents of the binary <em>input</em> file and write the resulting base64
 encoded data to the <em>output</em> file. <em>input</em> and <em>output</em> must be <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file
 objects</span></a>. <em>input</em> will be read until <code class="docutils literal notranslate"><span class="pre">input.read()</span></code> returns
@@ -433,18 +476,18 @@ always ends with a newline, as per <span class="target" id="index-9"></span><a c
 
 <dl class="py function">
 <dt class="sig sig-object py" id="base64.encodebytes">
-<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">encodebytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.encodebytes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">base64.</span></span><span class="sig-name descname"><span class="pre">encodebytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#base64.encodebytes" title="Link to this definition">¶</a></dt>
 <dd><p>Encode the <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> <em>s</em>, which can contain arbitrary binary
 data, and return <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> containing the base64-encoded data, with newlines
 (<code class="docutils literal notranslate"><span class="pre">b'\n'</span></code>) inserted after every 76 bytes of output, and ensuring that
 there is a trailing newline, as per <span class="target" id="index-10"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2045.html"><strong>RFC 2045</strong></a> (MIME).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.1.</span></p>
+<p><span class="versionmodified added">Added in version 3.1.</span></p>
 </div>
 </dd></dl>
 
 <p>An example usage of the module:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">base64</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;data to be encoded&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">encoded</span>
 <span class="go">b&#39;ZGF0YSB0byBiZSBlbmNvZGVk&#39;</span>
@@ -454,7 +497,7 @@ there is a trailing newline, as per <span class="target" id="index-10"></span><a
 </pre></div>
 </div>
 <section id="security-considerations">
-<span id="base64-security"></span><h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Permalink to this headline">¶</a></h2>
+<span id="base64-security"></span><h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading">¶</a></h2>
 <p>A new security considerations section was added to <span class="target" id="index-11"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4648.html"><strong>RFC 4648</strong></a> (section 12); it’s
 recommended to review the security section for any code deployed to production.</p>
 <div class="admonition seealso">
@@ -475,7 +518,7 @@ base64 encoding.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -509,10 +552,14 @@ base64 encoding.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -528,7 +575,7 @@ base64 encoding.</p>
           <a href="mimetypes.html" title="mimetypes — Map filenames to MIME types"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -538,7 +585,7 @@ base64 encoding.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -549,37 +596,54 @@ base64 encoding.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

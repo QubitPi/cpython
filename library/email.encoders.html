@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="email.encoders: Encoders" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/email.encoders.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/email/encoders.py This module is part of the legacy ( Compat32) email API. In the new API the functionality is provided by the cte parameter of the set_content() method. This modul..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/email/encoders.py This module is part of the legacy ( Compat32) email API. In the new API the functionality is provided by the cte parameter of the set_content() method. This modul..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>email.encoders: Encoders &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>email.encoders: Encoders &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/email.encoders.html" />
+    <link rel="canonical" href="/library/email.encoders.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="email.utils: Miscellaneous utilities" href="email.utils.html" />
     <link rel="prev" title="email.charset: Representing character sets" href="email.charset.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/email.encoders.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/email.encoders.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="email.charset.html"
@@ -107,7 +123,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -123,7 +139,7 @@
           <a href="email.charset.html" title="email.charset: Representing character sets"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -133,7 +149,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -145,14 +161,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -163,8 +186,8 @@
           <div class="body" role="main">
             
   <section id="module-email.encoders">
-<span id="email-encoders-encoders"></span><h1><a class="reference internal" href="#module-email.encoders" title="email.encoders: Encoders for email message payloads."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.encoders</span></code></a>: Encoders<a class="headerlink" href="#module-email.encoders" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/email/encoders.py">Lib/email/encoders.py</a></p>
+<span id="email-encoders-encoders"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.encoders</span></code>: Encoders<a class="headerlink" href="#module-email.encoders" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/email/encoders.py">Lib/email/encoders.py</a></p>
 <hr class="docutils" />
 <p>This module is part of the legacy (<code class="docutils literal notranslate"><span class="pre">Compat32</span></code>) email API.  In the
 new API the functionality is provided by the <em>cte</em> parameter of
@@ -179,7 +202,7 @@ need to encode the payloads for transport through compliant mail servers. This
 is especially true for <em class="mimetype">image/*</em> and <em class="mimetype">text/*</em> type messages
 containing binary data.</p>
 <p>The <a class="reference internal" href="email.html#module-email" title="email: Package supporting the parsing, manipulating, and generating email messages."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email</span></code></a> package provides some convenient encoders in its
-<code class="xref py py-mod docutils literal notranslate"><span class="pre">encoders</span></code> module.  These encoders are actually used by the
+<a class="reference internal" href="#module-email.encoders" title="email.encoders: Encoders for email message payloads."><code class="xref py py-mod docutils literal notranslate"><span class="pre">encoders</span></code></a> module.  These encoders are actually used by the
 <a class="reference internal" href="email.mime.html#email.mime.audio.MIMEAudio" title="email.mime.audio.MIMEAudio"><code class="xref py py-class docutils literal notranslate"><span class="pre">MIMEAudio</span></code></a> and <a class="reference internal" href="email.mime.html#email.mime.image.MIMEImage" title="email.mime.image.MIMEImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">MIMEImage</span></code></a>
 class constructors to provide default encodings.  All encoder functions take
 exactly one argument, the message object to encode.  They usually extract the
@@ -191,16 +214,16 @@ must be applied to individual subparts instead, and will raise a
 <p>Here are the encoding functions provided:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="email.encoders.encode_quopri">
-<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_quopri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_quopri" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_quopri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_quopri" title="Link to this definition">¶</a></dt>
 <dd><p>Encodes the payload into quoted-printable form and sets the
-<em class="mailheader">Content-Transfer-Encoding</em> header to <code class="docutils literal notranslate"><span class="pre">quoted-printable</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.
+<em class="mailheader">Content-Transfer-Encoding</em> header to <code class="docutils literal notranslate"><span class="pre">quoted-printable</span></code> <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 This is a good encoding to use when most of your payload is normal printable
 data, but contains a few unprintable characters.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="email.encoders.encode_base64">
-<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_base64" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_base64" title="Link to this definition">¶</a></dt>
 <dd><p>Encodes the payload into base64 form and sets the
 <em class="mailheader">Content-Transfer-Encoding</em> header to <code class="docutils literal notranslate"><span class="pre">base64</span></code>.  This is a good
 encoding to use when most of your payload is unprintable data since it is a more
@@ -210,7 +233,7 @@ renders the text non-human readable.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="email.encoders.encode_7or8bit">
-<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_7or8bit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_7or8bit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_7or8bit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_7or8bit" title="Link to this definition">¶</a></dt>
 <dd><p>This doesn’t actually modify the message’s payload, but it does set the
 <em class="mailheader">Content-Transfer-Encoding</em> header to either <code class="docutils literal notranslate"><span class="pre">7bit</span></code> or <code class="docutils literal notranslate"><span class="pre">8bit</span></code> as
 appropriate, based on the payload data.</p>
@@ -218,18 +241,19 @@ appropriate, based on the payload data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="email.encoders.encode_noop">
-<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_noop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_noop" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">email.encoders.</span></span><span class="sig-name descname"><span class="pre">encode_noop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#email.encoders.encode_noop" title="Link to this definition">¶</a></dt>
 <dd><p>This does nothing; it doesn’t even set the
 <em class="mailheader">Content-Transfer-Encoding</em> header.</p>
 </dd></dl>
 
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Note that encoding with <a class="reference internal" href="#email.encoders.encode_quopri" title="email.encoders.encode_quopri"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode_quopri()</span></code></a> also encodes all tabs and space
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Note that encoding with <a class="reference internal" href="#email.encoders.encode_quopri" title="email.encoders.encode_quopri"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode_quopri()</span></code></a> also encodes all tabs and space
 characters in the data.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 </section>
 
 
@@ -237,7 +261,7 @@ characters in the data.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
@@ -261,10 +285,14 @@ characters in the data.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -280,7 +308,7 @@ characters in the data.</p>
           <a href="email.charset.html" title="email.charset: Representing character sets"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -290,7 +318,7 @@ characters in the data.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -302,37 +330,54 @@ characters in the data.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

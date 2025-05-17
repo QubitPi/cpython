@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Generic Operating System Services" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/allos.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="The modules described in this chapter provide interfaces to operating system features that are available on (almost) all operating systems, such as files and a clock. The interfaces are generally m..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="The modules described in this chapter provide interfaces to operating system features that are available on (almost) all operating systems, such as files and a clock. The interfaces are generally m..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>Generic Operating System Services &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Operating System Services &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/allos.html" />
+    <link rel="canonical" href="/library/allos.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="os — Miscellaneous operating system interfaces" href="os.html" />
     <link rel="prev" title="secrets — Generate secure random numbers for managing secrets" href="secrets.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/allos.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/allos.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="secrets.html"
@@ -107,7 +123,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -123,7 +139,7 @@
           <a href="secrets.html" title="secrets — Generate secure random numbers for managing secrets"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -133,7 +149,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">The Python Standard Library</a> &#187;</li>
@@ -143,14 +159,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -161,7 +184,7 @@
           <div class="body" role="main">
             
   <section id="generic-operating-system-services">
-<span id="allos"></span><h1>Generic Operating System Services<a class="headerlink" href="#generic-operating-system-services" title="Permalink to this headline">¶</a></h1>
+<span id="allos"></span><h1>Generic Operating System Services<a class="headerlink" href="#generic-operating-system-services" title="Link to this heading">¶</a></h1>
 <p>The modules described in this chapter provide interfaces to operating system
 features that are available on (almost) all operating systems, such as files and
 a clock.  The interfaces are generally modeled after the Unix or C interfaces,
@@ -179,6 +202,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="os.html#files-and-directories">Files and Directories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="os.html#timer-file-descriptors">Timer File Descriptors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="os.html#linux-extended-attributes">Linux extended attributes</a></li>
 </ul>
 </li>
@@ -207,6 +231,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 <li class="toctree-l3"><a class="reference internal" href="io.html#id1">Text I/O</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="io.html#static-typing">Static Typing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io.html#performance">Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="io.html#id2">Binary I/O</a></li>
 <li class="toctree-l3"><a class="reference internal" href="io.html#id3">Text I/O</a></li>
@@ -222,72 +247,6 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 <li class="toctree-l2"><a class="reference internal" href="time.html#timezone-constants">Timezone Constants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="argparse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">argparse</span></code> — Parser for command-line options, arguments and sub-commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#core-functionality">Core Functionality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#quick-links-for-add-argument">Quick Links for add_argument()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#creating-a-parser">Creating a parser</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#adding-arguments">Adding arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#parsing-arguments">Parsing arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#argumentparser-objects">ArgumentParser objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#prog">prog</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#usage">usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#description">description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#epilog">epilog</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#parents">parents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#formatter-class">formatter_class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#prefix-chars">prefix_chars</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#fromfile-prefix-chars">fromfile_prefix_chars</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#argument-default">argument_default</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#allow-abbrev">allow_abbrev</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#conflict-handler">conflict_handler</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#add-help">add_help</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#exit-on-error">exit_on_error</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#the-add-argument-method">The add_argument() method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#name-or-flags">name or flags</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#action">action</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#nargs">nargs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#const">const</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#default">default</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#type">type</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#choices">choices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#required">required</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#help">help</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#metavar">metavar</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#dest">dest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#action-classes">Action classes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#the-parse-args-method">The parse_args() method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#option-value-syntax">Option value syntax</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#invalid-arguments">Invalid arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#arguments-containing">Arguments containing <code class="docutils literal notranslate"><span class="pre">-</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#argument-abbreviations-prefix-matching">Argument abbreviations (prefix matching)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#beyond-sys-argv">Beyond <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#the-namespace-object">The Namespace object</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#other-utilities">Other utilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#sub-commands">Sub-commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#filetype-objects">FileType objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#argument-groups">Argument groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#mutual-exclusion">Mutual exclusion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#parser-defaults">Parser defaults</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#printing-help">Printing help</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#partial-parsing">Partial parsing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#customizing-file-parsing">Customizing file parsing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#exiting-methods">Exiting methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="argparse.html#intermixed-parsing">Intermixed parsing</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="argparse.html#upgrading-optparse-code">Upgrading optparse code</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="getopt.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">getopt</span></code> — C-style parser for command line options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">logging</span></code> — Logging facility for Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#logger-objects">Logger Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#logging-levels">Logging Levels</a></li>
@@ -311,6 +270,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 <li class="toctree-l3"><a class="reference internal" href="logging.config.html#incremental-configuration">Incremental Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.config.html#object-connections">Object connections</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.config.html#user-defined-objects">User-defined objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.config.html#handler-configuration-order">Handler configuration order</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.config.html#access-to-external-objects">Access to external objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.config.html#access-to-internal-objects">Access to internal objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.config.html#import-resolution-and-custom-importers">Import resolution and custom importers</a></li>
@@ -339,30 +299,16 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 <li class="toctree-l2"><a class="reference internal" href="logging.handlers.html#queuelistener">QueueListener</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getpass.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">getpass</span></code> — Portable password input</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curses.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code> — Terminal handling for character-cell displays</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="curses.html#functions">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="curses.html#window-objects">Window Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="curses.html#constants">Constants</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="curses.html#module-curses.textpad"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses.textpad</span></code> — Text input widget for curses programs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="curses.html#textbox-objects">Textbox objects</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="curses.ascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses.ascii</span></code> — Utilities for ASCII characters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curses.panel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses.panel</span></code> — A panel stack extension for curses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="curses.panel.html#functions">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="curses.panel.html#panel-objects">Panel Objects</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> —  Access to underlying platform’s identifying data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="platform.html#cross-platform">Cross Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="platform.html#java-platform">Java Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="platform.html#windows-platform">Windows Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="platform.html#macos-platform">macOS Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="platform.html#unix-platforms">Unix Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="platform.html#linux-platforms">Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#cross-platform">Cross platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#windows-platform">Windows platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#macos-platform">macOS platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#ios-platform">iOS platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#unix-platforms">Unix platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#linux-platforms">Linux platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#android-platform">Android platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#command-line-usage">Command-line usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#miscellaneous">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> — Standard errno system symbols</a></li>
@@ -373,16 +319,17 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#calling-functions">Calling functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#fundamental-data-types">Fundamental data types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#calling-functions-continued">Calling functions, continued</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ctypes.html#calling-varadic-functions">Calling varadic functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctypes.html#calling-variadic-functions">Calling variadic functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#calling-functions-with-your-own-custom-data-types">Calling functions with your own custom data types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#specifying-the-required-argument-types-function-prototypes">Specifying the required argument types (function prototypes)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#return-types">Return types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#passing-pointers-or-passing-parameters-by-reference">Passing pointers (or: passing parameters by reference)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#structures-and-unions">Structures and unions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ctypes.html#structure-union-alignment-and-byte-order">Structure/union alignment and byte order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctypes.html#structure-union-layout-alignment-and-byte-order">Structure/union layout, alignment and byte order</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#bit-fields-in-structures-and-unions">Bit fields in structures and unions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#arrays">Arrays</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#pointers">Pointers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctypes.html#thread-safety-without-the-gil">Thread safety without the GIL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#type-conversions">Type conversions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#incomplete-types">Incomplete Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#callback-functions">Callback functions</a></li>
@@ -393,6 +340,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ctypes.html#ctypes-reference">ctypes reference</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#finding-shared-libraries">Finding shared libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctypes.html#listing-loaded-shared-libraries">Listing loaded shared libraries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#loading-shared-libraries">Loading shared libraries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#foreign-functions">Foreign functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#function-prototypes">Function prototypes</a></li>
@@ -401,6 +349,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#ctypes-fundamental-data-types-2">Fundamental data types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#structured-data-types">Structured data types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ctypes.html#arrays-and-pointers">Arrays and pointers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctypes.html#exceptions">Exceptions</a></li>
 </ul>
 </li>
 </ul>
@@ -414,7 +363,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
@@ -438,10 +387,14 @@ but they are available on most other systems as well.  Here’s an overview:</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -457,7 +410,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
           <a href="secrets.html" title="secrets — Generate secure random numbers for managing secrets"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -467,7 +420,7 @@ but they are available on most other systems as well.  Here’s an overview:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -477,37 +430,54 @@ but they are available on most other systems as well.  Here’s an overview:</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

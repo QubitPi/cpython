@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="code — Interpreter base classes" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/code.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/code.py The code module provides facilities to implement read-eval-print loops in Python. Two classes and convenience functions are included which can be used to build applications..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/code.py The code module provides facilities to implement read-eval-print loops in Python. Two classes and convenience functions are included which can be used to build applications..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>code — Interpreter base classes &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>code — Interpreter base classes &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/code.html" />
+    <link rel="canonical" href="/library/code.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="codeop — Compile Python code" href="codeop.html" />
     <link rel="prev" title="Custom Python Interpreters" href="custominterp.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/code.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/code.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -118,7 +134,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -134,7 +150,7 @@
           <a href="custominterp.html" title="Custom Python Interpreters"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -144,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -155,14 +171,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -173,50 +196,59 @@
           <div class="body" role="main">
             
   <section id="module-code">
-<span id="code-interpreter-base-classes"></span><h1><a class="reference internal" href="#module-code" title="code: Facilities to implement read-eval-print loops."><code class="xref py py-mod docutils literal notranslate"><span class="pre">code</span></code></a> — Interpreter base classes<a class="headerlink" href="#module-code" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/code.py">Lib/code.py</a></p>
+<span id="code-interpreter-base-classes"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">code</span></code> — Interpreter base classes<a class="headerlink" href="#module-code" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/code.py">Lib/code.py</a></p>
 <hr class="docutils" />
 <p>The <code class="docutils literal notranslate"><span class="pre">code</span></code> module provides facilities to implement read-eval-print loops in
 Python.  Two classes and convenience functions are included which can be used to
 build applications which provide an interactive interpreter prompt.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="code.InteractiveInterpreter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">InteractiveInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">InteractiveInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter" title="Link to this definition">¶</a></dt>
 <dd><p>This class deals with parsing and interpreter state (the user’s namespace); it
 does not deal with input buffering or prompting or input file naming (the
 filename is always passed in explicitly). The optional <em>locals</em> argument
-specifies the dictionary in which code will be executed; it defaults to a newly
-created dictionary with key <code class="docutils literal notranslate"><span class="pre">'__name__'</span></code> set to <code class="docutils literal notranslate"><span class="pre">'__console__'</span></code> and key
-<code class="docutils literal notranslate"><span class="pre">'__doc__'</span></code> set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+specifies a mapping to use as the namespace in which code will be executed;
+it defaults to a newly created dictionary with key <code class="docutils literal notranslate"><span class="pre">'__name__'</span></code> set to
+<code class="docutils literal notranslate"><span class="pre">'__console__'</span></code> and key <code class="docutils literal notranslate"><span class="pre">'__doc__'</span></code> set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="code.InteractiveConsole">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">InteractiveConsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;console&gt;'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">InteractiveConsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;console&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole" title="Link to this definition">¶</a></dt>
 <dd><p>Closely emulate the behavior of the interactive Python interpreter. This class
 builds on <a class="reference internal" href="#code.InteractiveInterpreter" title="code.InteractiveInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveInterpreter</span></code></a> and adds prompting using the familiar
-<code class="docutils literal notranslate"><span class="pre">sys.ps1</span></code> and <code class="docutils literal notranslate"><span class="pre">sys.ps2</span></code>, and input buffering.</p>
+<code class="docutils literal notranslate"><span class="pre">sys.ps1</span></code> and <code class="docutils literal notranslate"><span class="pre">sys.ps2</span></code>, and input buffering. If <em>local_exit</em> is true,
+<code class="docutils literal notranslate"><span class="pre">exit()</span></code> and <code class="docutils literal notranslate"><span class="pre">quit()</span></code> in the console will not raise <a class="reference internal" href="exceptions.html#SystemExit" title="SystemExit"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SystemExit</span></code></a>, but
+instead return to the calling code.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>Added <em>local_exit</em> parameter.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="code.interact">
-<span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">interact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readfunc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exitmsg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.interact" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">interact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readfunc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exitmsg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.interact" title="Link to this definition">¶</a></dt>
 <dd><p>Convenience function to run a read-eval-print loop.  This creates a new
 instance of <a class="reference internal" href="#code.InteractiveConsole" title="code.InteractiveConsole"><code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveConsole</span></code></a> and sets <em>readfunc</em> to be used as
 the <a class="reference internal" href="#code.InteractiveConsole.raw_input" title="code.InteractiveConsole.raw_input"><code class="xref py py-meth docutils literal notranslate"><span class="pre">InteractiveConsole.raw_input()</span></code></a> method, if provided.  If <em>local</em> is
 provided, it is passed to the <a class="reference internal" href="#code.InteractiveConsole" title="code.InteractiveConsole"><code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveConsole</span></code></a> constructor for
-use as the default namespace for the interpreter loop.  The <a class="reference internal" href="#code.interact" title="code.interact"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interact()</span></code></a>
+use as the default namespace for the interpreter loop.  If <em>local_exit</em> is provided,
+it is passed to the <a class="reference internal" href="#code.InteractiveConsole" title="code.InteractiveConsole"><code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveConsole</span></code></a> constructor.  The <a class="reference internal" href="#code.InteractiveConsole.interact" title="code.InteractiveConsole.interact"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interact()</span></code></a>
 method of the instance is then run with <em>banner</em> and <em>exitmsg</em> passed as the
 banner and exit message to use, if provided.  The console object is discarded
 after use.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.6: </span>Added <em>exitmsg</em> parameter.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>Added <em>local_exit</em> parameter.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="code.compile_command">
-<span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">compile_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;input&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'single'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.compile_command" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">code.</span></span><span class="sig-name descname"><span class="pre">compile_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;input&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'single'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.compile_command" title="Link to this definition">¶</a></dt>
 <dd><p>This function is useful for programs that want to emulate Python’s interpreter
 main loop (a.k.a. the read-eval-print loop).  The tricky part is to determine
 when the user has entered an incomplete command that can be completed by
@@ -235,10 +267,10 @@ invalid literal.</p>
 </dd></dl>
 
 <section id="interactive-interpreter-objects">
-<span id="interpreter-objects"></span><h2>Interactive Interpreter Objects<a class="headerlink" href="#interactive-interpreter-objects" title="Permalink to this headline">¶</a></h2>
+<span id="interpreter-objects"></span><h2>Interactive Interpreter Objects<a class="headerlink" href="#interactive-interpreter-objects" title="Link to this heading">¶</a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveInterpreter.runsource">
-<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">runsource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;input&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'single'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.runsource" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">runsource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;input&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'single'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.runsource" title="Link to this definition">¶</a></dt>
 <dd><p>Compile and run some source in the interpreter. Arguments are the same as for
 <a class="reference internal" href="#code.compile_command" title="code.compile_command"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile_command()</span></code></a>; the default for <em>filename</em> is <code class="docutils literal notranslate"><span class="pre">'&lt;input&gt;'</span></code>, and for
 <em>symbol</em> is <code class="docutils literal notranslate"><span class="pre">'single'</span></code>.  One of several things can happen:</p>
@@ -259,7 +291,7 @@ to prompt the next line.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveInterpreter.runcode">
-<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">runcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.runcode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">runcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.runcode" title="Link to this definition">¶</a></dt>
 <dd><p>Execute a code object. When an exception occurs, <a class="reference internal" href="#code.InteractiveInterpreter.showtraceback" title="code.InteractiveInterpreter.showtraceback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">showtraceback()</span></code></a> is called
 to display a traceback.  All exceptions are caught except <a class="reference internal" href="exceptions.html#SystemExit" title="SystemExit"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SystemExit</span></code></a>,
 which is allowed to propagate.</p>
@@ -270,7 +302,7 @@ with it.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveInterpreter.showsyntaxerror">
-<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">showsyntaxerror</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.showsyntaxerror" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">showsyntaxerror</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.showsyntaxerror" title="Link to this definition">¶</a></dt>
 <dd><p>Display the syntax error that just occurred.  This does not display a stack
 trace because there isn’t one for syntax errors. If <em>filename</em> is given, it is
 stuffed into the exception instead of the default filename provided by Python’s
@@ -280,7 +312,7 @@ output is written by the <a class="reference internal" href="#code.InteractiveIn
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveInterpreter.showtraceback">
-<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">showtraceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.showtraceback" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">showtraceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.showtraceback" title="Link to this definition">¶</a></dt>
 <dd><p>Display the exception that just occurred.  We remove the first stack item
 because it is within the interpreter object implementation. The output is
 written by the <a class="reference internal" href="#code.InteractiveInterpreter.write" title="code.InteractiveInterpreter.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method.</p>
@@ -292,20 +324,20 @@ of just the primary traceback.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveInterpreter.write">
-<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.write" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveInterpreter.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveInterpreter.write" title="Link to this definition">¶</a></dt>
 <dd><p>Write a string to the standard error stream (<code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code>). Derived classes
 should override this to provide the appropriate output handling as needed.</p>
 </dd></dl>
 
 </section>
 <section id="interactive-console-objects">
-<span id="console-objects"></span><h2>Interactive Console Objects<a class="headerlink" href="#interactive-console-objects" title="Permalink to this headline">¶</a></h2>
+<span id="console-objects"></span><h2>Interactive Console Objects<a class="headerlink" href="#interactive-console-objects" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="#code.InteractiveConsole" title="code.InteractiveConsole"><code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveConsole</span></code></a> class is a subclass of
 <a class="reference internal" href="#code.InteractiveInterpreter" title="code.InteractiveInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveInterpreter</span></code></a>, and so offers all the methods of the
 interpreter objects as well as the following additions.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveConsole.interact">
-<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">interact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exitmsg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.interact" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">interact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exitmsg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.interact" title="Link to this definition">¶</a></dt>
 <dd><p>Closely emulate the interactive Python console. The optional <em>banner</em> argument
 specify the banner to print before the first interaction; by default it prints a
 banner similar to the one printed by the standard Python interpreter, followed
@@ -324,10 +356,10 @@ Pass the empty string to suppress the exit message. If <em>exitmsg</em> is not g
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveConsole.push">
-<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.push" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.push" title="Link to this definition">¶</a></dt>
 <dd><p>Push a line of source text to the interpreter. The line should not have a
 trailing newline; it may have internal newlines.  The line is appended to a
-buffer and the interpreter’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">runsource()</span></code> method is called with the
+buffer and the interpreter’s <a class="reference internal" href="#code.InteractiveInterpreter.runsource" title="code.InteractiveInterpreter.runsource"><code class="xref py py-meth docutils literal notranslate"><span class="pre">runsource()</span></code></a> method is called with the
 concatenated contents of the buffer as source.  If this indicates that the
 command was executed or invalid, the buffer is reset; otherwise, the command is
 incomplete, and the buffer is left as it was after the line was appended.  The
@@ -337,13 +369,13 @@ dealt with in some way (this is the same as <code class="xref py py-meth docutil
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveConsole.resetbuffer">
-<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">resetbuffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.resetbuffer" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">resetbuffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.resetbuffer" title="Link to this definition">¶</a></dt>
 <dd><p>Remove any unhandled source text from the input buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="code.InteractiveConsole.raw_input">
-<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">raw_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.raw_input" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">InteractiveConsole.</span></span><span class="sig-name descname"><span class="pre">raw_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#code.InteractiveConsole.raw_input" title="Link to this definition">¶</a></dt>
 <dd><p>Write a prompt and read a line.  The returned line does not include the trailing
 newline.  When the user enters the EOF key sequence, <a class="reference internal" href="exceptions.html#EOFError" title="EOFError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">EOFError</span></code></a> is raised.
 The base implementation reads from <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code>; a subclass may replace this
@@ -358,7 +390,7 @@ with a different implementation.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -393,10 +425,14 @@ with a different implementation.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -412,7 +448,7 @@ with a different implementation.</p>
           <a href="custominterp.html" title="Custom Python Interpreters"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -422,7 +458,7 @@ with a different implementation.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -433,37 +469,54 @@ with a different implementation.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

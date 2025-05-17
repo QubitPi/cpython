@@ -1,37 +1,37 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="codecs — Codec registry and base classes" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/library/codecs.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Source code: Lib/codecs.py This module defines base classes for standard Python codecs (encoders and decoders) and provides access to the internal Python codec registry, which manages the codec and..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Source code: Lib/codecs.py This module defines base classes for standard Python codecs (encoders and decoders) and provides access to the internal Python codec registry, which manages the codec and..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>codecs — Codec registry and base classes &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codecs — Codec registry and base classes &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/library/codecs.html" />
+    <link rel="canonical" href="/library/codecs.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,8 +39,9 @@
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="Data Types" href="datatypes.html" />
     <link rel="prev" title="struct — Interpret bytes as packed binary data" href="struct.html" />
-    <link rel="canonical" href="https://docs.python.org/3/library/codecs.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/codecs.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -144,7 +160,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -160,7 +176,7 @@
           <a href="struct.html" title="struct — Interpret bytes as packed binary data"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -170,7 +186,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -181,14 +197,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -199,8 +222,8 @@
           <div class="body" role="main">
             
   <section id="module-codecs">
-<span id="codecs-codec-registry-and-base-classes"></span><h1><a class="reference internal" href="#module-codecs" title="codecs: Encode and decode data and streams."><code class="xref py py-mod docutils literal notranslate"><span class="pre">codecs</span></code></a> — Codec registry and base classes<a class="headerlink" href="#module-codecs" title="Permalink to this headline">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/codecs.py">Lib/codecs.py</a></p>
+<span id="codecs-codec-registry-and-base-classes"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">codecs</span></code> — Codec registry and base classes<a class="headerlink" href="#module-codecs" title="Link to this heading">¶</a></h1>
+<p><strong>Source code:</strong> <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/main/Lib/codecs.py">Lib/codecs.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>This module defines base classes for standard Python codecs (encoders and
 decoders) and provides access to the internal Python codec registry, which
@@ -215,7 +238,7 @@ types, but some module features are restricted to be used specifically with
 any codec:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.encode">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encodes <em>obj</em> using the codec registered for <em>encoding</em>.</p>
 <p><em>Errors</em> may be given to set the desired error handling scheme. The
 default error handler is <code class="docutils literal notranslate"><span class="pre">'strict'</span></code> meaning that encoding errors raise
@@ -226,7 +249,7 @@ information on codec error handling.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.decode">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decodes <em>obj</em> using the codec registered for <em>encoding</em>.</p>
 <p><em>Errors</em> may be given to set the desired error handling scheme. The
 default error handler is <code class="docutils literal notranslate"><span class="pre">'strict'</span></code> meaning that decoding errors raise
@@ -238,7 +261,7 @@ information on codec error handling.</p>
 <p>The full details for each codec can also be looked up directly:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.lookup">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.lookup" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.lookup" title="Link to this definition">¶</a></dt>
 <dd><p>Looks up the codec info in the Python codec registry and returns a
 <a class="reference internal" href="#codecs.CodecInfo" title="codecs.CodecInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodecInfo</span></code></a> object as defined below.</p>
 <p>Encodings are first looked up in the registry’s cache. If not found, the list of
@@ -249,20 +272,20 @@ is stored in the cache and returned to the caller.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.CodecInfo">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">CodecInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">streamreader</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">streamwriter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incrementalencoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incrementaldecoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.CodecInfo" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">CodecInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">streamreader</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">streamwriter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incrementalencoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incrementaldecoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.CodecInfo" title="Link to this definition">¶</a></dt>
 <dd><p>Codec details when looking up the codec registry. The constructor
 arguments are stored in attributes of the same name:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecs.CodecInfo.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#codecs.CodecInfo.name" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#codecs.CodecInfo.name" title="Link to this definition">¶</a></dt>
 <dd><p>The name of the encoding.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecs.CodecInfo.encode">
-<span class="sig-name descname"><span class="pre">encode</span></span><a class="headerlink" href="#codecs.CodecInfo.encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">encode</span></span><a class="headerlink" href="#codecs.CodecInfo.encode" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.CodecInfo.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><a class="headerlink" href="#codecs.CodecInfo.decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decode</span></span><a class="headerlink" href="#codecs.CodecInfo.decode" title="Link to this definition">¶</a></dt>
 <dd><p>The stateless encoding and decoding functions. These must be
 functions or methods which have the same interface as
 the <a class="reference internal" href="#codecs.Codec.encode" title="codecs.Codec.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode()</span></code></a> and <a class="reference internal" href="#codecs.Codec.decode" title="codecs.Codec.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">decode()</span></code></a> methods of Codec
@@ -272,9 +295,9 @@ The functions or methods are expected to work in a stateless mode.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecs.CodecInfo.incrementalencoder">
-<span class="sig-name descname"><span class="pre">incrementalencoder</span></span><a class="headerlink" href="#codecs.CodecInfo.incrementalencoder" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">incrementalencoder</span></span><a class="headerlink" href="#codecs.CodecInfo.incrementalencoder" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.CodecInfo.incrementaldecoder">
-<span class="sig-name descname"><span class="pre">incrementaldecoder</span></span><a class="headerlink" href="#codecs.CodecInfo.incrementaldecoder" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">incrementaldecoder</span></span><a class="headerlink" href="#codecs.CodecInfo.incrementaldecoder" title="Link to this definition">¶</a></dt>
 <dd><p>Incremental encoder and decoder classes or factory functions.
 These have to provide the interface defined by the base classes
 <a class="reference internal" href="#codecs.IncrementalEncoder" title="codecs.IncrementalEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalEncoder</span></code></a> and <a class="reference internal" href="#codecs.IncrementalDecoder" title="codecs.IncrementalDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalDecoder</span></code></a>,
@@ -283,9 +306,9 @@ respectively. Incremental codecs can maintain state.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecs.CodecInfo.streamwriter">
-<span class="sig-name descname"><span class="pre">streamwriter</span></span><a class="headerlink" href="#codecs.CodecInfo.streamwriter" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">streamwriter</span></span><a class="headerlink" href="#codecs.CodecInfo.streamwriter" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.CodecInfo.streamreader">
-<span class="sig-name descname"><span class="pre">streamreader</span></span><a class="headerlink" href="#codecs.CodecInfo.streamreader" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">streamreader</span></span><a class="headerlink" href="#codecs.CodecInfo.streamreader" title="Link to this definition">¶</a></dt>
 <dd><p>Stream writer and reader classes or factory functions. These have to
 provide the interface defined by the base classes
 <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> and <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a>, respectively.
@@ -298,21 +321,21 @@ Stream codecs can maintain state.</p>
 these additional functions which use <a class="reference internal" href="#codecs.lookup" title="codecs.lookup"><code class="xref py py-func docutils literal notranslate"><span class="pre">lookup()</span></code></a> for the codec lookup:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.getencoder">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getencoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getencoder" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getencoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getencoder" title="Link to this definition">¶</a></dt>
 <dd><p>Look up the codec for the given encoding and return its encoder function.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the encoding cannot be found.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.getdecoder">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getdecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getdecoder" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getdecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getdecoder" title="Link to this definition">¶</a></dt>
 <dd><p>Look up the codec for the given encoding and return its decoder function.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the encoding cannot be found.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.getincrementalencoder">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getincrementalencoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getincrementalencoder" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getincrementalencoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getincrementalencoder" title="Link to this definition">¶</a></dt>
 <dd><p>Look up the codec for the given encoding and return its incremental encoder
 class or factory function.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the encoding cannot be found or the codec
@@ -321,7 +344,7 @@ doesn’t support an incremental encoder.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.getincrementaldecoder">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getincrementaldecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getincrementaldecoder" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getincrementaldecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getincrementaldecoder" title="Link to this definition">¶</a></dt>
 <dd><p>Look up the codec for the given encoding and return its incremental decoder
 class or factory function.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the encoding cannot be found or the codec
@@ -330,7 +353,7 @@ doesn’t support an incremental decoder.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.getreader">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getreader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getreader" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getreader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getreader" title="Link to this definition">¶</a></dt>
 <dd><p>Look up the codec for the given encoding and return its <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a>
 class or factory function.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the encoding cannot be found.</p>
@@ -338,7 +361,7 @@ class or factory function.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.getwriter">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getwriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getwriter" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">getwriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.getwriter" title="Link to this definition">¶</a></dt>
 <dd><p>Look up the codec for the given encoding and return its <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a>
 class or factory function.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the encoding cannot be found.</p>
@@ -348,7 +371,7 @@ class or factory function.</p>
 function:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.register">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.register" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_function</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.register" title="Link to this definition">¶</a></dt>
 <dd><p>Register a codec search function. Search functions are expected to take one
 argument, being the encoding name in all lower case letters with hyphens
 and spaces converted to underscores, and return a <a class="reference internal" href="#codecs.CodecInfo" title="codecs.CodecInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodecInfo</span></code></a> object.
@@ -361,11 +384,11 @@ In case a search function cannot find a given encoding, it should return
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.unregister">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.unregister" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_function</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.unregister" title="Link to this definition">¶</a></dt>
 <dd><p>Unregister a codec search function and clear the registry’s cache.
 If the search function is not registered, do nothing.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.10.</span></p>
+<p><span class="versionmodified added">Added in version 3.10.</span></p>
 </div>
 </dd></dl>
 
@@ -375,7 +398,7 @@ provides additional utility functions and classes that allow the use of a
 wider range of codecs when working with binary files:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.open">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.open" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.open" title="Link to this definition">¶</a></dt>
 <dd><p>Open an encoded file using the given <em>mode</em> and return an instance of
 <a class="reference internal" href="#codecs.StreamReaderWriter" title="codecs.StreamReaderWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReaderWriter</span></code></a>, providing transparent encoding/decoding.
 The default file mode is <code class="docutils literal notranslate"><span class="pre">'r'</span></code>, meaning to open the file in read mode.</p>
@@ -397,11 +420,14 @@ It defaults to -1 which means that the default buffer size will be used.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.11: </span>The <code class="docutils literal notranslate"><span class="pre">'U'</span></code> mode has been removed.</p>
 </div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.14: </span><a class="reference internal" href="#codecs.open" title="codecs.open"><code class="xref py py-func docutils literal notranslate"><span class="pre">codecs.open()</span></code></a> has been superseded by <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a>.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.EncodedFile">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">EncodedFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.EncodedFile" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">EncodedFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.EncodedFile" title="Link to this definition">¶</a></dt>
 <dd><p>Return a <a class="reference internal" href="#codecs.StreamRecoder" title="codecs.StreamRecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamRecoder</span></code></a> instance, a wrapped version of <em>file</em>
 which provides transparent transcoding. The original file is closed
 when the wrapped version is closed.</p>
@@ -418,7 +444,7 @@ error occurs.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.iterencode">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">iterencode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.iterencode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">iterencode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.iterencode" title="Link to this definition">¶</a></dt>
 <dd><p>Uses an incremental encoder to iteratively encode the input provided by
 <em>iterator</em>. This function is a <a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">generator</span></a>.
 The <em>errors</em> argument (as well as any
@@ -430,7 +456,7 @@ to encode. Therefore it does not support bytes-to-bytes encoders such as
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.iterdecode">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">iterdecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.iterdecode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">iterdecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.iterdecode" title="Link to this definition">¶</a></dt>
 <dd><p>Uses an incremental decoder to iteratively decode the input provided by
 <em>iterator</em>. This function is a <a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">generator</span></a>.
 The <em>errors</em> argument (as well as any
@@ -445,25 +471,25 @@ to decode. Therefore it does not support text-to-text encoders such as
 and writing to platform dependent files:</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="codecs.BOM">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM</span></span><a class="headerlink" href="#codecs.BOM" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM</span></span><a class="headerlink" href="#codecs.BOM" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_BE">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_BE</span></span><a class="headerlink" href="#codecs.BOM_BE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_BE</span></span><a class="headerlink" href="#codecs.BOM_BE" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_LE">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_LE</span></span><a class="headerlink" href="#codecs.BOM_LE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_LE</span></span><a class="headerlink" href="#codecs.BOM_LE" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF8">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF8</span></span><a class="headerlink" href="#codecs.BOM_UTF8" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF8</span></span><a class="headerlink" href="#codecs.BOM_UTF8" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF16">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF16</span></span><a class="headerlink" href="#codecs.BOM_UTF16" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF16</span></span><a class="headerlink" href="#codecs.BOM_UTF16" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF16_BE">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF16_BE</span></span><a class="headerlink" href="#codecs.BOM_UTF16_BE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF16_BE</span></span><a class="headerlink" href="#codecs.BOM_UTF16_BE" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF16_LE">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF16_LE</span></span><a class="headerlink" href="#codecs.BOM_UTF16_LE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF16_LE</span></span><a class="headerlink" href="#codecs.BOM_UTF16_LE" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF32">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF32</span></span><a class="headerlink" href="#codecs.BOM_UTF32" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF32</span></span><a class="headerlink" href="#codecs.BOM_UTF32" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF32_BE">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF32_BE</span></span><a class="headerlink" href="#codecs.BOM_UTF32_BE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF32_BE</span></span><a class="headerlink" href="#codecs.BOM_UTF32_BE" title="Link to this definition">¶</a></dt>
 <dt class="sig sig-object py" id="codecs.BOM_UTF32_LE">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF32_LE</span></span><a class="headerlink" href="#codecs.BOM_UTF32_LE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">BOM_UTF32_LE</span></span><a class="headerlink" href="#codecs.BOM_UTF32_LE" title="Link to this definition">¶</a></dt>
 <dd><p>These constants define various byte sequences,
 being Unicode byte order marks (BOMs) for several encodings. They are
 used in UTF-16 and UTF-32 data streams to indicate the byte order used,
@@ -476,7 +502,7 @@ encodings.</p>
 </dd></dl>
 
 <section id="codec-base-classes">
-<span id="id1"></span><h2>Codec Base Classes<a class="headerlink" href="#codec-base-classes" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Codec Base Classes<a class="headerlink" href="#codec-base-classes" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="#module-codecs" title="codecs: Encode and decode data and streams."><code class="xref py py-mod docutils literal notranslate"><span class="pre">codecs</span></code></a> module defines a set of base classes which define the
 interfaces for working with codec objects, and can also be used as the basis
 for custom codec implementations.</p>
@@ -486,7 +512,7 @@ stream reader and writers typically reuse the stateless encoder/decoder to
 implement the file protocols. Codec authors also need to define how the
 codec will handle encoding and decoding errors.</p>
 <section id="error-handlers">
-<span id="surrogateescape"></span><span id="id2"></span><h3>Error Handlers<a class="headerlink" href="#error-handlers" title="Permalink to this headline">¶</a></h3>
+<span id="surrogateescape"></span><span id="id2"></span><h3>Error Handlers<a class="headerlink" href="#error-handlers" title="Link to this heading">¶</a></h3>
 <p>To simplify and standardize error handling, codecs may implement different
 error handling schemes by accepting the <em>errors</em> string argument:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;German ß, ♬&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;backslashreplace&#39;</span><span class="p">)</span>
@@ -498,10 +524,6 @@ error handling schemes by accepting the <em>errors</em> string argument:</p>
 <p id="index-1">The following error handlers can be used with all Python
 <a class="reference internal" href="#standard-encodings"><span class="std std-ref">Standard Encodings</span></a> codecs:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -528,9 +550,10 @@ REPLACEMENT CHARACTER). Implemented in
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'backslashreplace'</span></code></p></td>
 <td><p>Replace with backslashed escape sequences.
 On encoding, use hexadecimal form of Unicode
-code point with formats <code class="docutils literal notranslate"><span class="pre">\xhh</span></code> <code class="docutils literal notranslate"><span class="pre">\uxxxx</span></code>
-<code class="docutils literal notranslate"><span class="pre">\Uxxxxxxxx</span></code>. On decoding, use hexadecimal
-form of byte value with format <code class="docutils literal notranslate"><span class="pre">\xhh</span></code>.
+code point with formats <code class="samp docutils literal notranslate"><span class="pre">\x</span><em><span class="pre">hh</span></em></code>
+<code class="samp docutils literal notranslate"><span class="pre">\u</span><em><span class="pre">xxxx</span></em></code> <code class="samp docutils literal notranslate"><span class="pre">\U</span><em><span class="pre">xxxxxxxx</span></em></code>.
+On decoding, use hexadecimal form of byte
+value with format <code class="samp docutils literal notranslate"><span class="pre">\x</span><em><span class="pre">hh</span></em></code>.
 Implemented in
 <a class="reference internal" href="#codecs.backslashreplace_errors" title="codecs.backslashreplace_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">backslashreplace_errors()</span></code></a>.</p></td>
 </tr>
@@ -548,10 +571,6 @@ more.)</p></td>
 <p id="index-3">The following error handlers are only applicable to encoding (within
 <a class="reference internal" href="../glossary.html#term-text-encoding"><span class="xref std std-term">text encodings</span></a>):</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -561,8 +580,9 @@ more.)</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'xmlcharrefreplace'</span></code></p></td>
 <td><p>Replace with XML/HTML numeric character
 reference, which is a decimal form of Unicode
-code point with format <code class="docutils literal notranslate"><span class="pre">&amp;#num;</span></code> Implemented
-in <a class="reference internal" href="#codecs.xmlcharrefreplace_errors" title="codecs.xmlcharrefreplace_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">xmlcharrefreplace_errors()</span></code></a>.</p></td>
+code point with format <code class="samp docutils literal notranslate"><span class="pre">&amp;#</span><em><span class="pre">num</span></em><span class="pre">;</span></code>.
+Implemented in
+<a class="reference internal" href="#codecs.xmlcharrefreplace_errors" title="codecs.xmlcharrefreplace_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">xmlcharrefreplace_errors()</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'namereplace'</span></code></p></td>
 <td><p>Replace with <code class="docutils literal notranslate"><span class="pre">\N{...}</span></code> escape sequences,
@@ -574,11 +594,6 @@ Implemented in <a class="reference internal" href="#codecs.namereplace_errors" t
 </table>
 <p id="index-4">In addition, the following error handler is specific to the given codecs:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 28%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
 <th class="head"><p>Codecs</p></th>
@@ -599,14 +614,14 @@ the presence of surrogate code point in
 </tbody>
 </table>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.1: </span>The <code class="docutils literal notranslate"><span class="pre">'surrogateescape'</span></code> and <code class="docutils literal notranslate"><span class="pre">'surrogatepass'</span></code> error handlers.</p>
+<p><span class="versionmodified added">Added in version 3.1: </span>The <code class="docutils literal notranslate"><span class="pre">'surrogateescape'</span></code> and <code class="docutils literal notranslate"><span class="pre">'surrogatepass'</span></code> error handlers.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.4: </span>The <code class="docutils literal notranslate"><span class="pre">'surrogatepass'</span></code> error handler now works with utf-16* and utf-32*
 codecs.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.5: </span>The <code class="docutils literal notranslate"><span class="pre">'namereplace'</span></code> error handler.</p>
+<p><span class="versionmodified added">Added in version 3.5: </span>The <code class="docutils literal notranslate"><span class="pre">'namereplace'</span></code> error handler.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.5: </span>The <code class="docutils literal notranslate"><span class="pre">'backslashreplace'</span></code> error handler now works with decoding and
@@ -616,7 +631,7 @@ translating.</p>
 handler:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.register_error">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">register_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.register_error" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">register_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.register_error" title="Link to this definition">¶</a></dt>
 <dd><p>Register the error handling function <em>error_handler</em> under the name <em>name</em>.
 The <em>error_handler</em> argument will be called during encoding and decoding
 in case of an error, when <em>name</em> is specified as the errors parameter.</p>
@@ -640,7 +655,7 @@ replacement from the error handler will be put into the output directly.</p>
 can be looked up by name:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.lookup_error">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">lookup_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.lookup_error" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">lookup_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.lookup_error" title="Link to this definition">¶</a></dt>
 <dd><p>Return the error handler previously registered under the name <em>name</em>.</p>
 <p>Raises a <a class="reference internal" href="exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a> in case the handler cannot be found.</p>
 </dd></dl>
@@ -649,14 +664,14 @@ can be looked up by name:</p>
 functions:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.strict_errors">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">strict_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.strict_errors" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">strict_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.strict_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'strict'</span></code> error handling.</p>
 <p>Each encoding or decoding error raises a <a class="reference internal" href="exceptions.html#UnicodeError" title="UnicodeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">UnicodeError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.ignore_errors">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">ignore_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.ignore_errors" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">ignore_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.ignore_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'ignore'</span></code> error handling.</p>
 <p>Malformed data is ignored; encoding or decoding is continued without
 further notice.</p>
@@ -664,7 +679,7 @@ further notice.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.replace_errors">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">replace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.replace_errors" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">replace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.replace_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'replace'</span></code> error handling.</p>
 <p>Substitutes <code class="docutils literal notranslate"><span class="pre">?</span></code> (ASCII character) for encoding errors or <code class="docutils literal notranslate"><span class="pre">�</span></code> (U+FFFD,
 the official REPLACEMENT CHARACTER) for decoding errors.</p>
@@ -672,12 +687,13 @@ the official REPLACEMENT CHARACTER) for decoding errors.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.backslashreplace_errors">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">backslashreplace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.backslashreplace_errors" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">backslashreplace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.backslashreplace_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'backslashreplace'</span></code> error handling.</p>
 <p>Malformed data is replaced by a backslashed escape sequence.
 On encoding, use the hexadecimal form of Unicode code point with formats
-<code class="docutils literal notranslate"><span class="pre">\xhh</span></code> <code class="docutils literal notranslate"><span class="pre">\uxxxx</span></code> <code class="docutils literal notranslate"><span class="pre">\Uxxxxxxxx</span></code>. On decoding, use the hexadecimal form of
-byte value with format <code class="docutils literal notranslate"><span class="pre">\xhh</span></code>.</p>
+<code class="samp docutils literal notranslate"><span class="pre">\x</span><em><span class="pre">hh</span></em></code> <code class="samp docutils literal notranslate"><span class="pre">\u</span><em><span class="pre">xxxx</span></em></code> <code class="samp docutils literal notranslate"><span class="pre">\U</span><em><span class="pre">xxxxxxxx</span></em></code>.
+On decoding, use the hexadecimal form of
+byte value with format <code class="samp docutils literal notranslate"><span class="pre">\x</span><em><span class="pre">hh</span></em></code>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.5: </span>Works with decoding and translating.</p>
 </div>
@@ -685,17 +701,17 @@ byte value with format <code class="docutils literal notranslate"><span class="p
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.xmlcharrefreplace_errors">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">xmlcharrefreplace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.xmlcharrefreplace_errors" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">xmlcharrefreplace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.xmlcharrefreplace_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'xmlcharrefreplace'</span></code> error handling (for encoding within
 <a class="reference internal" href="../glossary.html#term-text-encoding"><span class="xref std std-term">text encoding</span></a> only).</p>
 <p>The unencodable character is replaced by an appropriate XML/HTML numeric
 character reference, which is a decimal form of Unicode code point with
-format <code class="docutils literal notranslate"><span class="pre">&amp;#num;</span></code> .</p>
+format <code class="samp docutils literal notranslate"><span class="pre">&amp;#</span><em><span class="pre">num</span></em><span class="pre">;</span></code> .</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="codecs.namereplace_errors">
-<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">namereplace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.namereplace_errors" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">namereplace_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.namereplace_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'namereplace'</span></code> error handling (for encoding within
 <a class="reference internal" href="../glossary.html#term-text-encoding"><span class="xref std std-term">text encoding</span></a> only).</p>
 <p>The unencodable character is replaced by a <code class="docutils literal notranslate"><span class="pre">\N{...}</span></code> escape sequence. The
@@ -703,25 +719,28 @@ set of characters that appear in the braces is the Name property from
 Unicode Character Database. For example, the German lowercase letter <code class="docutils literal notranslate"><span class="pre">'ß'</span></code>
 will be converted to byte sequence <code class="docutils literal notranslate"><span class="pre">\N{LATIN</span> <span class="pre">SMALL</span> <span class="pre">LETTER</span> <span class="pre">SHARP</span> <span class="pre">S}</span></code> .</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.5.</span></p>
+<p><span class="versionmodified added">Added in version 3.5.</span></p>
 </div>
 </dd></dl>
 
 </section>
 <section id="stateless-encoding-and-decoding">
-<span id="codec-objects"></span><h3>Stateless Encoding and Decoding<a class="headerlink" href="#stateless-encoding-and-decoding" title="Permalink to this headline">¶</a></h3>
-<p>The base <code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code> class defines these methods which also define the
+<span id="codec-objects"></span><h3>Stateless Encoding and Decoding<a class="headerlink" href="#stateless-encoding-and-decoding" title="Link to this heading">¶</a></h3>
+<p>The base <a class="reference internal" href="#codecs.Codec" title="codecs.Codec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code></a> class defines these methods which also define the
 function interfaces of the stateless encoder and decoder:</p>
-<dl class="py method">
+<dl class="py class">
+<dt class="sig sig-object py" id="codecs.Codec">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">Codec</span></span><a class="headerlink" href="#codecs.Codec" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="codecs.Codec.encode">
-<span class="sig-prename descclassname"><span class="pre">Codec.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.Codec.encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.Codec.encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encodes the object <em>input</em> and returns a tuple (output object, length consumed).
 For instance, <a class="reference internal" href="../glossary.html#term-text-encoding"><span class="xref std std-term">text encoding</span></a> converts
 a string object to a bytes object using a particular
 character set encoding (e.g., <code class="docutils literal notranslate"><span class="pre">cp1252</span></code> or <code class="docutils literal notranslate"><span class="pre">iso-8859-1</span></code>).</p>
 <p>The <em>errors</em> argument defines the error handling to apply.
 It defaults to <code class="docutils literal notranslate"><span class="pre">'strict'</span></code> handling.</p>
-<p>The method may not store state in the <code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code> instance. Use
+<p>The method may not store state in the <a class="reference internal" href="#codecs.Codec" title="codecs.Codec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code></a> instance. Use
 <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> for codecs which have to keep state in order to make
 encoding efficient.</p>
 <p>The encoder must be able to handle zero length input and return an empty object
@@ -730,7 +749,7 @@ of the output object type in this situation.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.Codec.decode">
-<span class="sig-prename descclassname"><span class="pre">Codec.</span></span><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.Codec.decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.Codec.decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decodes the object <em>input</em> and returns a tuple (output object, length
 consumed). For instance, for a <a class="reference internal" href="../glossary.html#term-text-encoding"><span class="xref std std-term">text encoding</span></a>, decoding converts
 a bytes object encoded using a particular
@@ -740,16 +759,18 @@ character set encoding to a string object.</p>
 buffer interface – for example, buffer objects and memory mapped files.</p>
 <p>The <em>errors</em> argument defines the error handling to apply.
 It defaults to <code class="docutils literal notranslate"><span class="pre">'strict'</span></code> handling.</p>
-<p>The method may not store state in the <code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code> instance. Use
+<p>The method may not store state in the <a class="reference internal" href="#codecs.Codec" title="codecs.Codec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code></a> instance. Use
 <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> for codecs which have to keep state in order to make
 decoding efficient.</p>
 <p>The decoder must be able to handle zero length input and return an empty object
 of the output object type in this situation.</p>
 </dd></dl>
 
+</dd></dl>
+
 </section>
 <section id="incremental-encoding-and-decoding">
-<h3>Incremental Encoding and Decoding<a class="headerlink" href="#incremental-encoding-and-decoding" title="Permalink to this headline">¶</a></h3>
+<h3>Incremental Encoding and Decoding<a class="headerlink" href="#incremental-encoding-and-decoding" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="#codecs.IncrementalEncoder" title="codecs.IncrementalEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalEncoder</span></code></a> and <a class="reference internal" href="#codecs.IncrementalDecoder" title="codecs.IncrementalDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalDecoder</span></code></a> classes provide
 the basic interface for incremental encoding and decoding. Encoding/decoding the
 input isn’t done with one call to the stateless encoder/decoder function, but
@@ -762,13 +783,13 @@ the encoding/decoding process during method calls.</p>
 the same as if all the single inputs were joined into one, and this input was
 encoded/decoded with the stateless encoder/decoder.</p>
 <section id="incrementalencoder-objects">
-<span id="incremental-encoder-objects"></span><h4>IncrementalEncoder Objects<a class="headerlink" href="#incrementalencoder-objects" title="Permalink to this headline">¶</a></h4>
+<span id="incremental-encoder-objects"></span><h4>IncrementalEncoder Objects<a class="headerlink" href="#incrementalencoder-objects" title="Link to this heading">¶</a></h4>
 <p>The <a class="reference internal" href="#codecs.IncrementalEncoder" title="codecs.IncrementalEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalEncoder</span></code></a> class is used for encoding an input in multiple
 steps. It defines the following methods which every incremental encoder must
 define in order to be compatible with the Python codec registry.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.IncrementalEncoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">IncrementalEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">IncrementalEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor for an <a class="reference internal" href="#codecs.IncrementalEncoder" title="codecs.IncrementalEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalEncoder</span></code></a> instance.</p>
 <p>All incremental encoders must provide this constructor interface. They are free
 to add additional keyword arguments, but only the ones defined here are used by
@@ -782,7 +803,7 @@ handling strategies during the lifetime of the <a class="reference internal" hre
 object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalEncoder.encode">
-<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.encode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.encode" title="Link to this definition">¶</a></dt>
 <dd><p>Encodes <em>object</em> (taking the current state of the encoder into account)
 and returns the resulting encoded object. If this is the last call to
 <a class="reference internal" href="#codecs.encode" title="codecs.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode()</span></code></a> <em>final</em> must be true (the default is false).</p>
@@ -790,7 +811,7 @@ and returns the resulting encoded object. If this is the last call to
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalEncoder.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.reset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.reset" title="Link to this definition">¶</a></dt>
 <dd><p>Reset the encoder to the initial state. The output is discarded: call
 <code class="docutils literal notranslate"><span class="pre">.encode(object,</span> <span class="pre">final=True)</span></code>, passing an empty byte or text string
 if necessary, to reset the encoder and to get the output.</p>
@@ -798,7 +819,7 @@ if necessary, to reset the encoder and to get the output.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalEncoder.getstate">
-<span class="sig-name descname"><span class="pre">getstate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.getstate" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getstate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.getstate" title="Link to this definition">¶</a></dt>
 <dd><p>Return the current state of the encoder which must be an integer. The
 implementation should make sure that <code class="docutils literal notranslate"><span class="pre">0</span></code> is the most common
 state. (States that are more complicated than integers can be converted
@@ -808,7 +829,7 @@ of the resulting string into an integer.)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalEncoder.setstate">
-<span class="sig-name descname"><span class="pre">setstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.setstate" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalEncoder.setstate" title="Link to this definition">¶</a></dt>
 <dd><p>Set the state of the encoder to <em>state</em>. <em>state</em> must be an encoder state
 returned by <a class="reference internal" href="#codecs.IncrementalEncoder.getstate" title="codecs.IncrementalEncoder.getstate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getstate()</span></code></a>.</p>
 </dd></dl>
@@ -817,13 +838,13 @@ returned by <a class="reference internal" href="#codecs.IncrementalEncoder.getst
 
 </section>
 <section id="incrementaldecoder-objects">
-<span id="incremental-decoder-objects"></span><h4>IncrementalDecoder Objects<a class="headerlink" href="#incrementaldecoder-objects" title="Permalink to this headline">¶</a></h4>
+<span id="incremental-decoder-objects"></span><h4>IncrementalDecoder Objects<a class="headerlink" href="#incrementaldecoder-objects" title="Link to this heading">¶</a></h4>
 <p>The <a class="reference internal" href="#codecs.IncrementalDecoder" title="codecs.IncrementalDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalDecoder</span></code></a> class is used for decoding an input in multiple
 steps. It defines the following methods which every incremental decoder must
 define in order to be compatible with the Python codec registry.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.IncrementalDecoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">IncrementalDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">IncrementalDecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor for an <a class="reference internal" href="#codecs.IncrementalDecoder" title="codecs.IncrementalDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalDecoder</span></code></a> instance.</p>
 <p>All incremental decoders must provide this constructor interface. They are free
 to add additional keyword arguments, but only the ones defined here are used by
@@ -837,7 +858,7 @@ handling strategies during the lifetime of the <a class="reference internal" hre
 object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalDecoder.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.decode" title="Link to this definition">¶</a></dt>
 <dd><p>Decodes <em>object</em> (taking the current state of the decoder into account)
 and returns the resulting decoded object. If this is the last call to
 <a class="reference internal" href="#codecs.decode" title="codecs.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">decode()</span></code></a> <em>final</em> must be true (the default is false). If <em>final</em> is
@@ -849,13 +870,13 @@ stateless case (which might raise an exception).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalDecoder.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.reset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.reset" title="Link to this definition">¶</a></dt>
 <dd><p>Reset the decoder to the initial state.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalDecoder.getstate">
-<span class="sig-name descname"><span class="pre">getstate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.getstate" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getstate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.getstate" title="Link to this definition">¶</a></dt>
 <dd><p>Return the current state of the decoder. This must be a tuple with two
 items, the first must be the buffer containing the still undecoded
 input. The second must be an integer and can be additional state
@@ -871,7 +892,7 @@ and encoding the bytes of the resulting string into an integer.)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.IncrementalDecoder.setstate">
-<span class="sig-name descname"><span class="pre">setstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.setstate" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.IncrementalDecoder.setstate" title="Link to this definition">¶</a></dt>
 <dd><p>Set the state of the decoder to <em>state</em>. <em>state</em> must be a decoder state
 returned by <a class="reference internal" href="#codecs.IncrementalDecoder.getstate" title="codecs.IncrementalDecoder.getstate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getstate()</span></code></a>.</p>
 </dd></dl>
@@ -881,18 +902,18 @@ returned by <a class="reference internal" href="#codecs.IncrementalDecoder.getst
 </section>
 </section>
 <section id="stream-encoding-and-decoding">
-<h3>Stream Encoding and Decoding<a class="headerlink" href="#stream-encoding-and-decoding" title="Permalink to this headline">¶</a></h3>
+<h3>Stream Encoding and Decoding<a class="headerlink" href="#stream-encoding-and-decoding" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> and <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> classes provide generic
 working interfaces which can be used to implement new encoding submodules very
 easily. See <code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.utf_8</span></code> for an example of how this is done.</p>
 <section id="streamwriter-objects">
-<span id="stream-writer-objects"></span><h4>StreamWriter Objects<a class="headerlink" href="#streamwriter-objects" title="Permalink to this headline">¶</a></h4>
-<p>The <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> class is a subclass of <code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code> and defines the
+<span id="stream-writer-objects"></span><h4>StreamWriter Objects<a class="headerlink" href="#streamwriter-objects" title="Link to this heading">¶</a></h4>
+<p>The <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> class is a subclass of <a class="reference internal" href="#codecs.Codec" title="codecs.Codec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code></a> and defines the
 following methods which every stream writer must define in order to be
 compatible with the Python codec registry.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.StreamWriter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor for a <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> instance.</p>
 <p>All stream writers must provide this constructor interface. They are free to add
 additional keyword arguments, but only the ones defined here are used by the
@@ -907,13 +928,13 @@ Assigning to this attribute makes it possible to switch between different error
 handling strategies during the lifetime of the <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamWriter.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter.write" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter.write" title="Link to this definition">¶</a></dt>
 <dd><p>Writes the object’s contents encoded to the stream.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamWriter.writelines">
-<span class="sig-name descname"><span class="pre">writelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter.writelines" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">writelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter.writelines" title="Link to this definition">¶</a></dt>
 <dd><p>Writes the concatenated iterable of strings to the stream (possibly by reusing
 the <a class="reference internal" href="#codecs.StreamWriter.write" title="codecs.StreamWriter.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method). Infinite or
 very large iterables are not supported. The standard bytes-to-bytes codecs
@@ -922,7 +943,7 @@ do not support this method.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamWriter.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter.reset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamWriter.reset" title="Link to this definition">¶</a></dt>
 <dd><p>Resets the codec buffers used for keeping internal state.</p>
 <p>Calling this method should ensure that the data on the output is put into
 a clean state that allows appending of new fresh data without having to
@@ -935,13 +956,13 @@ rescan the whole stream to recover state.</p>
 all other methods and attributes from the underlying stream.</p>
 </section>
 <section id="streamreader-objects">
-<span id="stream-reader-objects"></span><h4>StreamReader Objects<a class="headerlink" href="#streamreader-objects" title="Permalink to this headline">¶</a></h4>
-<p>The <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> class is a subclass of <code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code> and defines the
+<span id="stream-reader-objects"></span><h4>StreamReader Objects<a class="headerlink" href="#streamreader-objects" title="Link to this heading">¶</a></h4>
+<p>The <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> class is a subclass of <a class="reference internal" href="#codecs.Codec" title="codecs.Codec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code></a> and defines the
 following methods which every stream reader must define in order to be
 compatible with the Python codec registry.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.StreamReader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor for a <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> instance.</p>
 <p>All stream readers must provide this constructor interface. They are free to add
 additional keyword arguments, but only the ones defined here are used by the
@@ -958,7 +979,7 @@ handling strategies during the lifetime of the <a class="reference internal" hre
 <a class="reference internal" href="#codecs.register_error" title="codecs.register_error"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_error()</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamReader.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.read" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.read" title="Link to this definition">¶</a></dt>
 <dd><p>Decodes data from the stream and returns the resulting object.</p>
 <p>The <em>chars</em> argument indicates the number of decoded
 code points or bytes to return. The <a class="reference internal" href="#codecs.StreamReader.read" title="codecs.StreamReader.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> method will
@@ -981,7 +1002,7 @@ available on the stream, these should be read too.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamReader.readline">
-<span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.readline" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.readline" title="Link to this definition">¶</a></dt>
 <dd><p>Read one line from the input stream and return the decoded data.</p>
 <p><em>size</em>, if given, is passed as size argument to the stream’s
 <a class="reference internal" href="#codecs.StreamReader.read" title="codecs.StreamReader.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> method.</p>
@@ -991,7 +1012,7 @@ returned.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamReader.readlines">
-<span class="sig-name descname"><span class="pre">readlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sizehint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.readlines" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">readlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sizehint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.readlines" title="Link to this definition">¶</a></dt>
 <dd><p>Read all lines available on the input stream and return them as a list of
 lines.</p>
 <p>Line-endings are implemented using the codec’s <a class="reference internal" href="#codecs.decode" title="codecs.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">decode()</span></code></a> method and
@@ -1002,7 +1023,7 @@ are included in the list entries if <em>keepends</em> is true.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="codecs.StreamReader.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.reset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReader.reset" title="Link to this definition">¶</a></dt>
 <dd><p>Resets the codec buffers used for keeping internal state.</p>
 <p>Note that no stream repositioning should take place. This method is
 primarily intended to be able to recover from decoding errors.</p>
@@ -1014,14 +1035,14 @@ primarily intended to be able to recover from decoding errors.</p>
 all other methods and attributes from the underlying stream.</p>
 </section>
 <section id="streamreaderwriter-objects">
-<span id="stream-reader-writer"></span><h4>StreamReaderWriter Objects<a class="headerlink" href="#streamreaderwriter-objects" title="Permalink to this headline">¶</a></h4>
+<span id="stream-reader-writer"></span><h4>StreamReaderWriter Objects<a class="headerlink" href="#streamreaderwriter-objects" title="Link to this heading">¶</a></h4>
 <p>The <a class="reference internal" href="#codecs.StreamReaderWriter" title="codecs.StreamReaderWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReaderWriter</span></code></a> is a convenience class that allows wrapping
 streams which work in both read and write modes.</p>
 <p>The design is such that one can use the factory functions returned by the
 <a class="reference internal" href="#codecs.lookup" title="codecs.lookup"><code class="xref py py-func docutils literal notranslate"><span class="pre">lookup()</span></code></a> function to construct the instance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.StreamReaderWriter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamReaderWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReaderWriter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamReaderWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamReaderWriter" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a <a class="reference internal" href="#codecs.StreamReaderWriter" title="codecs.StreamReaderWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReaderWriter</span></code></a> instance. <em>stream</em> must be a file-like
 object. <em>Reader</em> and <em>Writer</em> must be factory functions or classes providing the
 <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> and <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> interface resp. Error handling
@@ -1033,23 +1054,24 @@ is done in the same way as defined for the stream readers and writers.</p>
 methods and attributes from the underlying stream.</p>
 </section>
 <section id="streamrecoder-objects">
-<span id="stream-recoder-objects"></span><h4>StreamRecoder Objects<a class="headerlink" href="#streamrecoder-objects" title="Permalink to this headline">¶</a></h4>
+<span id="stream-recoder-objects"></span><h4>StreamRecoder Objects<a class="headerlink" href="#streamrecoder-objects" title="Link to this heading">¶</a></h4>
 <p>The <a class="reference internal" href="#codecs.StreamRecoder" title="codecs.StreamRecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamRecoder</span></code></a> translates data from one encoding to another,
 which is sometimes useful when dealing with different encoding environments.</p>
 <p>The design is such that one can use the factory functions returned by the
 <a class="reference internal" href="#codecs.lookup" title="codecs.lookup"><code class="xref py py-func docutils literal notranslate"><span class="pre">lookup()</span></code></a> function to construct the instance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecs.StreamRecoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamRecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamRecoder" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecs.</span></span><span class="sig-name descname"><span class="pre">StreamRecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#codecs.StreamRecoder" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a <a class="reference internal" href="#codecs.StreamRecoder" title="codecs.StreamRecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamRecoder</span></code></a> instance which implements a two-way conversion:
-<em>encode</em> and <em>decode</em> work on the frontend — the data visible to
-code calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code>, while <em>Reader</em> and <em>Writer</em>
-work on the backend — the data in <em>stream</em>.</p>
+<em>encode</em> and <em>decode</em> work on the frontend — the data visible to
+code calling <a class="reference internal" href="#codecs.StreamReader.read" title="codecs.StreamReader.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> and <a class="reference internal" href="#codecs.StreamWriter.write" title="codecs.StreamWriter.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a>,
+while <em>Reader</em> and <em>Writer</em>
+work on the backend — the data in <em>stream</em>.</p>
 <p>You can use these objects to do transparent transcodings, e.g., from Latin-1
 to UTF-8 and back.</p>
 <p>The <em>stream</em> argument must be a file-like object.</p>
 <p>The <em>encode</em> and <em>decode</em> arguments must
-adhere to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code> interface. <em>Reader</em> and
+adhere to the <a class="reference internal" href="#codecs.Codec" title="codecs.Codec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Codec</span></code></a> interface. <em>Reader</em> and
 <em>Writer</em> must be factory functions or classes providing objects of the
 <a class="reference internal" href="#codecs.StreamReader" title="codecs.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> and <a class="reference internal" href="#codecs.StreamWriter" title="codecs.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> interface respectively.</p>
 <p>Error handling is done in the same way as defined for the stream readers and
@@ -1063,7 +1085,7 @@ methods and attributes from the underlying stream.</p>
 </section>
 </section>
 <section id="encodings-and-unicode">
-<span id="encodings-overview"></span><h2>Encodings and Unicode<a class="headerlink" href="#encodings-and-unicode" title="Permalink to this headline">¶</a></h2>
+<span id="encodings-overview"></span><h2>Encodings and Unicode<a class="headerlink" href="#encodings-and-unicode" title="Link to this heading">¶</a></h2>
 <p>Strings are stored internally as sequences of code points in
 range <code class="docutils literal notranslate"><span class="pre">U+0000</span></code>–<code class="docutils literal notranslate"><span class="pre">U+10FFFF</span></code>. (See <span class="target" id="index-5"></span><a class="pep reference external" href="https://peps.python.org/pep-0393/"><strong>PEP 393</strong></a> for
 more details about the implementation.)
@@ -1119,10 +1141,6 @@ are a sequence of zero to four <code class="docutils literal notranslate"><span 
 encoded like this (with x being payload bits, which when concatenated give the
 Unicode character):</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 43%" />
-<col style="width: 57%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Range</p></th>
 <th class="head"><p>Encoding</p></th>
@@ -1175,7 +1193,7 @@ three bytes in the file. In UTF-8, the use of the BOM is discouraged and
 should generally be avoided.</p>
 </section>
 <section id="standard-encodings">
-<span id="id3"></span><h2>Standard Encodings<a class="headerlink" href="#standard-encodings" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Standard Encodings<a class="headerlink" href="#standard-encodings" title="Link to this heading">¶</a></h2>
 <p>Python comes with a number of codecs built-in, either implemented as C functions
 or with dictionaries as mapping tables. The following table lists the codecs by
 name, together with a few common aliases, and the languages for which the
@@ -1183,15 +1201,18 @@ encoding is likely used. Neither the list of aliases nor the list of languages
 is meant to be exhaustive. Notice that spelling alternatives that only differ in
 case or use a hyphen instead of an underscore are also valid aliases; therefore,
 e.g. <code class="docutils literal notranslate"><span class="pre">'utf-8'</span></code> is a valid alias for the <code class="docutils literal notranslate"><span class="pre">'utf_8'</span></code> codec.</p>
+<p>On Windows, <code class="docutils literal notranslate"><span class="pre">cpXXX</span></code> codecs are available for all code pages.
+But only codecs listed in the following table are guarantead to exist on
+other platforms.</p>
 <div class="impl-detail compound">
-<p class="compound-first"><strong>CPython implementation detail:</strong> Some common encodings can bypass the codecs lookup machinery to
+<p><strong>CPython implementation detail:</strong> Some common encodings can bypass the codecs lookup machinery to
 improve performance. These optimization opportunities are only
 recognized by CPython for a limited set of (case insensitive)
 aliases: utf-8, utf8, latin-1, latin1, iso-8859-1, iso8859-1, mbcs
 (Windows only), ascii, us-ascii, utf-16, utf16, utf-32, utf32, and
 the same using underscores instead of dashes. Using alternative
 aliases for these encodings may result in slower execution.</p>
-<div class="compound-last versionchanged">
+<div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.6: </span>Optimization opportunity recognized for us-ascii.</p>
 </div>
 </div>
@@ -1207,11 +1228,6 @@ but replaces control characters with additional graphic characters</p></li>
 <li><p>an IBM PC code page, which is ASCII compatible</p></li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Codec</p></th>
 <th class="head"><p>Aliases</p></th>
@@ -1239,7 +1255,7 @@ but replaces control characters with additional graphic characters</p></li>
 <td><p>273, IBM273, csIBM273</p></td>
 <td><p>German</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </td>
 </tr>
@@ -1278,7 +1294,7 @@ IBM500</p></td>
 </tr>
 <tr class="row-odd"><td><p>cp855</p></td>
 <td><p>855, IBM855</p></td>
-<td><p>Bulgarian, Byelorussian,
+<td><p>Belarusian, Bulgarian,
 Macedonian, Russian, Serbian</p></td>
 </tr>
 <tr class="row-even"><td><p>cp856</p></td>
@@ -1334,7 +1350,8 @@ Macedonian, Russian, Serbian</p></td>
 <td><p>Greek</p></td>
 </tr>
 <tr class="row-odd"><td><p>cp932</p></td>
-<td><p>932, ms932, mskanji, ms-kanji</p></td>
+<td><p>932, ms932, mskanji, ms-kanji,
+windows-31j</p></td>
 <td><p>Japanese</p></td>
 </tr>
 <tr class="row-even"><td><p>cp949</p></td>
@@ -1357,7 +1374,7 @@ Macedonian, Russian, Serbian</p></td>
 <td><p>1125, ibm1125, cp866u, ruscii</p></td>
 <td><p>Ukrainian</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.4.</span></p>
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
 </div>
 </td>
 </tr>
@@ -1371,7 +1388,7 @@ Macedonian, Russian, Serbian</p></td>
 </tr>
 <tr class="row-odd"><td><p>cp1251</p></td>
 <td><p>windows-1251</p></td>
-<td><p>Bulgarian, Byelorussian,
+<td><p>Belarusian, Bulgarian,
 Macedonian, Russian, Serbian</p></td>
 </tr>
 <tr class="row-even"><td><p>cp1252</p></td>
@@ -1490,7 +1507,7 @@ cp819, latin, latin1, L1</p></td>
 </tr>
 <tr class="row-even"><td><p>iso8859_5</p></td>
 <td><p>iso-8859-5, cyrillic</p></td>
-<td><p>Bulgarian, Byelorussian,
+<td><p>Belarusian, Bulgarian,
 Macedonian, Russian, Serbian</p></td>
 </tr>
 <tr class="row-odd"><td><p>iso8859_6</p></td>
@@ -1545,7 +1562,7 @@ Macedonian, Russian, Serbian</p></td>
 <td></td>
 <td><p>Tajik</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.5.</span></p>
+<p><span class="versionmodified added">Added in version 3.5.</span></p>
 </div>
 </td>
 </tr>
@@ -1557,13 +1574,13 @@ Macedonian, Russian, Serbian</p></td>
 <td><p>kz_1048, strk1048_2002, rk1048</p></td>
 <td><p>Kazakh</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.5.</span></p>
+<p><span class="versionmodified added">Added in version 3.5.</span></p>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p>mac_cyrillic</p></td>
 <td><p>maccyrillic</p></td>
-<td><p>Bulgarian, Byelorussian,
+<td><p>Belarusian, Bulgarian,
 Macedonian, Russian, Serbian</p></td>
 </tr>
 <tr class="row-odd"><td><p>mac_greek</p></td>
@@ -1654,9 +1671,12 @@ byte sequences that correspond to surrogate code points.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.8: </span><code class="docutils literal notranslate"><span class="pre">cp65001</span></code> is now an alias to <code class="docutils literal notranslate"><span class="pre">utf_8</span></code>.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.14: </span>On Windows, <code class="docutils literal notranslate"><span class="pre">cpXXX</span></code> codecs are now available for all code pages.</p>
+</div>
 </section>
 <section id="python-specific-encodings">
-<h2>Python Specific Encodings<a class="headerlink" href="#python-specific-encodings" title="Permalink to this headline">¶</a></h2>
+<h2>Python Specific Encodings<a class="headerlink" href="#python-specific-encodings" title="Link to this heading">¶</a></h2>
 <p>A number of predefined codecs are specific to Python, so their codec names have
 no meaning outside Python. These are listed in the tables below based on the
 expected input and output types (note that while text encodings are the most
@@ -1664,16 +1684,11 @@ common use case for codecs, the underlying codec infrastructure supports
 arbitrary data transforms rather than just text encodings). For asymmetric
 codecs, the stated meaning describes the encoding direction.</p>
 <section id="text-encodings">
-<h3>Text Encodings<a class="headerlink" href="#text-encodings" title="Permalink to this headline">¶</a></h3>
+<h3>Text Encodings<a class="headerlink" href="#text-encodings" title="Link to this heading">¶</a></h3>
 <p>The following codecs provide <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> encoding and
 <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a> to <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> decoding, similar to the Unicode text
 encodings.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 16%" />
-<col style="width: 48%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Codec</p></th>
 <th class="head"><p>Aliases</p></th>
@@ -1702,7 +1717,7 @@ ANSI codepage (CP_ACP).</p></td>
 operand according to the
 OEM codepage (CP_OEMCP).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.6.</span></p>
+<p><span class="versionmodified added">Added in version 3.6.</span></p>
 </div>
 </td>
 </tr>
@@ -1719,9 +1734,10 @@ supported.</p></td>
 <tr class="row-odd"><td><p>raw_unicode_escape</p></td>
 <td></td>
 <td><p>Latin-1 encoding with
-<code class="docutils literal notranslate"><span class="pre">\uXXXX</span></code> and
-<code class="docutils literal notranslate"><span class="pre">\UXXXXXXXX</span></code> for other
-code points. Existing
+<code class="samp docutils literal notranslate"><span class="pre">\u</span><em><span class="pre">XXXX</span></em></code> and
+<code class="samp docutils literal notranslate"><span class="pre">\U</span><em><span class="pre">XXXXXXXX</span></em></code>
+for other code points.
+Existing
 backslashes are not
 escaped in any way.
 It is used in the Python
@@ -1754,17 +1770,11 @@ by default.</p></td>
 </div>
 </section>
 <section id="binary-transforms">
-<span id="id4"></span><h3>Binary Transforms<a class="headerlink" href="#binary-transforms" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Binary Transforms<a class="headerlink" href="#binary-transforms" title="Link to this heading">¶</a></h3>
 <p>The following codecs provide binary transforms: <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like object</span></a>
 to <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> mappings. They are not supported by <a class="reference internal" href="stdtypes.html#bytes.decode" title="bytes.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bytes.decode()</span></code></a>
 (which only produces <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> output).</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 18%" />
-<col style="width: 30%" />
-<col style="width: 30%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Codec</p></th>
 <th class="head"><p>Aliases</p></th>
@@ -1773,7 +1783,7 @@ to <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>base64_codec <a class="footnote-reference brackets" href="#b64" id="id5">1</a></p></td>
+<tr class="row-even"><td><p>base64_codec <a class="footnote-reference brackets" href="#b64" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>base64, base_64</p></td>
 <td><p>Convert the operand to
 multiline MIME base64 (the
@@ -1819,8 +1829,7 @@ quoted printable.</p></td>
 <td><p>uu</p></td>
 <td><p>Convert the operand using
 uuencode.</p></td>
-<td><p><a class="reference internal" href="uu.html#uu.encode" title="uu.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uu.encode()</span></code></a> /
-<a class="reference internal" href="uu.html#uu.decode" title="uu.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uu.decode()</span></code></a></p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td><p>zlib_codec</p></td>
 <td><p>zip, zlib</p></td>
@@ -1831,31 +1840,27 @@ gzip.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="footnote brackets">
-<dt class="label" id="b64"><span class="brackets"><a class="fn-backref" href="#id5">1</a></span></dt>
-<dd><p>In addition to <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like objects</span></a>,
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="b64" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>In addition to <a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">bytes-like objects</span></a>,
 <code class="docutils literal notranslate"><span class="pre">'base64_codec'</span></code> also accepts ASCII-only instances of <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> for
 decoding</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.2: </span>Restoration of the binary transforms.</p>
+<p><span class="versionmodified added">Added in version 3.2: </span>Restoration of the binary transforms.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.4: </span>Restoration of the aliases for the binary transforms.</p>
 </div>
 </section>
 <section id="text-transforms">
-<span id="id6"></span><h3>Text Transforms<a class="headerlink" href="#text-transforms" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Text Transforms<a class="headerlink" href="#text-transforms" title="Link to this heading">¶</a></h3>
 <p>The following codec provides a text transform: a <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
 mapping. It is not supported by <a class="reference internal" href="stdtypes.html#str.encode" title="str.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.encode()</span></code></a> (which only produces
 <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> output).</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 16%" />
-<col style="width: 48%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Codec</p></th>
 <th class="head"><p>Aliases</p></th>
@@ -1872,7 +1877,7 @@ operand.</p></td>
 </tbody>
 </table>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 3.2: </span>Restoration of the <code class="docutils literal notranslate"><span class="pre">rot_13</span></code> text transform.</p>
+<p><span class="versionmodified added">Added in version 3.2: </span>Restoration of the <code class="docutils literal notranslate"><span class="pre">rot_13</span></code> text transform.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.4: </span>Restoration of the <code class="docutils literal notranslate"><span class="pre">rot13</span></code> alias.</p>
@@ -1880,13 +1885,13 @@ operand.</p></td>
 </section>
 </section>
 <section id="module-encodings.idna">
-<span id="encodings-idna-internationalized-domain-names-in-applications"></span><h2><a class="reference internal" href="#module-encodings.idna" title="encodings.idna: Internationalized Domain Names implementation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.idna</span></code></a> — Internationalized Domain Names in Applications<a class="headerlink" href="#module-encodings.idna" title="Permalink to this headline">¶</a></h2>
+<span id="encodings-idna-internationalized-domain-names-in-applications"></span><h2><a class="reference internal" href="#module-encodings.idna" title="encodings.idna: Internationalized Domain Names implementation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.idna</span></code></a> — Internationalized Domain Names in Applications<a class="headerlink" href="#module-encodings.idna" title="Link to this heading">¶</a></h2>
 <p>This module implements <span class="target" id="index-8"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3490.html"><strong>RFC 3490</strong></a> (Internationalized Domain Names in
 Applications) and <span class="target" id="index-9"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3492.html"><strong>RFC 3492</strong></a> (Nameprep: A Stringprep Profile for
 Internationalized Domain Names (IDN)). It builds upon the <code class="docutils literal notranslate"><span class="pre">punycode</span></code> encoding
 and <a class="reference internal" href="stringprep.html#module-stringprep" title="stringprep: String preparation, as per RFC 3453"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stringprep</span></code></a>.</p>
 <p>If you need the IDNA 2008 standard from <span class="target" id="index-10"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5891.html"><strong>RFC 5891</strong></a> and <span class="target" id="index-11"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5895.html"><strong>RFC 5895</strong></a>, use the
-third-party <a class="reference external" href="https://pypi.org/project/idna/">idna module</a>.</p>
+third-party <a class="extlink-pypi reference external" href="https://pypi.org/project/idna/">idna</a> module.</p>
 <p>These RFCs together define a protocol to support non-ASCII characters in domain
 names. A domain name containing non-ASCII characters (such as
 <code class="docutils literal notranslate"><span class="pre">www.Alliancefrançaise.nu</span></code>) is converted into an ASCII-compatible encoding
@@ -1918,39 +1923,41 @@ international domain names, and to unify similar characters. The nameprep
 functions can be used directly if desired.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="encodings.idna.nameprep">
-<span class="sig-prename descclassname"><span class="pre">encodings.idna.</span></span><span class="sig-name descname"><span class="pre">nameprep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#encodings.idna.nameprep" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">encodings.idna.</span></span><span class="sig-name descname"><span class="pre">nameprep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#encodings.idna.nameprep" title="Link to this definition">¶</a></dt>
 <dd><p>Return the nameprepped version of <em>label</em>. The implementation currently assumes
 query strings, so <code class="docutils literal notranslate"><span class="pre">AllowUnassigned</span></code> is true.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="encodings.idna.ToASCII">
-<span class="sig-prename descclassname"><span class="pre">encodings.idna.</span></span><span class="sig-name descname"><span class="pre">ToASCII</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#encodings.idna.ToASCII" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">encodings.idna.</span></span><span class="sig-name descname"><span class="pre">ToASCII</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#encodings.idna.ToASCII" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a label to ASCII, as specified in <span class="target" id="index-13"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3490.html"><strong>RFC 3490</strong></a>. <code class="docutils literal notranslate"><span class="pre">UseSTD3ASCIIRules</span></code> is
 assumed to be false.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="encodings.idna.ToUnicode">
-<span class="sig-prename descclassname"><span class="pre">encodings.idna.</span></span><span class="sig-name descname"><span class="pre">ToUnicode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#encodings.idna.ToUnicode" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">encodings.idna.</span></span><span class="sig-name descname"><span class="pre">ToUnicode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#encodings.idna.ToUnicode" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a label to Unicode, as specified in <span class="target" id="index-14"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3490.html"><strong>RFC 3490</strong></a>.</p>
 </dd></dl>
 
 </section>
 <section id="module-encodings.mbcs">
-<span id="encodings-mbcs-windows-ansi-codepage"></span><h2><a class="reference internal" href="#module-encodings.mbcs" title="encodings.mbcs: Windows ANSI codepage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.mbcs</span></code></a> — Windows ANSI codepage<a class="headerlink" href="#module-encodings.mbcs" title="Permalink to this headline">¶</a></h2>
+<span id="encodings-mbcs-windows-ansi-codepage"></span><h2><a class="reference internal" href="#module-encodings.mbcs" title="encodings.mbcs: Windows ANSI codepage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.mbcs</span></code></a> — Windows ANSI codepage<a class="headerlink" href="#module-encodings.mbcs" title="Link to this heading">¶</a></h2>
 <p>This module implements the ANSI codepage (CP_ACP).</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Windows.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.3: </span>Support any error handler.</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Windows.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.2: </span>Before 3.2, the <em>errors</em> argument was ignored; <code class="docutils literal notranslate"><span class="pre">'replace'</span></code> was always used
 to encode, and <code class="docutils literal notranslate"><span class="pre">'ignore'</span></code> to decode.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.3: </span>Support any error handler.</p>
+</div>
 </section>
 <section id="module-encodings.utf_8_sig">
-<span id="encodings-utf-8-sig-utf-8-codec-with-bom-signature"></span><h2><a class="reference internal" href="#module-encodings.utf_8_sig" title="encodings.utf_8_sig: UTF-8 codec with BOM signature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.utf_8_sig</span></code></a> — UTF-8 codec with BOM signature<a class="headerlink" href="#module-encodings.utf_8_sig" title="Permalink to this headline">¶</a></h2>
+<span id="encodings-utf-8-sig-utf-8-codec-with-bom-signature"></span><h2><a class="reference internal" href="#module-encodings.utf_8_sig" title="encodings.utf_8_sig: UTF-8 codec with BOM signature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">encodings.utf_8_sig</span></code></a> — UTF-8 codec with BOM signature<a class="headerlink" href="#module-encodings.utf_8_sig" title="Link to this heading">¶</a></h2>
 <p>This module implements a variant of the UTF-8 codec. On encoding, a UTF-8 encoded
 BOM will be prepended to the UTF-8 encoded bytes. For the stateful encoder this
 is only done once (on the first write to the byte stream). On decoding, an
@@ -1963,7 +1970,7 @@ optional UTF-8 encoded BOM at the start of the data will be skipped.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -2024,10 +2031,14 @@ optional UTF-8 encoded BOM at the start of the data will be skipped.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -2043,7 +2054,7 @@ optional UTF-8 encoded BOM at the start of the data will be skipped.</p>
           <a href="struct.html" title="struct — Interpret bytes as packed binary data"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -2053,7 +2064,7 @@ optional UTF-8 encoded BOM at the start of the data will be skipped.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -2064,37 +2075,54 @@ optional UTF-8 encoded BOM at the start of the data will be skipped.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

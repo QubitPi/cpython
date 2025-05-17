@@ -1,46 +1,47 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Curses Programming with Python" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/howto/curses.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Author, A.M. Kuchling, Eric S. Raymond,, Release, 2.04,. Abstract: This document describes how to use the curses extension module to control text-mode displays. What is curses?: The curses library ..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Author, A.M. Kuchling, Eric S. Raymond,, Release, 2.04,. Abstract: This document describes how to use the curses extension module to control text-mode displays. What is curses?: The curses library ..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>Curses Programming with Python &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curses Programming with Python &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/howto/curses.html" />
+    <link rel="canonical" href="/howto/curses.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="next" title="Descriptor HowTo Guide" href="descriptor.html" />
+    <link rel="next" title="Descriptor Guide" href="descriptor.html" />
     <link rel="prev" title="Porting Extension Modules to Python 3" href="cporting.html" />
-    <link rel="canonical" href="https://docs.python.org/3/howto/curses.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/howto/curses.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -110,7 +126,7 @@
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="descriptor.html"
-                          title="next chapter">Descriptor HowTo Guide</a></p>
+                          title="next chapter">Descriptor Guide</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -128,7 +144,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -138,13 +154,13 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="descriptor.html" title="Descriptor HowTo Guide"
+          <a href="descriptor.html" title="Descriptor Guide"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="cporting.html" title="Porting Extension Modules to Python 3"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -154,7 +170,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python HOWTOs</a> &#187;</li>
@@ -164,14 +180,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -182,22 +205,22 @@
           <div class="body" role="main">
             
   <section id="curses-programming-with-python">
-<span id="curses-howto"></span><h1>Curses Programming with Python<a class="headerlink" href="#curses-programming-with-python" title="Permalink to this headline">¶</a></h1>
+<span id="curses-howto"></span><h1>Curses Programming with Python<a class="headerlink" href="#curses-programming-with-python" title="Link to this heading">¶</a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Author</dt>
+<dt class="field-odd">Author<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A.M. Kuchling, Eric S. Raymond</p>
 </dd>
-<dt class="field-even">Release</dt>
+<dt class="field-even">Release<span class="colon">:</span></dt>
 <dd class="field-even"><p>2.04</p>
 </dd>
 </dl>
-<div class="topic">
+<aside class="topic">
 <p class="topic-title">Abstract</p>
 <p>This document describes how to use the <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a> extension
 module to control text-mode displays.</p>
-</div>
+</aside>
 <section id="what-is-curses">
-<h2>What is curses?<a class="headerlink" href="#what-is-curses" title="Permalink to this headline">¶</a></h2>
+<h2>What is curses?<a class="headerlink" href="#what-is-curses" title="Link to this heading">¶</a></h2>
 <p>The curses library supplies a terminal-independent screen-painting and
 keyboard-handling facility for text-based terminals; such terminals
 include VT100s, the Linux console, and the simulated terminal provided
@@ -220,7 +243,7 @@ appearance—and the curses library will figure out what control codes
 need to be sent to the terminal to produce the right output.  curses
 doesn’t provide many user-interface concepts such as buttons, checkboxes,
 or dialogs; if you need such features, consider a user interface library such as
-<a class="reference external" href="https://pypi.org/project/urwid/">Urwid</a>.</p>
+<a class="extlink-pypi reference external" href="https://pypi.org/project/Urwid/">Urwid</a>.</p>
 <p>The curses library was originally written for BSD Unix; the later System V
 versions of Unix from AT&amp;T added many enhancements and new functions. BSD curses
 is no longer maintained, having been replaced by ncurses, which is an
@@ -231,9 +254,9 @@ code, all the functions described here will probably be available.  The older
 versions of curses carried by some proprietary Unixes may not support
 everything, though.</p>
 <p>The Windows version of Python doesn’t include the <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a>
-module.  A ported version called <a class="reference external" href="https://pypi.org/project/UniCurses">UniCurses</a> is available.</p>
+module.  A ported version called <a class="extlink-pypi reference external" href="https://pypi.org/project/UniCurses/">UniCurses</a> is available.</p>
 <section id="the-python-curses-module">
-<h3>The Python curses module<a class="headerlink" href="#the-python-curses-module" title="Permalink to this headline">¶</a></h3>
+<h3>The Python curses module<a class="headerlink" href="#the-python-curses-module" title="Link to this heading">¶</a></h3>
 <p>The Python module is a fairly simple wrapper over the C functions provided by
 curses; if you’re already familiar with curses programming in C, it’s really
 easy to transfer that knowledge to Python.  The biggest difference is that the
@@ -248,7 +271,7 @@ for ncurses.  It will, however, give you the basic ideas.</p>
 </section>
 </section>
 <section id="starting-and-ending-a-curses-application">
-<h2>Starting and ending a curses application<a class="headerlink" href="#starting-and-ending-a-curses-application" title="Permalink to this headline">¶</a></h2>
+<h2>Starting and ending a curses application<a class="headerlink" href="#starting-and-ending-a-curses-application" title="Link to this heading">¶</a></h2>
 <p>Before doing anything, curses must be initialized.  This is done by
 calling the <a class="reference internal" href="../library/curses.html#curses.initscr" title="curses.initscr"><code class="xref py py-func docutils literal notranslate"><span class="pre">initscr()</span></code></a> function, which will determine the
 terminal type, send any required setup codes to the terminal, and
@@ -256,7 +279,7 @@ create various internal data structures.  If successful,
 <code class="xref py py-func docutils literal notranslate"><span class="pre">initscr()</span></code> returns a window object representing the entire
 screen; this is usually called <code class="docutils literal notranslate"><span class="pre">stdscr</span></code> after the name of the
 corresponding C variable.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">curses</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">curses</span>
 <span class="n">stdscr</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">initscr</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -277,7 +300,7 @@ mode, as opposed to the usual buffered input mode.</p>
 keys such as Page Up and Home, as a multibyte escape sequence.  While you could
 write your application to expect such sequences and process them accordingly,
 curses can do it for you, returning a special value such as
-<code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_LEFT</span></code>.  To get curses to do the job, you’ll have to enable
+<a class="reference internal" href="../library/curses.html#curses.KEY_LEFT" title="curses.KEY_LEFT"><code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_LEFT</span></code></a>.  To get curses to do the job, you’ll have to enable
 keypad mode.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">stdscr</span><span class="o">.</span><span class="n">keypad</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -302,9 +325,9 @@ raises an uncaught exception.  Keys are no longer echoed to the screen when
 you type them, for example, which makes using the shell difficult.</p>
 <p>In Python you can avoid these complications and make debugging much easier by
 importing the <a class="reference internal" href="../library/curses.html#curses.wrapper" title="curses.wrapper"><code class="xref py py-func docutils literal notranslate"><span class="pre">curses.wrapper()</span></code></a> function and using it like this:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">curses</span> <span class="kn">import</span> <span class="n">wrapper</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">curses</span><span class="w"> </span><span class="kn">import</span> <span class="n">wrapper</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
     <span class="c1"># Clear screen</span>
     <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
@@ -313,8 +336,8 @@ importing the <a class="reference internal" href="../library/curses.html#curses.
         <span class="n">v</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">10</span>
         <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;10 divided by </span><span class="si">{}</span><span class="s1"> is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">10</span><span class="o">/</span><span class="n">v</span><span class="p">))</span>
 
-    <span class="n">stdscr</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
-    <span class="n">stdscr</span><span class="o">.</span><span class="n">getkey</span><span class="p">()</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">getkey</span><span class="p">()</span>
 
 <span class="n">wrapper</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
 </pre></div>
@@ -330,7 +353,7 @@ your terminal won’t be left in a funny state on exception and you’ll be
 able to read the exception’s message and traceback.</p>
 </section>
 <section id="windows-and-pads">
-<h2>Windows and Pads<a class="headerlink" href="#windows-and-pads" title="Permalink to this headline">¶</a></h2>
+<h2>Windows and Pads<a class="headerlink" href="#windows-and-pads" title="Link to this heading">¶</a></h2>
 <p>Windows are the basic abstraction in curses.  A window object represents a
 rectangular area of the screen, and supports methods to display text,
 erase it, allow the user to input strings, and so forth.</p>
@@ -353,7 +376,7 @@ first.  This is an unfortunate difference from most other computer
 applications, but it’s been part of curses since it was first written,
 and it’s too late to change things now.</p>
 <p>Your application can determine the size of the screen by using the
-<code class="xref py py-data docutils literal notranslate"><span class="pre">curses.LINES</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">curses.COLS</span></code> variables to obtain the <em>y</em> and
+<a class="reference internal" href="../library/curses.html#curses.LINES" title="curses.LINES"><code class="xref py py-data docutils literal notranslate"><span class="pre">curses.LINES</span></code></a> and <a class="reference internal" href="../library/curses.html#curses.COLS" title="curses.COLS"><code class="xref py py-data docutils literal notranslate"><span class="pre">curses.COLS</span></code></a> variables to obtain the <em>y</em> and
 <em>x</em> sizes.  Legal coordinates will then extend from <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> to
 <code class="docutils literal notranslate"><span class="pre">(curses.LINES</span> <span class="pre">-</span> <span class="pre">1,</span> <span class="pre">curses.COLS</span> <span class="pre">-</span> <span class="pre">1)</span></code>.</p>
 <p>When you call a method to display or erase text, the effect doesn’t
@@ -373,7 +396,7 @@ really complicate programming with curses much. Most programs go into a flurry
 of activity, and then pause waiting for a keypress or some other action on the
 part of the user.  All you have to do is to be sure that the screen has been
 redrawn before pausing to wait for user input, by first calling
-<code class="docutils literal notranslate"><span class="pre">stdscr.refresh()</span></code> or the <code class="xref py py-meth docutils literal notranslate"><span class="pre">refresh()</span></code> method of some other relevant
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">stdscr.refresh()</span></code> or the <code class="xref py py-meth docutils literal notranslate"><span class="pre">refresh()</span></code> method of some other relevant
 window.</p>
 <p>A pad is a special case of a window; it can be larger than the actual display
 screen, and only a portion of the pad displayed at a time. Creating a pad
@@ -417,7 +440,7 @@ update the data structure, and then call <code class="xref py py-func docutils l
 the screen.</p>
 </section>
 <section id="displaying-text">
-<h2>Displaying Text<a class="headerlink" href="#displaying-text" title="Permalink to this headline">¶</a></h2>
+<h2>Displaying Text<a class="headerlink" href="#displaying-text" title="Link to this heading">¶</a></h2>
 <p>From a C programmer’s point of view, curses may sometimes look like a
 twisty maze of functions, all subtly different.  For example,
 <code class="xref c c-func docutils literal notranslate"><span class="pre">addstr()</span></code> displays a string at the current cursor location in
@@ -431,10 +454,6 @@ is a window object like any other, and methods such as
 <a class="reference internal" href="../library/curses.html#curses.window.addstr" title="curses.window.addstr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">addstr()</span></code></a> accept multiple argument forms.  Usually there
 are four different forms.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 41%" />
-<col style="width: 59%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Form</p></th>
 <th class="head"><p>Description</p></th>
@@ -466,13 +485,13 @@ the next subsection.</p>
 <p>The <a class="reference internal" href="../library/curses.html#curses.window.addstr" title="curses.window.addstr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">addstr()</span></code></a> method takes a Python string or
 bytestring as the value to be displayed.  The contents of bytestrings
 are sent to the terminal as-is.  Strings are encoded to bytes using
-the value of the window’s <code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code> attribute; this defaults to
+the value of the window’s <a class="reference internal" href="../library/curses.html#curses.window.encoding" title="curses.window.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> attribute; this defaults to
 the default system encoding as returned by <a class="reference internal" href="../library/locale.html#locale.getencoding" title="locale.getencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">locale.getencoding()</span></code></a>.</p>
 <p>The <a class="reference internal" href="../library/curses.html#curses.window.addch" title="curses.window.addch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">addch()</span></code></a> methods take a character, which can be
 either a string of length 1, a bytestring of length 1, or an integer.</p>
 <p>Constants are provided for extension characters; these constants are
-integers greater than 255.  For example, <code class="xref py py-const docutils literal notranslate"><span class="pre">ACS_PLMINUS</span></code> is a +/-
-symbol, and <code class="xref py py-const docutils literal notranslate"><span class="pre">ACS_ULCORNER</span></code> is the upper left corner of a box
+integers greater than 255.  For example, <a class="reference internal" href="../library/curses.html#curses.ACS_PLMINUS" title="curses.ACS_PLMINUS"><code class="xref py py-const docutils literal notranslate"><span class="pre">ACS_PLMINUS</span></code></a> is a +/-
+symbol, and <a class="reference internal" href="../library/curses.html#curses.ACS_ULCORNER" title="curses.ACS_ULCORNER"><code class="xref py py-const docutils literal notranslate"><span class="pre">ACS_ULCORNER</span></code></a> is the upper left corner of a box
 (handy for drawing borders).  You can also use the appropriate Unicode
 character.</p>
 <p>Windows remember where the cursor was left after the last operation, so if you
@@ -489,7 +508,7 @@ that’s a synonym for <a class="reference internal" href="../library/curses.htm
 curses library will attempt to suppress the flashing cursor, and you
 won’t need to worry about leaving it in odd locations.</p>
 <section id="attributes-and-color">
-<h3>Attributes and Color<a class="headerlink" href="#attributes-and-color" title="Permalink to this headline">¶</a></h3>
+<h3>Attributes and Color<a class="headerlink" href="#attributes-and-color" title="Link to this heading">¶</a></h3>
 <p>Characters can be displayed in different ways.  Status lines in a text-based
 application are commonly shown in reverse video, or a text viewer may need to
 highlight certain words.  curses supports this by allowing you to specify an
@@ -501,32 +520,28 @@ are available, or that they’re all visually distinct.  That depends on
 the ability of the terminal being used, so it’s safest to stick to the
 most commonly available attributes, listed here.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 37%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">A_BLINK</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../library/curses.html#curses.A_BLINK" title="curses.A_BLINK"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_BLINK</span></code></a></p></td>
 <td><p>Blinking text</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">A_BOLD</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../library/curses.html#curses.A_BOLD" title="curses.A_BOLD"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_BOLD</span></code></a></p></td>
 <td><p>Extra bright or bold text</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">A_DIM</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../library/curses.html#curses.A_DIM" title="curses.A_DIM"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_DIM</span></code></a></p></td>
 <td><p>Half bright text</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">A_REVERSE</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../library/curses.html#curses.A_REVERSE" title="curses.A_REVERSE"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_REVERSE</span></code></a></p></td>
 <td><p>Reverse-video text</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">A_STANDOUT</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../library/curses.html#curses.A_STANDOUT" title="curses.A_STANDOUT"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_STANDOUT</span></code></a></p></td>
 <td><p>The best highlighting mode available</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">A_UNDERLINE</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../library/curses.html#curses.A_UNDERLINE" title="curses.A_UNDERLINE"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_UNDERLINE</span></code></a></p></td>
 <td><p>Underlined text</p></td>
 </tr>
 </tbody>
@@ -554,7 +569,7 @@ of these functions.)</p>
 foreground (or text) color and a background color.  You can get the attribute
 value corresponding to a color pair with the <a class="reference internal" href="../library/curses.html#curses.color_pair" title="curses.color_pair"><code class="xref py py-func docutils literal notranslate"><span class="pre">color_pair()</span></code></a>
 function; this can be bitwise-OR’ed with other attributes such as
-<code class="xref py py-const docutils literal notranslate"><span class="pre">A_REVERSE</span></code>, but again, such combinations are not guaranteed to work
+<a class="reference internal" href="../library/curses.html#curses.A_REVERSE" title="curses.A_REVERSE"><code class="xref py py-const docutils literal notranslate"><span class="pre">A_REVERSE</span></code></a>, but again, such combinations are not guaranteed to work
 on all terminals.</p>
 <p>An example, which displays a line of text using color pair 1:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s2">&quot;Pretty text&quot;</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">color_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
@@ -565,11 +580,11 @@ on all terminals.</p>
 The <code class="docutils literal notranslate"><span class="pre">init_pair(n,</span> <span class="pre">f,</span> <span class="pre">b)</span></code> function changes the definition of color pair <em>n</em>, to
 foreground color f and background color b.  Color pair 0 is hard-wired to white
 on black, and cannot be changed.</p>
-<p>Colors are numbered, and <code class="xref py py-func docutils literal notranslate"><span class="pre">start_color()</span></code> initializes 8 basic
+<p>Colors are numbered, and <a class="reference internal" href="../library/curses.html#curses.start_color" title="curses.start_color"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_color()</span></code></a> initializes 8 basic
 colors when it activates color mode.  They are: 0:black, 1:red,
 2:green, 3:yellow, 4:blue, 5:magenta, 6:cyan, and 7:white.  The <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a>
 module defines named constants for each of these colors:
-<code class="xref py py-const docutils literal notranslate"><span class="pre">curses.COLOR_BLACK</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">curses.COLOR_RED</span></code>, and so forth.</p>
+<a class="reference internal" href="../library/curses.html#curses.COLOR_BLACK" title="curses.COLOR_BLACK"><code class="xref py py-const docutils literal notranslate"><span class="pre">curses.COLOR_BLACK</span></code></a>, <a class="reference internal" href="../library/curses.html#curses.COLOR_RED" title="curses.COLOR_RED"><code class="xref py py-const docutils literal notranslate"><span class="pre">curses.COLOR_RED</span></code></a>, and so forth.</p>
 <p>Let’s put all this together. To change color 1 to red text on a white
 background, you would call:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">curses</span><span class="o">.</span><span class="n">init_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">COLOR_RED</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">COLOR_WHITE</span><span class="p">)</span>
@@ -592,11 +607,10 @@ system’s man pages for more information.</p>
 </section>
 </section>
 <section id="user-input">
-<h2>User Input<a class="headerlink" href="#user-input" title="Permalink to this headline">¶</a></h2>
+<h2>User Input<a class="headerlink" href="#user-input" title="Link to this heading">¶</a></h2>
 <p>The C curses library offers only very simple input mechanisms. Python’s
 <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a> module adds a basic text-input widget.  (Other libraries
-such as <a class="reference external" href="https://pypi.org/project/urwid/">Urwid</a> have more extensive
-collections of widgets.)</p>
+such as <a class="extlink-pypi reference external" href="https://pypi.org/project/Urwid/">Urwid</a> have more extensive collections of widgets.)</p>
 <p>There are two methods for getting input from a window:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../library/curses.html#curses.window.getch" title="curses.window.getch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getch()</span></code></a> refreshes the screen and then waits for
@@ -620,8 +634,8 @@ curses raises an exception.</p>
 <p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">getch()</span></code> method returns an integer; if it’s between 0 and 255, it
 represents the ASCII code of the key pressed.  Values greater than 255 are
 special keys such as Page Up, Home, or the cursor keys. You can compare the
-value returned to constants such as <code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_PPAGE</span></code>,
-<code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_HOME</span></code>, or <code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_LEFT</span></code>.  The main loop of
+value returned to constants such as <a class="reference internal" href="../library/curses.html#curses.KEY_PPAGE" title="curses.KEY_PPAGE"><code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_PPAGE</span></code></a>,
+<a class="reference internal" href="../library/curses.html#curses.KEY_HOME" title="curses.KEY_HOME"><code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_HOME</span></code></a>, or <a class="reference internal" href="../library/curses.html#curses.KEY_LEFT" title="curses.KEY_LEFT"><code class="xref py py-const docutils literal notranslate"><span class="pre">curses.KEY_LEFT</span></code></a>.  The main loop of
 your program may look something like this:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">stdscr</span><span class="o">.</span><span class="n">getch</span><span class="p">()</span>
@@ -655,10 +669,10 @@ Emacs-like set of keybindings.  Various methods of the
 <a class="reference internal" href="../library/curses.html#curses.textpad.Textbox" title="curses.textpad.Textbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Textbox</span></code></a> class support editing with input
 validation and gathering the edit results either with or without
 trailing spaces.  Here’s an example:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">curses</span>
-<span class="kn">from</span> <span class="nn">curses.textpad</span> <span class="kn">import</span> <span class="n">Textbox</span><span class="p">,</span> <span class="n">rectangle</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">curses</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">curses.textpad</span><span class="w"> </span><span class="kn">import</span> <span class="n">Textbox</span><span class="p">,</span> <span class="n">rectangle</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
     <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Enter IM message: (hit Ctrl-G to send)&quot;</span><span class="p">)</span>
 
     <span class="n">editwin</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">newwin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -677,7 +691,7 @@ trailing spaces.  Here’s an example:</p>
 <p>See the library documentation on <a class="reference internal" href="../library/curses.html#module-curses.textpad" title="curses.textpad: Emacs-like input editing in a curses window."><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses.textpad</span></code></a> for more details.</p>
 </section>
 <section id="for-more-information">
-<h2>For More Information<a class="headerlink" href="#for-more-information" title="Permalink to this headline">¶</a></h2>
+<h2>For More Information<a class="headerlink" href="#for-more-information" title="Link to this heading">¶</a></h2>
 <p>This HOWTO doesn’t cover some advanced topics, such as reading the
 contents of the screen or capturing mouse events from an xterm
 instance, but the Python library page for the <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a> module is now
@@ -686,7 +700,7 @@ reasonably complete.  You should browse it next.</p>
 functions, consult the manual pages for your curses implementation,
 whether it’s ncurses or a proprietary Unix vendor’s.  The manual pages
 will document any quirks, and provide complete lists of all the
-functions, attributes, and <code class="xref py py-const docutils literal notranslate"><span class="pre">ACS_*</span></code> characters available to
+functions, attributes, and <a class="reference internal" href="../library/curses.html#curses-acs-codes"><span class="std std-ref">ACS_*</span></a> characters available to
 you.</p>
 <p>Because the curses API is so large, some functions aren’t supported in
 the Python interface.  Often this isn’t because they’re difficult to
@@ -714,7 +728,7 @@ Urwid.</p></li>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -745,7 +759,7 @@ Urwid.</p></li>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="descriptor.html"
-                          title="next chapter">Descriptor HowTo Guide</a></p>
+                          title="next chapter">Descriptor Guide</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -759,10 +773,14 @@ Urwid.</p></li>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -772,13 +790,13 @@ Urwid.</p></li>
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="descriptor.html" title="Descriptor HowTo Guide"
+          <a href="descriptor.html" title="Descriptor Guide"
              >next</a> |</li>
         <li class="right" >
           <a href="cporting.html" title="Porting Extension Modules to Python 3"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -788,7 +806,7 @@ Urwid.</p></li>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python HOWTOs</a> &#187;</li>
@@ -798,37 +816,54 @@ Urwid.</p></li>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>

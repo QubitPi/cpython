@@ -1,46 +1,47 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Unicode HOWTO" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.python.org/3/howto/unicode.html" />
 <meta property="og:site_name" content="Python documentation" />
 <meta property="og:description" content="Release, 1.12,. This HOWTO discusses Python’s support for the Unicode specification for representing textual data, and explains various problems that people commonly encounter when trying to work w..." />
-<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image" content="_static/og-image.png" />
 <meta property="og:image:alt" content="Python documentation" />
 <meta name="description" content="Release, 1.12,. This HOWTO discusses Python’s support for the Unicode specification for representing textual data, and explains various problems that people commonly encounter when trying to work w..." />
+<meta name="theme-color" content="#3776ab">
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
-<meta name="theme-color" content="#3776ab">
 
-    <title>Unicode HOWTO &#8212; Python 3.12.0a4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode HOWTO &#8212; Python 3.15.0a0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=9f571ed1" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=048d8b21"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
-    <link rel="canonical" href="/cpython/howto/unicode.html" />
+    <link rel="canonical" href="/howto/unicode.html" />
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.12.0a4 documentation"
+          title="Search within Python 3.15.0a0 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="copyright" title="Copyright" href="../copyright.html" />
     <link rel="next" title="HOWTO Fetch Internet Resources Using The urllib Package" href="urllib2.html" />
-    <link rel="prev" title="Sorting HOW TO" href="sorting.html" />
-    <link rel="canonical" href="https://docs.python.org/3/howto/unicode.html" />
+    <link rel="prev" title="Sorting Techniques" href="sorting.html" />
     
+      
+      <link rel="canonical" href="https://docs.python.org/3/howto/unicode.html">
       
     
 
@@ -52,35 +53,50 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="Quick search"/>
-            <input type="submit" value="Go"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
     <ul>
@@ -120,7 +136,7 @@
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="sorting.html"
-                          title="previous chapter">Sorting HOW TO</a></p>
+                          title="previous chapter">Sorting Techniques</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -143,7 +159,7 @@
 </div>
 
   
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -156,10 +172,10 @@
           <a href="urllib2.html" title="HOWTO Fetch Internet Resources Using The urllib Package"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="sorting.html" title="Sorting HOW TO"
+          <a href="sorting.html" title="Sorting Techniques"
              accesskey="P">previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -169,7 +185,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python HOWTOs</a> &#187;</li>
@@ -179,14 +195,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -197,9 +220,9 @@
           <div class="body" role="main">
             
   <section id="unicode-howto">
-<span id="id1"></span><h1>Unicode HOWTO<a class="headerlink" href="#unicode-howto" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Unicode HOWTO<a class="headerlink" href="#unicode-howto" title="Link to this heading">¶</a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Release</dt>
+<dt class="field-odd">Release<span class="colon">:</span></dt>
 <dd class="field-odd"><p>1.12</p>
 </dd>
 </dl>
@@ -207,9 +230,9 @@
 for representing textual data, and explains various problems that
 people commonly encounter when trying to work with Unicode.</p>
 <section id="introduction-to-unicode">
-<h2>Introduction to Unicode<a class="headerlink" href="#introduction-to-unicode" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction to Unicode<a class="headerlink" href="#introduction-to-unicode" title="Link to this heading">¶</a></h2>
 <section id="definitions">
-<h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
+<h3>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">¶</a></h3>
 <p>Today’s programs need to be able to handle a wide variety of
 characters.  Applications are often internationalized to display
 messages and output in a variety of user-selectable languages; the
@@ -269,7 +292,7 @@ glyphs; figuring out the correct glyph to display is generally the job of a GUI
 toolkit or a terminal’s font renderer.</p>
 </section>
 <section id="encodings">
-<h3>Encodings<a class="headerlink" href="#encodings" title="Permalink to this headline">¶</a></h3>
+<h3>Encodings<a class="headerlink" href="#encodings" title="Link to this heading">¶</a></h3>
 <p>To summarize the previous section: a Unicode string is a sequence of
 code points, which are numbers from 0 through <code class="docutils literal notranslate"><span class="pre">0x10FFFF</span></code> (1,114,111
 decimal).  This sequence of code points needs to be represented in
@@ -333,7 +356,7 @@ on the hardware on which the string was encoded.</p></li>
 </ol>
 </section>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://www.unicode.org">Unicode Consortium site</a> has character charts, a
 glossary, and PDF versions of the Unicode specification.  Be prepared for some
 difficult reading.  <a class="reference external" href="https://www.unicode.org/history/">A chronology</a> of the
@@ -352,11 +375,11 @@ reading this alternate article before continuing.</p>
 </section>
 </section>
 <section id="python-s-unicode-support">
-<h2>Python’s Unicode Support<a class="headerlink" href="#python-s-unicode-support" title="Permalink to this headline">¶</a></h2>
+<h2>Python’s Unicode Support<a class="headerlink" href="#python-s-unicode-support" title="Link to this heading">¶</a></h2>
 <p>Now that you’ve learned the rudiments of Unicode, we can look at Python’s
 Unicode features.</p>
 <section id="the-string-type">
-<h3>The String Type<a class="headerlink" href="#the-string-type" title="Permalink to this headline">¶</a></h3>
+<h3>The String Type<a class="headerlink" href="#the-string-type" title="Link to this heading">¶</a></h3>
 <p>Since Python 3.0, the language’s <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> type contains Unicode
 characters, meaning any string created using <code class="docutils literal notranslate"><span class="pre">&quot;unicode</span> <span class="pre">rocks!&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">'unicode</span>
 <span class="pre">rocks!'</span></code>, or the triple-quoted string syntax is stored as Unicode.</p>
@@ -398,11 +421,11 @@ converted according to the encoding’s rules.  Legal values for this argument a
 character out of the Unicode result), or <code class="docutils literal notranslate"><span class="pre">'backslashreplace'</span></code> (inserts a
 <code class="docutils literal notranslate"><span class="pre">\xNN</span></code> escape sequence).
 The following examples show the differences:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80</span><span class="s1">abc&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">)</span>  
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80</span><span class="s1">abc&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="w">    </span><span class="o">...</span>
 <span class="gr">UnicodeDecodeError</span>: <span class="n">&#39;utf-8&#39; codec can&#39;t decode byte 0x80 in position 0:</span>
-<span class="go">  invalid start byte</span>
+<span class="x">  invalid start byte</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80</span><span class="s1">abc&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;replace&quot;</span><span class="p">)</span>
 <span class="go">&#39;\ufffdabc&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80</span><span class="s1">abc&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;backslashreplace&quot;</span><span class="p">)</span>
@@ -429,7 +452,7 @@ returns the code point value:</p>
 </div>
 </section>
 <section id="converting-to-bytes">
-<h3>Converting to Bytes<a class="headerlink" href="#converting-to-bytes" title="Permalink to this headline">¶</a></h3>
+<h3>Converting to Bytes<a class="headerlink" href="#converting-to-bytes" title="Link to this heading">¶</a></h3>
 <p>The opposite method of <a class="reference internal" href="../library/stdtypes.html#bytes.decode" title="bytes.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bytes.decode()</span></code></a> is <a class="reference internal" href="../library/stdtypes.html#str.encode" title="str.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.encode()</span></code></a>,
 which returns a <a class="reference internal" href="../library/stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> representation of the Unicode string, encoded in the
 requested <em>encoding</em>.</p>
@@ -444,11 +467,11 @@ also <code class="docutils literal notranslate"><span class="pre">'xmlcharrefrep
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">40960</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;abcd&#39;</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">1972</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 <span class="go">b&#39;\xea\x80\x80abcd\xde\xb4&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="w">    </span><span class="o">...</span>
 <span class="gr">UnicodeEncodeError</span>: <span class="n">&#39;ascii&#39; codec can&#39;t encode character &#39;\ua000&#39; in</span>
-<span class="go">  position 0: ordinal not in range(128)</span>
+<span class="x">  position 0: ordinal not in range(128)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="go">b&#39;abcd&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">)</span>
@@ -469,7 +492,7 @@ are usually more low-level than is comfortable, and writing new encodings
 is a specialized task, so the module won’t be covered in this HOWTO.</p>
 </section>
 <section id="unicode-literals-in-python-source-code">
-<h3>Unicode Literals in Python Source Code<a class="headerlink" href="#unicode-literals-in-python-source-code" title="Permalink to this headline">¶</a></h3>
+<h3>Unicode Literals in Python Source Code<a class="headerlink" href="#unicode-literals-in-python-source-code" title="Link to this heading">¶</a></h3>
 <p>In Python source code, specific Unicode code points can be written using the
 <code class="docutils literal notranslate"><span class="pre">\u</span></code> escape sequence, which is followed by four hex digits giving the code
 point.  The <code class="docutils literal notranslate"><span class="pre">\U</span></code> escape sequence is similar, but expects eight hex digits,
@@ -510,7 +533,7 @@ they have no significance to Python but are a convention.  Python looks for
 already mentioned.  See also <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0263/"><strong>PEP 263</strong></a> for more information.</p>
 </section>
 <section id="unicode-properties">
-<h3>Unicode Properties<a class="headerlink" href="#unicode-properties" title="Permalink to this headline">¶</a></h3>
+<h3>Unicode Properties<a class="headerlink" href="#unicode-properties" title="Link to this heading">¶</a></h3>
 <p>The Unicode specification includes a database of information about
 code points.  For each defined code point, the information includes
 the character’s name, its category, the numeric value if applicable
@@ -520,7 +543,7 @@ are also display-related properties, such as how to use the code point
 in bidirectional text.</p>
 <p>The following program displays some information about several characters, and
 prints the numeric value of one particular character:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">233</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mh">0x0bf2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">3972</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">13231</span><span class="p">)</span>
 
@@ -551,7 +574,7 @@ other”.  See
 list of category codes.</p>
 </section>
 <section id="comparing-strings">
-<h3>Comparing Strings<a class="headerlink" href="#comparing-strings" title="Permalink to this headline">¶</a></h3>
+<h3>Comparing Strings<a class="headerlink" href="#comparing-strings" title="Link to this heading">¶</a></h3>
 <p>Unicode adds some complication to comparing strings, because the same
 set of characters can be represented by different sequences of code
 points.  For example, a letter like ‘ê’ can be represented as a single
@@ -572,14 +595,14 @@ lowercase letters ‘ss’.</p>
 </div>
 <p>A second tool is the <a class="reference internal" href="../library/unicodedata.html#module-unicodedata" title="unicodedata: Access the Unicode Database."><code class="xref py py-mod docutils literal notranslate"><span class="pre">unicodedata</span></code></a> module’s
 <a class="reference internal" href="../library/unicodedata.html#unicodedata.normalize" title="unicodedata.normalize"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalize()</span></code></a> function that converts strings to one
-of several normal forms, where letters followed by a combining
-character are replaced with single characters.  <code class="xref py py-func docutils literal notranslate"><span class="pre">normalize()</span></code> can
+of several normal forms, where letters followed by a combining character are
+replaced with single characters.  <a class="reference internal" href="../library/unicodedata.html#unicodedata.normalize" title="unicodedata.normalize"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalize()</span></code></a> can
 be used to perform string comparisons that won’t falsely report
 inequality if two strings use combining characters differently:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
 
-<span class="k">def</span> <span class="nf">compare_strs</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">NFD</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compare_strs</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">NFD</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFD&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">NFD</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">==</span> <span class="n">NFD</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
@@ -592,7 +615,7 @@ inequality if two strings use combining characters differently:</p>
 </pre></div>
 </div>
 <p>When run, this outputs:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>compare-strs.py
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>compare-strs.py
 <span class="go">length of first string= 1</span>
 <span class="go">length of second string= 2</span>
 <span class="go">True</span>
@@ -602,10 +625,10 @@ inequality if two strings use combining characters differently:</p>
 string giving the desired normalization form, which can be one of
 ‘NFC’, ‘NFKC’, ‘NFD’, and ‘NFKD’.</p>
 <p>The Unicode Standard also specifies how to do caseless comparisons:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
 
-<span class="k">def</span> <span class="nf">compare_caseless</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">NFD</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compare_caseless</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">NFD</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFD&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">NFD</span><span class="p">(</span><span class="n">NFD</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">.</span><span class="n">casefold</span><span class="p">())</span> <span class="o">==</span> <span class="n">NFD</span><span class="p">(</span><span class="n">NFD</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="o">.</span><span class="n">casefold</span><span class="p">())</span>
@@ -618,12 +641,12 @@ string giving the desired normalization form, which can be one of
 </pre></div>
 </div>
 <p>This will print <code class="docutils literal notranslate"><span class="pre">True</span></code>.  (Why is <code class="xref py py-func docutils literal notranslate"><span class="pre">NFD()</span></code> invoked twice?  Because
-there are a few characters that make <code class="xref py py-meth docutils literal notranslate"><span class="pre">casefold()</span></code> return a
+there are a few characters that make <a class="reference internal" href="../library/stdtypes.html#str.casefold" title="str.casefold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">casefold()</span></code></a> return a
 non-normalized string, so the result needs to be normalized again. See
 section 3.13 of the Unicode Standard for a discussion and an example.)</p>
 </section>
 <section id="unicode-regular-expressions">
-<h3>Unicode Regular Expressions<a class="headerlink" href="#unicode-regular-expressions" title="Permalink to this headline">¶</a></h3>
+<h3>Unicode Regular Expressions<a class="headerlink" href="#unicode-regular-expressions" title="Link to this heading">¶</a></h3>
 <p>The regular expressions supported by the <a class="reference internal" href="../library/re.html#module-re" title="re: Regular expression operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code></a> module can be provided
 either as bytes or strings.  Some of the special character sequences such as
 <code class="docutils literal notranslate"><span class="pre">\d</span></code> and <code class="docutils literal notranslate"><span class="pre">\w</span></code> have different meanings depending on whether
@@ -632,7 +655,7 @@ the pattern is supplied as bytes or a string.  For example,
 in strings will match any character that’s in the <code class="docutils literal notranslate"><span class="pre">'Nd'</span></code> category.</p>
 <p>The string in this example has the number 57 written in both Thai and
 Arabic numerals:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">)</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Over </span><span class="se">\u0e55\u0e57</span><span class="s2"> 57 flavours&quot;</span>
@@ -649,7 +672,7 @@ and <code class="docutils literal notranslate"><span class="pre">\s</span></code
 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">\t\n\r\f\v]</span></code>.</p>
 </section>
 <section id="id2">
-<h3>References<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>References<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>Some good alternative discussions of Python’s Unicode support are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/text_file_processing.html">Processing Text Files in Python 3</a>, by Nick Coghlan.</p></li>
@@ -666,7 +689,7 @@ literals start with <code class="docutils literal notranslate"><span class="pre"
 </section>
 </section>
 <section id="reading-and-writing-unicode-data">
-<h2>Reading and Writing Unicode Data<a class="headerlink" href="#reading-and-writing-unicode-data" title="Permalink to this headline">¶</a></h2>
+<h2>Reading and Writing Unicode Data<a class="headerlink" href="#reading-and-writing-unicode-data" title="Link to this heading">¶</a></h2>
 <p>Once you’ve written some code that works with Unicode data, the next problem is
 input/output.  How do you get Unicode strings into your program, and how do you
 convert Unicode into a form suitable for storage or transmission?</p>
@@ -723,7 +746,7 @@ encoded files; the name is misleading since UTF-8 is not byte-order dependent.
 The mark simply announces that the file is encoded in UTF-8.  For reading such
 files, use the ‘utf-8-sig’ codec to automatically skip the mark if present.</p>
 <section id="unicode-filenames">
-<h3>Unicode filenames<a class="headerlink" href="#unicode-filenames" title="Permalink to this headline">¶</a></h3>
+<h3>Unicode filenames<a class="headerlink" href="#unicode-filenames" title="Link to this heading">¶</a></h3>
 <p>Most of the operating systems in common use today support filenames
 that contain arbitrary Unicode characters.  Usually this is
 implemented by converting the Unicode string into some encoding that
@@ -756,7 +779,7 @@ assuming the default <a class="reference internal" href="../glossary.html#term-f
 <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
 </pre></div>
@@ -775,7 +798,7 @@ systems where undecodable file names can be present; that’s
 pretty much only Unix systems now.</p>
 </section>
 <section id="tips-for-writing-unicode-aware-programs">
-<h3>Tips for Writing Unicode-aware Programs<a class="headerlink" href="#tips-for-writing-unicode-aware-programs" title="Permalink to this headline">¶</a></h3>
+<h3>Tips for Writing Unicode-aware Programs<a class="headerlink" href="#tips-for-writing-unicode-aware-programs" title="Link to this heading">¶</a></h3>
 <p>This section provides some suggestions on writing software that deals with
 Unicode.</p>
 <p>The most important tip is:</p>
@@ -796,7 +819,7 @@ or not being fully ASCII-compatible.  This is especially true if the input
 data also specifies the encoding, since the attacker can then choose a
 clever way to hide malicious text in the encoded bytestream.</p>
 <section id="converting-between-file-encodings">
-<h4>Converting Between File Encodings<a class="headerlink" href="#converting-between-file-encodings" title="Permalink to this headline">¶</a></h4>
+<h4>Converting Between File Encodings<a class="headerlink" href="#converting-between-file-encodings" title="Link to this heading">¶</a></h4>
 <p>The <a class="reference internal" href="../library/codecs.html#codecs.StreamRecoder" title="codecs.StreamRecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamRecoder</span></code></a> class can transparently convert between
 encodings, taking a stream that returns data in encoding #1
 and behaving like a stream returning data in encoding #2.</p>
@@ -814,7 +837,7 @@ UTF-8:</p>
 </div>
 </section>
 <section id="files-in-an-unknown-encoding">
-<h4>Files in an Unknown Encoding<a class="headerlink" href="#files-in-an-unknown-encoding" title="Permalink to this headline">¶</a></h4>
+<h4>Files in an Unknown Encoding<a class="headerlink" href="#files-in-an-unknown-encoding" title="Link to this heading">¶</a></h4>
 <p>What can you do if you need to make a change to a file, but don’t know
 the file’s encoding?  If you know the encoding is ASCII-compatible and
 only want to examine or modify the ASCII parts, you can open the file
@@ -837,7 +860,7 @@ encode the data and write it back out.</p>
 </section>
 </section>
 <section id="id3">
-<h3>References<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>References<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>One section of <a class="reference external" href="https://pyvideo.org/video/289/pycon-2010--mastering-python-3-i-o">Mastering Python 3 Input/Output</a>,
 a PyCon 2010 talk by David Beazley, discusses text processing and binary data handling.</p>
 <p>The <a class="reference external" href="https://downloads.egenix.com/python/LSM2005-Developing-Unicode-aware-applications-in-Python.pdf">PDF slides for Marc-André Lemburg’s presentation “Writing Unicode-aware
@@ -850,7 +873,7 @@ representation in Python 3.3.</p>
 </section>
 </section>
 <section id="acknowledgements">
-<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h2>
 <p>The initial draft of this document was written by Andrew Kuchling.
 It has since been revised further by Alexander Belopolsky, Georg Brandl,
 Andrew Kuchling, and Ezio Melotti.</p>
@@ -867,7 +890,7 @@ Eryk Sun, Chad Whitacre, Graham Wideman.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="../contents.html">Table of Contents</a></h3>
@@ -908,7 +931,7 @@ Eryk Sun, Chad Whitacre, Graham Wideman.</p>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="sorting.html"
-                          title="previous chapter">Sorting HOW TO</a></p>
+                          title="previous chapter">Sorting Techniques</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -927,10 +950,14 @@ Eryk Sun, Chad Whitacre, Graham Wideman.</p>
     </ul>
   </div>
         </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
       </div>
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -943,10 +970,10 @@ Eryk Sun, Chad Whitacre, Graham Wideman.</p>
           <a href="urllib2.html" title="HOWTO Fetch Internet Resources Using The urllib Package"
              >next</a> |</li>
         <li class="right" >
-          <a href="sorting.html" title="Sorting HOW TO"
+          <a href="sorting.html" title="Sorting Techniques"
              >previous</a> |</li>
 
-          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
             <div class="language_switcher_placeholder"></div>
@@ -956,7 +983,7 @@ Eryk Sun, Chad Whitacre, Graham Wideman.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0a4 Documentation</a> &#187;
+      <a href="../index.html">3.15.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python HOWTOs</a> &#187;</li>
@@ -966,37 +993,54 @@ Eryk Sun, Chad Whitacre, Graham Wideman.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
-          <input type="submit" value="Go" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Copyright</a> 2001-2023, Python Software Foundation.
-    <br />
+    &copy; 
+      <a href="../copyright.html">
+    
+    Copyright
+    
+      </a>
+     2001 Python Software Foundation.
+    <br>
     This page is licensed under the Python Software Foundation License Version 2.
-    <br />
+    <br>
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
-    <br />
-    See <a href="/license.html">History and License</a> for more information.<br />
-    <br />
+    <br>
+    
+      See <a href="/license.html">History and License</a> for more information.<br>
+    
+    
+    <br>
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
-<br />
-    <br />
+<br>
+    <br>
+      Last updated on May 17, 2025 (03:26 UTC).
+    
+      <a href="/bugs.html">Found a bug</a>?
+    
+    <br>
 
-    Last updated on Jan 11, 2023.
-    <a href="/bugs.html">Found a bug</a>?
-    <br />
-
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 
   </body>
