@@ -21,7 +21,7 @@ from pyspecific import SOURCE_URI
 # General configuration
 # ---------------------
 
-html_baseurl = '/cpython/'
+html_baseurl = '/'
 
 # Our custom Sphinx extensions are found in Doc/Tools/extensions/
 extensions = [
